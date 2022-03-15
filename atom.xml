@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Boluo&#39;s Uncle</title>
+  
+  
+  <link href="http://ruozhiertong.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://ruozhiertong.github.io/"/>
+  <updated>2022-03-15T12:59:27.000Z</updated>
+  <id>http://ruozhiertong.github.io/</id>
+  
+  <author>
+    <name>Boluo&#39;s Uncle</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HEXO matery8</title>
+    <link href="http://ruozhiertong.github.io/2022/03/15/HEXO-matery8/"/>
+    <id>http://ruozhiertong.github.io/2022/03/15/HEXO-matery8/</id>
+    <published>2022-03-15T12:58:21.000Z</published>
+    <updated>2022-03-15T12:59:27.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;测试&lt;br&gt;测试&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown2" scheme="http://ruozhiertong.github.io/categories/Markdown2/"/>
+    
+    
+    <category term="Typora" scheme="http://ruozhiertong.github.io/tags/Typora/"/>
+    
+    <category term="Markdown8" scheme="http://ruozhiertong.github.io/tags/Markdown8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HEXO matery8</title>
+    <link href="http://ruozhiertong.github.io/2022/03/15/HEXO-matery8%20copy/"/>
+    <id>http://ruozhiertong.github.io/2022/03/15/HEXO-matery8%20copy/</id>
+    <published>2022-03-15T12:58:21.000Z</published>
+    <updated>2022-03-15T13:26:29.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;测试&lt;br&gt;测试&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown2" scheme="http://ruozhiertong.github.io/categories/Markdown2/"/>
+    
+    
+    <category term="Typora235" scheme="http://ruozhiertong.github.io/tags/Typora235/"/>
+    
+    <category term="Markdown12" scheme="http://ruozhiertong.github.io/tags/Markdown12/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HEXO matery8</title>
+    <link href="http://ruozhiertong.github.io/2022/03/15/HEXO-matery8%20copy%202/"/>
+    <id>http://ruozhiertong.github.io/2022/03/15/HEXO-matery8%20copy%202/</id>
+    <published>2022-03-15T12:58:21.000Z</published>
+    <updated>2022-03-15T13:26:34.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;测试&lt;br&gt;测试&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown2" scheme="http://ruozhiertong.github.io/categories/Markdown2/"/>
+    
+    
+    <category term="Typora1" scheme="http://ruozhiertong.github.io/tags/Typora1/"/>
+    
+    <category term="Markdown9" scheme="http://ruozhiertong.github.io/tags/Markdown9/"/>
+    
+  </entry>
+  
+</feed>

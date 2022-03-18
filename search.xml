@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Test for tags and categories</title>
-    <url>/2022/02/10/Hi-hexo/</url>
-    <content><![CDATA[<p>This is gerenated by command: haxo new post “Hi hexo”</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">hello world<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
-      <categories>
-        <category>Markdown</category>
-        <category>TEST</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hi hexo2</title>
     <url>/2022/03/01/Hi-hexo2/</url>
     <content><![CDATA[<ul>
@@ -186,245 +172,14 @@ printf(&quot;%d\n&quot;,a);<span aria-hidden="true" class="line-numbers-rows"><s
         <category>Java</category>
         <category>Servlet</category>
         <category>Programming</category>
+        <category>java</category>
+        <category>C</category>
+        <category>Pyhton, JS</category>
       </categories>
       <tags>
         <tag>Markdown</tag>
         <tag>TEST</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-10/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-11/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-12/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-13/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-2/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-3/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-4/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-5/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-6/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-7/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-8/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy-9/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/12/hello-world-copy/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -446,223 +201,407 @@ $ hexo new post<span aria-hidden="true" class="line-numbers-rows"><span></span><
 ]]></content>
   </entry>
   <entry>
-    <title>20220315</title>
-    <url>/2022/03/15/20220315/</url>
+    <title>Build your blog</title>
+    <url>/2022/03/17/Build-your-blog/</url>
+    <content><![CDATA[<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%8D%9A%E5%AE%A2%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B">博客技术选型</a></li>
+<li><a href="#%E6%90%AD%E5%BB%BA">搭建</a><ul>
+<li><a href="#1%E6%96%B0%E5%BB%BAgithub%E7%9A%84repository">1.新建github的repository。</a></li>
+<li><a href="#2%E5%AE%89%E8%A3%85hexo">2.安装hexo。</a><ul>
+<li><a href="#21-%E5%AE%89%E8%A3%85hexo">2.1 安装hexo</a><ul>
+<li><a href="#hexo-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86">hexo 目录结构，原理。</a></li>
+</ul>
+</li>
+<li><a href="#22-hexo-%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98">2.2 hexo 安装主题</a></li>
+<li><a href="#23-hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">2.3 hexo 常用命令</a></li>
+<li><a href="#24-1-%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%8F%92%E4%BB%B6%E5%AE%9A%E5%88%B6">2.4-1. 主题的功能，插件定制。</a></li>
+<li><a href="#24-2%E5%AE%9A%E5%88%B6-%E4%BF%AE%E6%94%B9-%E4%B8%BB%E9%A2%98-%E5%A2%9E%E5%8A%A0%E6%96%B0%E7%9A%84%E5%8A%9F%E8%83%BD-%E6%A0%B7%E5%BC%8F%E7%AD%89">2.4-2.定制 修改 主题 （增加新的功能 样式等）</a></li>
+<li><a href="#25%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%80%E5%8F%91hexo-theme">2.5.自定义开发hexo theme。</a></li>
+</ul>
+</li>
+<li><a href="#3push%E5%88%B0repository">3.push到repository。</a></li>
+<li><a href="#4%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE">4.域名访问。</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直想要构建一个属于自己的博客，可以作为自己生活工作的输出和记录。但是碍于各种麻烦(买服务器，构建，运维)(当然主要就是懒)，最终只停留在想想阶段。 后来意识到输出的重要性，才认真的考虑构建自己的博客。</p>
+<h2 id="博客技术选型"><a href="#博客技术选型" class="headerlink" title="博客技术选型"></a>博客技术选型</h2><p>博客主要有动态网站，静态网站。  </p>
+<ul>
+<li>动态网站，比如Wordpress，自己写动态网站博客。这个就是比较麻烦，要服务器，要自己构建，自己维护。（所以一直没有去实施） 但是这种比较灵活，可玩性比较高，可以根据自己的需求处理。</li>
+<li>静态博客，就是服务器只托管静态的html页面，并没有动态的能力。其实很早之前网上就有这样的博客了，只是以前一直不知道就是静态博客。 不过了解之后，发现这个可玩性也很高，可定制自己的博客样式，而且可以结合github免去服务器的维护。</li>
+<li>博客就应该简单，不需要太多的乱七八糟的动态交互。 因此很适合做静态网站的形式。</li>
+</ul>
+<p>了解一番，静态博客可选择： github.io／GitHubpage + hexo&#x2F;jelly&#x2F;hugo. 最后选择了hexo，主要因为它是nodejs写的，而我也想学nodejs，因此就选hexo。</p>
+<p>原理，利用hexo等静态网站生成器，生成的静态页面，push到github上。github托管你的静态网站，github会提供一个博客域名给你，你就可以访问域名使用了。</p>
+<p>静态博客框架原理<br>静态博客框架&#x2F;静态博客生成器 利用模版语言如ejs&#x2F;njk等，将md文档渲染成html。</p>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><h3 id="1-新建github的repository。"><a href="#1-新建github的repository。" class="headerlink" title="1.新建github的repository。"></a>1.新建github的repository。</h3><p>   <a href="https://www.jianshu.com/p/22b413e3da53">githubpage用途</a><br>   github上新建githubpage。repository名为 githubusername.github.io. 新建这个仓库后，通过域名githubusername.github.io就可以访问这个仓库下的静态资源。 名字只能是githubusername.github.io，其他名字的仓库，github不会托管的，也就是说github只給每个用户一个githubpage。<br>相当于github帮你托管了一个静态网站，并给你提供了网站域名githubusername.github.io， 你通过这个域名就可以访问静态网站了。</p>
+<h3 id="2-安装hexo。"><a href="#2-安装hexo。" class="headerlink" title="2.安装hexo。"></a>2.安装hexo。</h3><p>hexo 快速、简洁且高效的博客框架, 静态博客生成器。  </p>
+<h4 id="2-1-安装hexo"><a href="#2-1-安装hexo" class="headerlink" title="2.1 安装hexo"></a>2.1 安装hexo</h4><p>其基于nodejs，因此先安装nodejs。<br>hexo原理，其实就是样式和内容分离。渲染。<br>0.读取总配置文件。根目录下的 _config.yml.<br>1.渲染。source文件夹 和 theme文件夹。 两次渲染。1.第一次先将source下各自文件夹中的md文件渲染成article对象。2.根据种配置文件中theme将article对象根据theme文件夹下相应的lauout的ejs的进行渲染成html，输出到public。article对象用哪个layout的ejs进行渲染，用的是 md所在的文件夹名称 就是 theme下layout对应名称的xx.ejs。 theme的渲染配置在各自theme文件下的_config.yml.<br>配置文件中也是定义一些变量。<br>模版语言：ejs njk</p>
+<h5 id="hexo-目录结构，原理。"><a href="#hexo-目录结构，原理。" class="headerlink" title="hexo 目录结构，原理。"></a>hexo 目录结构，原理。</h5><p>   目录结构， 配置文件， 原理。</p>
+<h4 id="2-2-hexo-安装主题"><a href="#2-2-hexo-安装主题" class="headerlink" title="2.2 hexo 安装主题"></a>2.2 hexo 安装主题</h4><p>hexo-theme-matery, next. 最后选用了next，因为最符合简约 有效的风格。 hexo-theme-matery 虽然很炫，但是太杂了，不适合技术博客的风格。<br>安装主题，选择你喜欢的主题。</p>
+<ol>
+<li>找到你喜欢theme的github, git clone 到hexo根目录下的theme目录下。</li>
+<li>修改根目录下的_config.yml中的theme配置。 修改为theme目录下的主题目录名。</li>
+</ol>
+<h4 id="2-3-hexo-常用命令"><a href="#2-3-hexo-常用命令" class="headerlink" title="2.3 hexo 常用命令"></a>2.3 hexo 常用命令</h4><p>（要在init生成的目录下执行hexo命令）<br>hexo init XXX<br>hexo g  &#x2F; hexo generate 生成静态页面。在public目录下。<br>hexo s &#x2F; hexo server 启动本地http服务器， 访问localhost:4000<br>hexo clean clean生成的文件。<br>hexo new “xxx” 生成文章，到_posts下。<br>hexo new page “xxx” 生成文章，到source下。<br>hexo new draft “xxx”<br>也可以自己直接手动生成md在相应的目录下。 可以自己手动生成xx.md，也可以和hexo new post|page xx.<br>hexo d &#x2F; hexo deploy 会将public下生成的文件puosh到_config.yml配置文件设定的github仓库上。</p>
+<p>关于.yml配置文件 根目录下的_config.yml, theme目录下各个主题的_config.yml</p>
+<p>我安装的hexo 和 next主题 版本 如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">hexo -v
+
+NexT version 8.10.1
+Documentation: https:&#x2F;&#x2F;theme-next.js.org
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+hexo: 5.4.1
+hexo-cli: 4.3.0
+os: darwin 16.7.0 10.12.6
+
+node: 15.3.0
+v8: 8.6.395.17-node.22
+uv: 1.40.0
+zlib: 1.2.11
+brotli: 1.0.9
+ares: 1.16.1
+modules: 88
+nghttp2: 1.41.0
+napi: 7
+llhttp: 2.1.3
+openssl: 1.1.1g
+cldr: 37.0
+icu: 67.1
+tz: 2019c
+unicode: 13.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-4-1-主题的功能，插件定制。"><a href="#2-4-1-主题的功能，插件定制。" class="headerlink" title="2.4-1. 主题的功能，插件定制。"></a>2.4-1. 主题的功能，插件定制。</h4><p>   我想要的博客功能： 简洁，不需要花哨， 搜索， 归档， tag， 分类。</p>
+<ol>
+<li>归档，分类，tag。</li>
+<li>搜索。 npm install hexo-generator-searchdb</li>
+<li>RSS。 npm install hexo-generator-feed –save</li>
+<li>字数统计。npm install hexo-word-counter</li>
+<li>访客统计。 不蒜子。</li>
+<li>评论功能。 gitalk， valine。</li>
+<li>留言板。gitalk， valine。</li>
+<li>阅读进度。修改next中参数就行。<h4 id="2-4-2-定制-修改-主题-（增加新的功能-样式等）"><a href="#2-4-2-定制-修改-主题-（增加新的功能-样式等）" class="headerlink" title="2.4-2.定制 修改 主题 （增加新的功能 样式等）"></a>2.4-2.定制 修改 主题 （增加新的功能 样式等）</h4>当官方／第三方 主题 功能 样式都无法满足自己的需求，就要自己去魔改了。<h4 id="2-5-自定义开发hexo-theme。"><a href="#2-5-自定义开发hexo-theme。" class="headerlink" title="2.5.自定义开发hexo theme。"></a>2.5.自定义开发hexo theme。</h4>真正厉害的就使自己开发hexo的主题。</li>
+</ol>
+<h3 id="3-push到repository。"><a href="#3-push到repository。" class="headerlink" title="3.push到repository。"></a>3.push到repository。</h3><p>当我们完成文章创作之后，就可以发布到githubpage上了。<br>    1. 修改根目录下的_config.yml的deploy配置。</p>
+<h3 id="4-域名访问。"><a href="#4-域名访问。" class="headerlink" title="4.域名访问。"></a>4.域名访问。</h3><pre><code>1.  yourgithubusername.github.io
+2.  如果你自己有域名的话，可以将你的域名cname到yourgithubusername.github.io。
+</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>建博客：</p>
+<ul>
+<li>在github上创建githubpage的repository。</li>
+<li>安装hexo，创建hexo工程，安装主题，安装相应的功能，修改配置文件参数。<br>整个创作过程：</li>
+<li>hexo new xxx 创建文章</li>
+<li>xxx.md 的内容创作。 编辑相应的categories，tags等。</li>
+<li>hexo g &amp;&amp; hexo s 本地生成和浏览</li>
+<li>hexo d 部署到githubpahe。</li>
+<li>访问 yourgithubusername.github.io</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Skills</category>
+      </categories>
+      <tags>
+        <tag>site</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How to Write</title>
+    <url>/2022/03/17/How-to-Write/</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>HEXO matery</title>
-    <url>/2022/03/15/HEXO-matery/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
       <categories>
-        <category>Markdown</category>
+        <category>Skills</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
-        <tag>Markdown</tag>
+        <tag>Writting</tag>
       </tags>
   </entry>
   <entry>
-    <title>HEXO matery2</title>
-    <url>/2022/03/15/HEXO-matery2/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
+    <title>Learn Markdown</title>
+    <url>/2022/03/17/Learn-Markdown/</url>
+    <content><![CDATA[<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#markdown-%E6%98%AF%E4%BB%80%E4%B9%88">Markdown 是什么？</a><ul>
+<li><a href="#%E6%88%91%E7%9A%84%E7%90%86%E8%A7%A3">我的理解：</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E6%9F%A5%E7%9C%8B">创建和查看</a><ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%BC%96%E8%BE%91md%E6%96%87%E6%A1%A3">创建编辑.md文档。</a></li>
+<li><a href="#%E5%B1%95%E7%A4%BAmd%E7%9A%84%E6%95%88%E6%9E%9C">展示.md的效果。</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8">常用的编辑器</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84md%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99">常见的MD书写规则</a><ul>
+<li><a href="#%E6%96%87%E7%AB%A0%E9%A2%98%E7%9B%AE">文章题目。</a></li>
+<li><a href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">文章目录。</a></li>
+<li><a href="#%E6%A0%87%E9%A2%98">标题</a></li>
+<li><a href="#%E6%AE%B5%E8%90%BD%E6%8D%A2%E8%A1%8C">段落／换行</a></li>
+<li><a href="#%E5%88%86%E5%89%B2%E7%BA%BF">分割线</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8">引用</a></li>
+<li><a href="#%E5%BC%BA%E8%B0%83">强调</a></li>
+<li><a href="#%E8%BE%85%E5%8A%A9%E7%BA%BF">辅助线</a></li>
+<li><a href="#%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81-%E5%9D%97%E4%BB%A3%E7%A0%81">行内代码 块代码</a></li>
+<li><a href="#%E8%B6%85%E9%93%BE%E6%8E%A5">超链接</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87">图片</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a></li>
+<li><a href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8">任务列表</a></li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7">特殊符号</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8E-%E5%AD%97%E4%BD%93-%E9%A2%9C%E8%89%B2-%E5%AD%97%E5%8F%B7-%E5%AF%B9%E9%BD%90">关于 字体 颜色 字号 对齐</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%9A%84">更多的</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>要想写一篇格式清楚，样式精美的文章，在以前需要先写内容，然后再润色样式。这种方式很大程度上影响内容的输出，而且样式在各平台的不统一。<br>如何只要关注内容，而不必关注样式，并且样式能在各个平台兼容？markdown是一种不错的选择。熟悉了markdown书写规则之后，就能不被样式束缚，可以只关注于内容，而且现在多个平台上基本都支持md，样式也基本标准统一。所以，我们在输出内容时，也能输出统一标准精美的样式（md的样式基本是统一标准的）。这种的方式非常适合于技术博客。</p>
+<h2 id="Markdown-是什么？"><a href="#Markdown-是什么？" class="headerlink" title="Markdown 是什么？"></a>Markdown 是什么？</h2><blockquote>
+<p>Markdown 是一种轻量级标记语言，创始人是约翰・格鲁伯（John Gruber）。它允许人们 “使用易读易写的纯文本格式编写文档，然后转换成有效的 HTML 文档”。<br>—— 维基百科。</p>
+</blockquote>
+<blockquote>
+<p>Markdown 简化了 HTML 的语法，使得大多数人都可以轻松地完成文档排版；<br>Markdown 的基础排版功能，如标题、段落、加重等功能，不要求使用者有其他技能基础；<br>Markdown 的基础样式功能，如字体、字号、颜色等，需要使用者有 HTML &amp; CSS 基础。</p>
+</blockquote>
+<p>markdown 原理 <a href="https://juejin.cn/post/6844903834041450510">链接</a>, <a href="https://zhuanlan.zhihu.com/p/99319314">链接</a></p>
+<h3 id="我的理解："><a href="#我的理解：" class="headerlink" title="我的理解："></a>我的理解：</h3><ul>
+<li><p>md 是一种轻量级标记语言，创始人是约翰・格鲁伯（John Gruber）。它允许人们 “使用易读易写的纯文本格式编写文档，然后转换成有效的 HTML 文档”。 .md文件是md标记语言编写的。 语法：有其md特殊的标记(如# * 等)，它也支持所有的html标记(即在.md文档中直接使用html的所有标签)。实际上，md的展示过程，是 md处理器&#x2F;引擎 处理md特殊标记 然后编译转化输出html文档，然后再渲染html进行展示（对于html标记不做处理 原样转化）。 所以一些可以展示md的编辑器／软件 实际上是有md引擎以及html渲染引擎的。</p>
+</li>
+<li><p>Markdown 语法支持嵌入原始的 HTML 标记语言，支持 CSS 样式。  </p>
+</li>
+<li><p>所以你理解html 就能理解md。因为最后渲染成html的。知道html的样式 效果，就能知道md标签的含义和最后效果。  md使得你专注内容，而不是那些样式等。  </p>
+</li>
+<li><p>学习md 既能加深html的理解，以及展示的效果， 还能学到排版 样式 等知识。  </p>
+</li>
+<li><p>如何学习这么多的md规则？ 实际上md文档就是为了写文章，文章中主要有什么？你清楚了文章主要有什么，那么就能很快掌握md相应的书写规则。<br>你想想文章 都有什么：  </p>
+<ul>
+<li>结构：文章题目，目录， 各个标题 小标题 。 正文(由段落组成)，常用的图表，图片，链接，代码块 等。</li>
+<li>样式： 字体，字号，颜色，对齐， 斜体，加粗，下划线 等。</li>
+</ul>
+<p>这些都对应着响应的md书写规则。 只要你对文章的结构 排版都清楚，那么学起md就非常得心应手。</p>
+</li>
+</ul>
+<p>markdown 太轻便了，学会了，使用起来非常舒服，优雅。 任何时刻，都可以写（毕竟时纯文本形式）。<br>学会简单的规则，就能写出很好的文档。 不需要用那些复杂的文本编辑软件等。</p>
+<pre class="line-numbers language-none"><code class="language-none">文章 排版结构：
+1.前面目录。 [TOC]
+2.层次 逻辑分清楚。 段落／主题， section，小节。
+3.各个段落／主题 之间的关联。
+4.字体 颜色 样式。 着重： 标红 放大 加粗 斜体 下划线。  代码块。 表格。 图片插入。分点样式等。
+写作有时候 虽然文笔不好，但是 能将逻辑、 结构、步骤弄清楚 也是一篇不错的合格的文章。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="创建和查看"><a href="#创建和查看" class="headerlink" title="创建和查看"></a>创建和查看</h2><h3 id="创建编辑-md文档。"><a href="#创建编辑-md文档。" class="headerlink" title="创建编辑.md文档。"></a>创建编辑.md文档。</h3><p>任何编辑器都可以创建.md文件。 .md文件实际上就是纯文本文件，因此可以用任何编辑器编辑。所以 只要你学会md的书写，那么你就可以何时何地，不受工具限制，进行文章创作。</p>
+<h3 id="展示-md的效果。"><a href="#展示-md的效果。" class="headerlink" title="展示.md的效果。"></a>展示.md的效果。</h3><p>需要编辑器／软件 1.支持.md的解析，2.以及html的渲染，展示最终效果，否则只能看到纯文本的源文件。 </p>
+<h3 id="常用的编辑器"><a href="#常用的编辑器" class="headerlink" title="常用的编辑器"></a>常用的编辑器</h3><p>用于展示和编辑的编辑器有Typora， vscode(安装相应插件)。</p>
+<h2 id="常见的MD书写规则"><a href="#常见的MD书写规则" class="headerlink" title="常见的MD书写规则"></a>常见的MD书写规则</h2><p>注意 书写规则中MD标记 前后空格。 如</p>
+<pre class="line-numbers language-none"><code class="language-none">#无效的标题. 因为和#连在一起。
+# 有效的标题。
+1.无效的有序列表。 
+1. 有效的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="文章题目。"><a href="#文章题目。" class="headerlink" title="文章题目。"></a>文章题目。</h3><p>这个没什么说的。H1.</p>
+<h3 id="文章目录。"><a href="#文章目录。" class="headerlink" title="文章目录。"></a>文章目录。</h3><ol>
+<li>[TOC] 自动生成目录。 不过有些md编辑器无法显示。  </li>
+<li>手动。 需要手动更新。 不过有些编辑器可以插件生成，比如vscode。<pre class="line-numbers language-none"><code class="language-none">- [一级标题](#一级标题)
+  - [标题 1-1](#二级标题 1-1)
+  - [标题 1-2](#二级标题 1-2)
+- [二级标题](#二级标题)
+  - [标题 2-1](#二级标题 2-1)
+  - [标题 2-2](#二级标题 2-2)
+- [一级标题](#一级标题)
+  - [标题 1-1](#二级标题 1-1)
+  - [标题 1-2](#二级标题 1-2)
+- [二级标题](#二级标题)
+  - [标题 2-1](#二级标题 2-1)
+  - [标题 2-2](#二级标题 2-2)
+
+# 一级标题
+一些内容……
+## 二级标题 1-1
+一些内容……
+## 二级标题 1-2
+一些内容……
+# 二级标题
+一些内容……
+## 二级标题 2-1
+一些内容……
+## 二级标题 2-2
+一些内容……
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用 #。对应 html中h1～h6.<br>标题是组织文章结构的最好方式。<br>Markdown 的标题定义方式，不用担心标题格式混乱，文章始终保持结构性，作为创作者，只需要关心内容即可。在某些 Markdown 编写工具中，标题也可用于自动生成目录树或大纲。<br>标题 目录 也是文章的逻辑、 结构、 思维导图。</p>
+<pre class="line-numbers language-none"><code class="language-none"># 这是一个标题
+## 这是一个标题
+### 这是一个标题
+#### 这是一个标题
+##### 这是一个标题
+###### 这是一个标题
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="段落／换行"><a href="#段落／换行" class="headerlink" title="段落／换行"></a>段落／换行</h3><p>分段  </p>
+<ol>
+<li>用空行。 没有空行，那么都算一个段落中。  </li>
+<li>后面加两个空格，再按enter，那么渲染的时候就会换行。 否则计算源文件enter换行，渲染后还是再同一行.(不分段的换行)</li>
+</ol>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><pre class="line-numbers language-none"><code class="language-none">下面是三类分割线
+
+使用「星号」作为分割线
+
+***
+
+使用「减号」作为分割线
+
+---
+
+使用「下划线」作为分割线
+___
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>无序列表， 有序列表。html中的 ul ol</p>
+<pre class="line-numbers language-none"><code class="language-none">### 无序列表
+
+使用星号生成无序列表
+
+* 项目1
+* 项目2
+* 项目3
+
+使用加号生成无序列表
+
++ 项目1
++ 项目2
++ 项目3
+
+使用减号生成无序列表
+
+- 项目1
+- 项目2
+- 项目3
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">
+### 有序列表
+使用数字实现有序列表
+
+1. 项目1
+2. 项目2
+3. 项目3
+
+源码中的数字与渲染后的数字并不一一对应，但可以决定列表的开始序号
+
+例如，让 Markdown 渲染器自动安排序号：
+
+0. 项目1
+0. 项目2
+0. 项目3
+
+让有序列表以 “2” 开头：
+
+2. 项目1
+1. 项目2
+0. 项目3
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>行首加入&gt;</p>
+<pre class="line-numbers language-none"><code class="language-none">### 块引用的特殊样式
+
+&gt; #### 块引用里的标题
+&gt;
+&gt; 块引用里的 **重点文字**
+&gt;
+&gt; 块引用里的列表
+&gt; - 项目1
+&gt; - 项目2
+&gt; - 项目3
+&gt;
+&gt; 块引用里的表格
+&gt;
+&gt; |a|b|
+&gt; |---|---|
+&gt; |c|d|
+&gt;
+&gt; 块引用里的分割线
+&gt; ___
+&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><pre class="line-numbers language-none"><code class="language-none">### 强调语法的组合应用
+
+- 默认的粗斜体
+
+  ***标准的粗斜体***
+
+- 用粗体包含斜体
+
+  **_用粗体包含斜体的粗斜体_**
+
+- 用斜体包含粗体的粗斜体
+
+  *__用粗体包含斜体的粗斜体__*
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="辅助线"><a href="#辅助线" class="headerlink" title="辅助线"></a>辅助线</h3><pre class="line-numbers language-none"><code class="language-none">### 中划线语法
+
+这是一个删除线
+
+~~这是一条删除线~~
+
+当删除线内部紧跟 &quot;空格&quot; 时，删除线效果会失效。
+
+~~有效的删除线~~
+
+~~失效的删除线 ~~
+
+~~ 失效的删除线 ~~
+
+~~ 失效的删除线~~
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="行内代码-块代码"><a href="#行内代码-块代码" class="headerlink" title="行内代码 块代码"></a>行内代码 块代码</h3><pre class="line-numbers language-none"><code class="language-none">行内 用 &#96;&#96; 包起来。  
+
+块 用&#96;&#96;&#96; 包起来。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h3><pre class="line-numbers language-none"><code class="language-none">#### 声明超链接
+
+一对中括号就可以将文字转换为超链接，如: [北京](https:&#x2F;&#x2F;)，[上海]()，[广州]()，[深圳]()
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p><code>![替换文字](图片路径 &quot;标题(可选)&quot;)</code></p>
+<pre class="line-numbers language-none"><code class="language-none">#### 插入一张图片
+
+图片前的文字。
+
+![](https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;crop.0.0.180.180.180&#x2F;6d04a77djw1e8qgp5bmzyj2050050aa8.jpg?KID&#x3D;imgbed,tva&amp;Expires&#x3D;1588529780&amp;ssig&#x3D;vNCcwnltm2)
+
+图片后的文字
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><pre class="line-numbers language-none"><code class="language-none">#### 定义表格
+
+|学号|姓名|
+|----|----|
+|1|张三|
+|2|李四|
+|3|王五|
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><pre class="line-numbers language-none"><code class="language-none">在 Markdown 文件中，在 &quot; 无序列表 -,+,* &quot; 后面使用 「中括号 []」 声明复选框。在中括号中写入 x ，便可实现选中效果。
+
+#### 复选框 checkbox
+
+- [ ] Java
+- [x] Php
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><p>使用转义 *  &gt;.<br>只用特殊的字符遇到\ 才能转义，其他的还是原样输出，如 \x</p>
+<h3 id="关于-字体-颜色-字号-对齐"><a href="#关于-字体-颜色-字号-对齐" class="headerlink" title="关于 字体 颜色 字号 对齐"></a>关于 字体 颜色 字号 对齐</h3><p>由于md只关注内容本身，并不关注样式，因此要做这些的话，可以通过html标签去实现。</p>
+<h3 id="更多的"><a href="#更多的" class="headerlink" title="更多的"></a>更多的</h3><p>可以参考 <a href="https://www.imooc.com/wiki/markdownlesson/markdownoverview.html">慕课网教程</a><br>（慕课的，做的很不错） 文章的结构和逻辑 都很不错（值的学习这种写文章的技巧）。</p>
 ]]></content>
       <categories>
-        <category>Markdown</category>
+        <category>Skills</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
-        <tag>Markdown</tag>
+        <tag>writting</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery3</title>
-    <url>/2022/03/15/HEXO-matery3/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery4</title>
-    <url>/2022/03/15/HEXO-matery4-1/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery4</title>
-    <url>/2022/03/15/HEXO-matery4/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery5</title>
-    <url>/2022/03/15/HEXO-matery5/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown5</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery6</title>
-    <url>/2022/03/15/HEXO-matery6/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown6</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery7</title>
-    <url>/2022/03/15/HEXO-matery7/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy%202/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora1</tag>
-        <tag>Markdown9</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy%203/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora2</tag>
-        <tag>Markdown10</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy%204/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora3</tag>
-        <tag>Markdown11</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy%205/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typoraqwfuyhsgafuygaguyt</tag>
-        <tag>hjqwgfygasf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy%206/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typoraqwfuyguyt</tag>
-        <tag>Markdown124t275</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy%207/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora356235</tag>
-        <tag>Markdown125425</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8%20copy/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora235</tag>
-        <tag>Markdown12</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO matery8</title>
-    <url>/2022/03/15/HEXO-matery8/</url>
-    <content><![CDATA[<p>测试<br>测试</p>
-]]></content>
-      <categories>
-        <category>Markdown2</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-        <tag>Markdown8</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TEST RSS</title>
-    <url>/2022/03/15/TEST-RSS/</url>
-    <content><![CDATA[<p>JUST FOR TEST RSS</p>
-]]></content>
   </entry>
   <entry>
     <title>404</title>
@@ -683,6 +622,12 @@ $ hexo new post<span aria-hidden="true" class="line-numbers-rows"><span></span><
     <title>contact</title>
     <url>/contact/index.html</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>留言板</title>
+    <url>/guestbook/index.html</url>
+    <content><![CDATA[<p>欢迎留下脚印👣</p>
+]]></content>
   </entry>
   <entry>
     <title>tags</title>

@@ -6,7 +6,7 @@
   <link href="https://ruozhiertong.github.io/atom.xml" rel="self"/>
   
   <link href="https://ruozhiertong.github.io/"/>
-  <updated>2022-03-25T08:23:16.000Z</updated>
+  <updated>2022-03-25T10:37:22.000Z</updated>
   <id>https://ruozhiertong.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>TEST</title>
-    <link href="https://ruozhiertong.github.io/2022/03/25/TEST/"/>
-    <id>https://ruozhiertong.github.io/2022/03/25/TEST/</id>
+    <link href="https://ruozhiertong.github.io/2022/03/25/TEST2/"/>
+    <id>https://ruozhiertong.github.io/2022/03/25/TEST2/</id>
     <published>2022-03-25T05:20:15.000Z</published>
-    <updated>2022-03-25T08:23:16.000Z</updated>
+    <updated>2022-03-25T10:37:22.000Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -209,11 +209,11 @@
   </entry>
   
   <entry>
-    <title>testDate</title>
-    <link href="https://ruozhiertong.github.io/2022/02/15/testDate-copy-2/"/>
-    <id>https://ruozhiertong.github.io/2022/02/15/testDate-copy-2/</id>
+    <title>testDate copy 2</title>
+    <link href="https://ruozhiertong.github.io/2022/02/15/TEST/"/>
+    <id>https://ruozhiertong.github.io/2022/02/15/TEST/</id>
     <published>2022-02-15T05:20:15.000Z</published>
-    <updated>2022-03-23T13:59:07.000Z</updated>
+    <updated>2022-03-25T10:38:04.000Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="BIOS， EUFI。 MBR， GPT。 GUID(macos上的分区表)。 grub，LILO。 （bootloader） 系统：一般系统，winpe，老毛桃(基于winpe)。 winpe，老毛桃 等是放在u盘上的系统，选择U盘启动，从而运行winpe系统。 这些系统也有自己的bootloader，比如老毛桃引导程序界面，可以选择启动系统。 ventoy仅仅是引导程序 (bootloader">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="U盘装系统">
+<meta property="og:url" content="https://ruozhiertong.github.io/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="BIOS， EUFI。 MBR， GPT。 GUID(macos上的分区表)。 grub，LILO。 （bootloader） 系统：一般系统，winpe，老毛桃(基于winpe)。 winpe，老毛桃 等是放在u盘上的系统，选择U盘启动，从而运行winpe系统。 这些系统也有自己的bootloader，比如老毛桃引导程序界面，可以选择启动系统。 ventoy仅仅是引导程序 (bootloader">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-10T08:20:10.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="搞机">
+<meta property="article:tag" content="U盘装系统">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/","path":"2023/03/10/U盘装系统/","title":"U盘装系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>U盘装系统 | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="U盘装系统 | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          U盘装系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-10 16:20:10" itemprop="dateCreated datePublished" datetime="2023-03-10T16:20:10+08:00">2023-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>BIOS， EUFI。</p>
+<p>MBR， GPT。 GUID(macos上的分区表)。</p>
+<p>grub，LILO。 （bootloader）</p>
+<p>系统：一般系统，winpe，老毛桃(基于winpe)。</p>
+<p>winpe，老毛桃 等是放在u盘上的系统，选择U盘启动，从而运行winpe系统。 这些系统也有自己的bootloader，比如老毛桃引导程序界面，可以选择启动系统。</p>
+<p>ventoy仅仅是引导程序 (bootloader)，并没有做成一个系统，可以引导 其他系统镜像的安装 或 其他系统的。 ventoy是基于grub2.</p>
+<p>winpe 是将系统安装在了内存上。<br>所以 ventoy中只要winpe的iso镜像文件就可以启动winpe。 因为启动的时候直接将iso安装在内存上，而不是像其他os的镜像文件要先安装在某个磁盘上再load到内存。<br>所以winpe很适合放在u盘上，选择u盘启动，启动的时候会安装在内存上。</p>
+<p>grub， mac的引导程序， 引导程序 都是bootloader。</p>
+<ul>
+<li>虚拟机识别u盘。</li>
+<li>虚拟机开机启动项改为u盘。<br>  因为虚拟机启动项中没有u盘，所以曲线处理。创建一个虚拟硬盘vmdk，映射到u盘，然后添加该虚拟硬盘到虚拟机中，从而实现以U盘为启动。</li>
+</ul>
+<p>macos vbox中设置u盘启动。<br>0.u盘在macos中的名称 &#x2F;dev&#x2F;diskXXX。 用diskutil list查看 各磁盘信息。<br>1.设置&#x2F;dev&#x2F;diskxxx的owner。因为后续会报没有权限操作磁盘。 macos下没有disk用户组，所以只能更改disk的owner。 sudo chown。<br>2.使用macos 自带的 磁盘工具.app， 对u盘进行卸载，不是eject。如果不卸载，那么会导致访问冲突。<br>3.进入vbox安装路径下，使用其工具，创建vmdk。 cd &#x2F;Applications&#x2F;VirtualBox.app&#x2F;Contents&#x2F;MacOS， 然后<br>VBoxManage internalcommands createrawvmdk -filename &#x2F;Users&#x2F;rzet&#x2F;usb.vmdk -rawdisk &#x2F;dev&#x2F;disk2<br>4.打开vbox，某个虚拟机-&gt;设置-&gt;存储-&gt;SATA中添加虚拟硬盘-&gt;选择&#x2F;Users&#x2F;rzet&#x2F;usb.vmdk。 确定。 (如果出现虚拟磁盘访问busy，那么可能是u盘被加载了，要进行2的操作)<br>5.启动虚拟机。按F12，选择启动的磁盘。 进而进入u盘启动。<br>注意，如果在4阶段发现虚拟磁盘的uuid冲突，可以在 管理-&gt;虚拟介质管理 删除相应相应的虚拟磁盘，然后再操作4。</p>
+<p>如果已经设置好了，下次再用u盘时，只要执行1后 启动虚拟机就行。</p>
+<p>安装系统在u盘上。 </p>
+<ul>
+<li>1.直接iso文件放在u盘上，启动时直接将iso解压安装在内存上， 如WinPE。这个适合小系统。 </li>
+<li>2.直接将原生系统安装在u盘上 （用系统文件镜像iso安装(不是直接将iso文件放在u盘上)，安装时将系统安装在u盘上），将u盘看成是普通的硬盘，以u盘启动就行了。比如ubuntu安装在u盘上，wintogo安装在u盘上。 这个对u盘读写速度要求高，也要比较大的容量。</li>
+<li>3.将系统装在vhdx中，然后将vhdx直接放在u盘上，让引导程序可以读取到这个vhdx就行，进而以vhdx进行启动，从而实现u盘启动系统。（只要引导程序&#x2F;bootloader 可以读取到vhdx，就可以启动这个虚拟硬盘。能识别到这个虚拟硬盘后，就能进入这个虚拟硬盘中的操作系统。其实也是虚拟机技术。这个虚拟硬盘就像相当于普通的磁盘，里面安装了操作系统。严格意义上也算事虚拟机，只是将全部都放在虚拟硬盘中。其实只要引导程序可以识别虚拟机的虚拟文件，也完全可以直接用物理机来启动u盘上的虚拟机，而不必都要在虚拟机程序中启动虚拟机，目前可以直接在u盘启动的好像就vhdx，对于vmware，vbox的虚拟机可以转换成vhdx，然后再放到硬盘下就可以u盘启动了。 ventoy可以直接识别任何虚拟机的虚拟硬盘，可以直接使用）<a target="_blank" rel="noopener" href="https://ventoy.net/cn/plugin_vtoyboot.html">https://ventoy.net/cn/plugin_vtoyboot.html</a></li>
+</ul>
+<p>wintogo(可以安装win8 win10) 可以用第二种也可以用第三种。 如果要直接安装win10 可以用2 也可以3。 安装其他系统也是可以2或者3,即直接安装或虚拟硬盘形式。 2，3方式的安装对U盘容量，读写速度都有一定的要求。大容量，最好usb3以上。</p>
+<p>wintogo 安装的win8 win10 和 正常的win8 win10 安装，优势在与驱动更简单，大小更小等。</p>
+<p>vbox 中的虚拟机 和 主机 文件之间复制粘贴。拖拽文件等。<br>vbox 中的虚拟机 和 主机 进行共享文件夹。 虚拟机中的windows显示为 \VBoxSvr。<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43321041/article/details/103611942">https://blog.csdn.net/weixin_43321041/article/details/103611942</a><br>vbox 中的虚拟机 识别，访问 u盘。<br>vbox 中的虚拟机 使用串口，usb接口等。<br>vbox 中的虚拟机 使用u盘启动。<br>vbox功能很强大，强大到完全可以用虚拟机做物理机的任何事。因为虚拟机也可以用到物理机的物理接口，因此体验也完全和物理机差不多。轻度使用还是没问题的，不用专门跑到其他物理机上去使用windows。</p>
+<p>centos minimal安装之后 网络设置 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yhblog/article/details/83112449">https://blog.csdn.net/yhblog/article/details/83112449</a></p>
+<p>ventoy 折腾：<br>0.u盘制作ventoy。<br>1.u盘放入winpe的iso文件。<br>2.u盘放入vhd &#x2F; vdi.vtoy 文件。<br>3.启动， F12， 选择u盘启动。</p>
+<p>BIOS中 选择 机器的启动位置（某一个硬盘，某一个u盘，某一个光盘，某一个软驱，某一个网络位置）。-&gt; 多启动位置的选择。<br>bootloader(如grub2等) 选择 操作系统的启动 &#x2F; 选择分区。 选择的是 前面BIOS选中的硬盘中的某一个分区(该分区的操作系统)。 -&gt; 多系统的选择&#x2F;分区的选择。</p>
+<p>开机启动： 选择某个硬盘 [bios]，选择该硬盘某个分区(分区中的os) [bootloader]。<br>有两个设置界面，bios设置，bootloader设置。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/" title="U盘装系统">https://ruozhiertong.github.io/2023/03/10/U盘装系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%90%9E%E6%9C%BA/" rel="tag"># 搞机</a>
+              <a href="/tags/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/" rel="tag"># U盘装系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/10/%E6%B5%8B%E8%AF%95Markor/" rel="prev" title="测试">
+                  <i class="fa fa-chevron-left"></i> 测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/03/13/git-and-github/" rel="next" title="git and github">
+                  git and github <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2023/03/10/U%E7%9B%98%E8%A3%85%E7%B3%BB%E7%BB%9F/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"9077b6c22dec1048722f8220130704ac"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

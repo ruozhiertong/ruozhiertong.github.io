@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="项目的目录结构 python 包，模块。 import 导入模块或导入模块中的某个东东。两种写法。 python import 引用导致的循环导入。 解决import错误。项目的目录结构pack_test目录结构：Level0 	- Level1 		- level1_a.py 		- Level2 			- level2_a.py 	- level0_a.py 	- level0_b.py">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="python_module">
+<meta property="og:url" content="https://ruozhiertong.github.io/2022/04/06/python-module/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="项目的目录结构 python 包，模块。 import 导入模块或导入模块中的某个东东。两种写法。 python import 引用导致的循环导入。 解决import错误。项目的目录结构pack_test目录结构：Level0 	- Level1 		- level1_a.py 		- Level2 			- level2_a.py 	- level0_a.py 	- level0_b.py">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-06T15:42:59.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2022/04/06/python-module/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2022/04/06/python-module/","path":"2022/04/06/python-module/","title":"python_module"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python_module | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">项目的目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-%E5%8C%85%EF%BC%8C%E6%A8%A1%E5%9D%97%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">python 包，模块。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import-%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97%E6%88%96%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E6%9F%90%E4%B8%AA%E4%B8%9C%E4%B8%9C%E3%80%82%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">import 导入模块或导入模块中的某个东东。两种写法。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-import-%E5%BC%95%E7%94%A8%E5%AF%BC%E8%87%B4%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%AF%BC%E5%85%A5%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">python import 引用导致的循环导入。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3import%E9%94%99%E8%AF%AF%E3%80%82"><span class="nav-number">5.</span> <span class="nav-text">解决import错误。</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2022/04/06/python-module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python_module | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python_module
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-06 23:42:59" itemprop="dateCreated datePublished" datetime="2022-04-06T23:42:59+08:00">2022-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Language/" itemprop="url" rel="index"><span itemprop="name">Language</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Language/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2022/04/06/python-module/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/06/python-module/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">项目的目录结构</a></li>
+<li><a href="#python-%E5%8C%85%E6%A8%A1%E5%9D%97">python 包，模块。</a></li>
+<li><a href="#import-%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97%E6%88%96%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E6%9F%90%E4%B8%AA%E4%B8%9C%E4%B8%9C%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95">import 导入模块或导入模块中的某个东东。两种写法。</a></li>
+<li><a href="#python-import-%E5%BC%95%E7%94%A8%E5%AF%BC%E8%87%B4%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%AF%BC%E5%85%A5">python import 引用导致的循环导入。</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3import%E9%94%99%E8%AF%AF">解决import错误。</a><h2 id="项目的目录结构"><a href="#项目的目录结构" class="headerlink" title="项目的目录结构"></a>项目的目录结构</h2>pack_test<br>目录结构：<pre class="line-numbers language-none"><code class="language-none">Level0
+	- Level1
+		- level1_a.py
+		- Level2
+			- level2_a.py
+	- level0_a.py
+	- level0_b.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="python-包，模块。"><a href="#python-包，模块。" class="headerlink" title="python 包，模块。"></a>python 包，模块。</h2><ul>
+<li>包 即目录(可以含有__init__.py,有则是regularpackage，没有则是namespacepackage)。 包名即目录名。 调用包里的模块。 包名.xx中的xx是目录下的 模块&#x2F;.py文件。</li>
+<li>模块 即.py文件。模块名即文件名(不带.py)。 调用模块里的东西 模块名.xx  xx可以是.py文件中的类 函数 变量等。</li>
+</ul>
+<h2 id="import-导入模块或导入模块中的某个东东。两种写法。"><a href="#import-导入模块或导入模块中的某个东东。两种写法。" class="headerlink" title="import 导入模块或导入模块中的某个东东。两种写法。"></a>import 导入模块或导入模块中的某个东东。两种写法。</h2><ul>
+<li>import xxx   导入模块。 (xxx查找路径 系统目录以及当前目录 或 xxx指定的 如 AA.BB.bb)。 只能导入整个模块， 要想导入模块中的某个用from。</li>
+<li>from XXX import YYY  导入模块或导入模块中的东东。 从XXX模块中导入YYY(具体的类 函数 变量)。 或 从XXX包中导入模块YYY。 (XXX查找路径 系统目录以及当前目录或XXX指定的如..&#x2F;..&#x2F;ABC，不能直接指定，要sys.append)</li>
+</ul>
+<p>import 绝对导入 和 相对导入(使用.和..和…等。相对导入只能用在from形式，即有.或..只能用在from。直接import .XXX是不行)（在顶级包下无法使用相对导入，即无法使用from .&#x2F;..&#x2F;…等相对导入的形式。或者说相对导入无法..到顶级包。 顶级包 就是python命令运行时那个py文件所在的目录为顶级目录）。（绝对路径，相对路径）<br>(绝对是python命令执行时所在的目录为根目录，即以顶级包所在目录为根目录的。 相对是当前py文件的所在目录。)<br>一般相对导入(. ..)只用在有包的情况下。</p>
+<p>pyhton2之前 默认&#x2F;隐式 为相对导入， python3为绝对导入。</p>
+<ul>
+<li>python3绝对导入2种： from  import, import。 相对导入(.或..) from  import。</li>
+<li>python2绝对导入2种： from  import，import(eg:import AA.BB.aa)。 相对导入 from  import, import(只是import xxx默认为相对的 &lt;&#x3D;&gt; from . import xxx) .<br>（涉及. .. 只能用from形式）</li>
+</ul>
+<p>非常简单暴力的方法，将搜索路径 加入到sys中， sys.append。</p>
+<p>绝对导入时的模块寻找路径：<br>    python模块的搜索目录有下面四个部分组成<br>    1：python命令执行时的所在目录。<br>    2：环境变量PYTHONPATH中列出的目录<br>    通过设置该系统环境变量，可以指定python的额外搜索目录<br>    3：python标准库目录<br>    python的标准库<br>    4：python的.pth文件扩展额外的搜索目录<br>    该文件提供了一种扩展搜索目录的方式。在该文件中每一行表示一个扩展目录<br>    python程序在启动时按照上面的顺序依次依次合并起来称为python的库文件查找路径集合。所以当python在查找某一个模块时，首先查找home目录然后PYTHONPATH目录，然后标准库，然后.pth文件中提供的目录。<br>    python的模块搜索路径列表存放在sys.path变量总，可以通过输出该变量来查看当前模块搜索列表。也可以通过改改变该变量的值来动态修改python的搜索路径。</p>
+<p>相对导入时的模块寻找路径，就是相对导入的路径去寻找。 (相对导入 是相对当前.py文件所在目录) </p>
+<p>（相对导入时如果要找上顶级包上一层的模块，可以上层路径加到sys路径中，作为绝对导入形式导入。）</p>
+<h2 id="python-import-引用导致的循环导入。"><a href="#python-import-引用导致的循环导入。" class="headerlink" title="python import 引用导致的循环导入。"></a>python import 引用导致的循环导入。</h2><ul>
+<li>import过程 实际上是栈的形式。 A 中import B , 在import处，暂停A的执行，去执行导入的文件B，导入文件B执行完之后，返回到A中的import点，A从import点处继续往下执行。</li>
+</ul>
+<h2 id="解决import错误。"><a href="#解决import错误。" class="headerlink" title="解决import错误。"></a>解决import错误。</h2><ul>
+<li>ValueError: attempted relative import beyond top-level package # 试图在顶级包（top-level package）之外进行相对导入</li>
+<li>ImportError: attempted relative import with no known parent package.  在顶级包中无法用相对导入。</li>
+<li>ModuleNotFoundError: No module named ‘moduleY’ 找不到moduel。 解决方法，看绝对 还是 相对，然后去看看寻找路径中有没有该module。</li>
+</ul>
+<p>如果你想在顶级包下使用顶级包上层的模块，那么可以将上层模块加入到sys路径中。然后以绝对导入方式直接import。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2022/04/06/python-module/" title="python_module">https://ruozhiertong.github.io/2022/04/06/python-module/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/25/TEST/" rel="prev" title="testDate copy 2">
+                  <i class="fa fa-chevron-left"></i> testDate copy 2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/" rel="next" title="宽带_IPV6">
+                  宽带_IPV6 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2022/04/06/python-module/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"1c3f5b0008c582f01d59b2f1461053e6"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

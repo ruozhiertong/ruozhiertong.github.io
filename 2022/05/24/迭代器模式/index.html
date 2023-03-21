@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1 2  1迭代器模式&#x2F;原理：利用迭代器 迭代&#x2F;循环遍历 可迭代对象中的数据集合。 原理上是利用迭代器的。而且不是一次性将全部读取到内存中，而是一个一个读取，用过的内存再被覆盖，这样明显不会占用太多内存。迭代器并不是一次性读出所有数据，而是一次一次读出.迭代器模式提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。 一般意义上／广义上的：可迭代对象：1.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="迭代器模式">
+<meta property="og:url" content="https://ruozhiertong.github.io/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="1 2  1迭代器模式&#x2F;原理：利用迭代器 迭代&#x2F;循环遍历 可迭代对象中的数据集合。 原理上是利用迭代器的。而且不是一次性将全部读取到内存中，而是一个一个读取，用过的内存再被覆盖，这样明显不会占用太多内存。迭代器并不是一次性读出所有数据，而是一次一次读出.迭代器模式提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。 一般意义上／广义上的：可迭代对象：1.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-24T05:17:57.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="迭代器模式">
+<meta property="article:tag" content="迭代器">
+<meta property="article:tag" content="可迭代对象">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/","path":"2022/05/24/迭代器模式/","title":"迭代器模式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>迭代器模式 | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="迭代器模式 | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          迭代器模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-24 13:17:57" itemprop="dateCreated datePublished" datetime="2022-05-24T13:17:57+08:00">2022-05-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#1">1</a></li>
+<li><a href="#2">2</a></li>
+</ul>
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>迭代器模式&#x2F;原理：利用迭代器 迭代&#x2F;循环遍历 可迭代对象中的数据集合。 原理上是利用迭代器的。<br>而且不是一次性将全部读取到内存中，而是一个一个读取，用过的内存再被覆盖，这样明显不会占用太多内存。迭代器并不是一次性读出所有数据，而是一次一次读出.<br>迭代器模式提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。</p>
+<p>一般意义上／广义上的：<br>可迭代对象：1.本身中拥有集合。2一般 拥有或可以得到迭代器的对象(因为要通过迭代器去访问数据集合)  3.可通过迭代器访问可迭代对象中的数据集合 或 可对对象本身直接进行for的对象(实际上也是通过获取可迭代对象的迭代器去迭代其中的集合，一种语法糖罢了)。  &lt;&#x3D;&#x3D;&gt; 可迭代&#x2F;循环 (其中的数据集合)的对象 &lt;&#x3D;&#x3D;&gt; 可for&#x2F;while 的对象(使用for while 或 直接在for foreach 中使用的)  </p>
+<p>迭代器： 一般指，可以对可迭代对象／数据集合  进行迭代(循环)处理的对象。通过迭代器 可以迭代(循环)遍历可迭代对象中的数据集合。所以 一般迭代器中是拥有或可访问到可迭代对象中的数据集合或者本身也是可迭代对象(自然就能访问到可迭代对象中的数据集合)，而且会维护一个index和集合个数。<br>迭代器对象本身不能用于for中(不一定，有的具体语言语法是迭代器本身也是可迭代对象，因此也可以直接用于for)。 但是可以通过迭代器去迭代访问集合中的数据。</p>
+<p>我们编程中直接对外的接口为可迭代对象（因为最直接的表现拥有数据集合，因此直接与我们接触的就是可迭代对象）。 通过可迭代对象 可以获得 迭代器。 通过迭代器 可以迭代访问可迭代对象中的数据集合。</p>
+<p>迭代访问可迭代对象中的数据集合： 1.通过获取迭代器，从而迭代访问可迭代对象中的数据集合。 2.通过for直接使用可迭代对象(原理也是1，实际上一种语法糖)。</p>
+<p>[广义的，狭义的 可迭代对象 迭代器。 广义上一般 不是某种具体的语法。 狭义的 一般是语言中特指的类，符合广义的含义 的类对象。一般在某个语言中说 可迭代对象 迭代器是狭义的指该语言中狭义上的迭代器 可迭代对象，一般是符合特殊要求的类]</p>
+<p>注意，具体语言中的可迭代对象和迭代器，如果有语法所谓的可迭代对象 迭代器， 那么这个可迭代对象和迭代器一般是指 狭义上的迭代器 可迭代对象，是某种特殊要求的类。</p>
+<p>通过demo来体会下迭代器模式，可迭代对象， 迭代器。<br>关键：<br>1.类的设计<br>可迭代对象设计：a.可迭代对象本身拥有数据集合。b.通过可迭代对象可以获取到迭代器(因此可迭代对象应该能获取到或持有迭代器)。<br>迭代器设计：a.通过迭代器可以访问到可迭代对象(因此可迭代器要能访问可迭代对象的能力) b.迭代的访问,持有idx指针或其他能表明数据集合状态的值。维持状态、进度，也即用到索引。<br>2.对外接口使用（通过可迭代对象，获取迭代器，通过迭代器访问可迭代对象(中的数据集合)或直接在for中使用可迭代对象本身）。<br>demo：<br>C<br>Java<br>Python</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1805426">https://cloud.tencent.com/developer/article/1805426</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a40d5a42d643">https://www.jianshu.com/p/a40d5a42d643</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jxqingge/article/details/81296465">https://blog.csdn.net/jxqingge/article/details/81296465</a></p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><pre class="line-numbers language-none"><code class="language-none">package cn.bjsxt.interator;
+&#x2F;**
+ * 简化迭代器原理
+ * hasNext
+ * next
+ * @author Administrator
+ *
+ *&#x2F;
+public class MyArrayList &#123;
+    private String[] elem &#x3D; &#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;&#125;;
+    private int size &#x3D; elem.length;
+    private int curror &#x3D; -1;
+    
+    &#x2F;**
+     * 判断是否存在下一个元素
+     * @return
+     *&#x2F;
+    public boolean hasNext() &#123;
+        return curror+1 &lt; size; &#x2F;&#x2F;指向下一个元素 
+    &#125;
+    
+    &#x2F;**
+     * 获取下一个元素
+     *&#x2F;
+    public String next() &#123;
+        curror++;         &#x2F;&#x2F;移动一次
+        return elem[curror];
+    &#125;
+    
+    
+    public static void main(String[] args) &#123;
+        MyArrayList list &#x3D; new MyArrayList();
+        while(list.hasNext()) &#123;
+            System.out.println(list.next());
+        &#125;
+    &#125;
+    
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>严格意义上来将，MyArrayList 这个只是用到了迭代器模式，MyArrayList并不是定义上的可迭代对象。</p>
+<p>可迭代对象在不同语言中的实现有不同的要求(语法要求)。<br>Java中是指 要必须实现 Iterable 接口。python中是实现继承Iterable类或实现__iter__ 方法 。才能称之为可迭代对象。 可迭代对象 特征： 对象本身可以直接用于 for ，增强的foreach 的语法中。（通常本身也可以获取到迭代器，或 持有迭代器引用）</p>
+<p>迭代器在不同语言中的实现有不同的要求。<br>Java中是指要必须实现Iterator接口(该接口有两个方法 hasnext() next()). Python中是继承Iterator类或实现__iter__和__next__。 迭代器特征： 对象本身不能用于for中。 但是可以通过迭代器去迭代访问集合中的数据。</p>
+<p>ps：java中仅仅自己实现hasnext next的类 并不能称之为迭代器 或 可迭代对象，那仅仅能称之为可迭代模式。 </p>
+<pre class="line-numbers language-none"><code class="language-none">public interface Iterator&lt;E&gt; &#123;
+    &#x2F;**
+     * Returns &#123;@code true&#125; if the iteration has more elements.
+     * (In other words, returns &#123;@code true&#125; if &#123;@link #next&#125; would
+     * return an element rather than throwing an exception.)
+     *
+     * @return &#123;@code true&#125; if the iteration has more elements
+     *&#x2F;
+    boolean hasNext();
+
+
+    &#x2F;**
+     * Returns the next element in the iteration.
+     *
+     * @return the next element in the iteration
+     * @throws NoSuchElementException if the iteration has no more elements
+     *&#x2F;
+    E next();
+    ...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">public interface Iterable&lt;T&gt; &#123;
+    &#x2F;**
+     * Returns an iterator over elements of type &#123;@code T&#125;.
+     *
+     * @return an Iterator.
+     *&#x2F;
+    Iterator&lt;T&gt; iterator();
+
+
+    &#x2F;**
+     * Performs the given action for each element of the &#123;@code Iterable&#125;
+     * until all elements have been processed or the action throws an
+     * exception.  Unless otherwise specified by the implementing class,
+     * actions are performed in the order of iteration (if an iteration order
+     * is specified).  Exceptions thrown by the action are relayed to the
+     * caller.
+     *
+     * @implSpec
+     * &lt;p&gt;The default implementation behaves as if:
+     * &lt;pre&gt;&#123;@code
+     *     for (T t : this)
+     *         action.accept(t);
+     * &#125;&lt;&#x2F;pre&gt;
+     *
+     * @param action The action to be performed for each element
+     * @throws NullPointerException if the specified action is null
+     * @since 1.8
+     *&#x2F;
+    default void forEach(Consumer&lt;? super T&gt; action) &#123;
+        Objects.requireNonNull(action);
+        for (T t : this) &#123;
+            action.accept(t);
+        &#125;
+    &#125;
+
+
+    &#x2F;**
+     * Creates a &#123;@link Spliterator&#125; over the elements described by this
+     * &#123;@code Iterable&#125;.
+     *
+     * @implSpec
+     * The default implementation creates an
+     * &lt;em&gt;&lt;a href&#x3D;&quot;Spliterator.html#binding&quot;&gt;early-binding&lt;&#x2F;a&gt;&lt;&#x2F;em&gt;
+     * spliterator from the iterable&#39;s &#123;@code Iterator&#125;.  The spliterator
+     * inherits the &lt;em&gt;fail-fast&lt;&#x2F;em&gt; properties of the iterable&#39;s iterator.
+     *
+     * @implNote
+     * The default implementation should usually be overridden.  The
+     * spliterator returned by the default implementation has poor splitting
+     * capabilities, is unsized, and does not report any spliterator
+     * characteristics. Implementing classes can nearly always provide a
+     * better implementation.
+     *
+     * @return a &#123;@code Spliterator&#125; over the elements described by this
+     * &#123;@code Iterable&#125;.
+     * @since 1.8
+     *&#x2F;
+    default Spliterator&lt;T&gt; spliterator() &#123;
+        return Spliterators.spliteratorUnknownSize(iterator(), 0);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>python中 迭代器：1.实现__iter__和__next__（<strong>iter__返回迭代器本身）。 或者  2. 继承Iterator类(该类也是有__iter__和__next</strong>)。<br>python中 可迭代对象：1.实现__iter__ 方法 (返回一个迭代器). 或者 2.继承Iteratble类(该类也是有__iter__)。<br>从python 中定义来看，python中的迭代器也是可迭代对象。 可迭代对象不一定是迭代器。 所以python中迭代器本身也可以直接用于for。<br>iter方法：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sunjintaoxxx/article/details/122060513">https://blog.csdn.net/sunjintaoxxx/article/details/122060513</a></p>
+<pre class="line-numbers language-none"><code class="language-none">from collections import Iterator, Iterable
+@runtime_checkable
+class Iterable(Protocol[_T_co]):
+
+@abstractmethod
+def __iter__(self) -&gt; Iterator[_T_co]: ...
+
+
+
+@runtime_checkable
+class Iterator(Iterable[_T_co], Protocol[_T_co]):
+
+@abstractmethod
+def __next__(self) -&gt; _T_co: ...
+
+def __iter__(self) -&gt; Iterator[_T_co]: ...
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Java,pyhton 中的可迭代对象 都可以得到 迭代器。（有的方式是直接持有迭代器对象）。</p>
+<p>由于在C中没有相应的语法要求，迭代器 可迭代对象(由于没有语法支持，无法让对象本身用于for)， 不能在语法层面得到支持。 但是C也可以像java那样自定义构造一个迭代器，然后可迭代对象中持有迭代器(虽然这个可迭代器对象无法直接用于for，但是基本思想 框架是如此的，也是迭代器模式). </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="迭代器模式">https://ruozhiertong.github.io/2022/05/24/迭代器模式/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/" rel="tag"># 迭代器模式</a>
+              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="tag"># 迭代器</a>
+              <a href="/tags/%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1/" rel="tag"># 可迭代对象</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/23/web%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="web服务器">
+                  <i class="fa fa-chevron-left"></i> web服务器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/22/async/" rel="next" title="async">
+                  async <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2022/05/24/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"42235387a1a926ea8aedce8bdbd19c9a"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

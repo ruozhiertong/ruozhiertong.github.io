@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="教程 语法 注意事项 正则表达式在编程语言中运用 正则表达式引擎  教程菜鸟教程  语法 正则：匹配(核心，基础(其他的功能都是在匹配基础上的)), 提取。  一般我们要处理的 输入 都是字符串形式的。  正则表达式也是以字符串形式，也叫模式串，规则串。（输入串中只要有部分 匹配 模式串的，那么就属于匹配，true，如果连部分都没匹配，就是不匹配，false）  原生的正则表达式： 字符串形式">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="https://ruozhiertong.github.io/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="教程 语法 注意事项 正则表达式在编程语言中运用 正则表达式引擎  教程菜鸟教程  语法 正则：匹配(核心，基础(其他的功能都是在匹配基础上的)), 提取。  一般我们要处理的 输入 都是字符串形式的。  正则表达式也是以字符串形式，也叫模式串，规则串。（输入串中只要有部分 匹配 模式串的，那么就属于匹配，true，如果连部分都没匹配，就是不匹配，false）  原生的正则表达式： 字符串形式">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-13T06:03:56.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="正则表达式">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/","path":"2022/04/13/正则表达式/","title":"正则表达式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>正则表达式 | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9C%A8%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%AD%E8%BF%90%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">正则表达式在编程语言中运用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E"><span class="nav-number">5.</span> <span class="nav-text">正则表达式引擎</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="正则表达式 | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正则表达式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-13 14:03:56" itemprop="dateCreated datePublished" datetime="2022-04-13T14:03:56+08:00">2022-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programing/" itemprop="url" rel="index"><span itemprop="name">Programing</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#%E6%95%99%E7%A8%8B">教程</a></li>
+<li><a href="#%E8%AF%AD%E6%B3%95">语法</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9C%A8%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%AD%E8%BF%90%E7%94%A8">正则表达式在编程语言中运用</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E">正则表达式引擎</a></li>
+</ul>
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-tutorial.html">菜鸟教程</a> </p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
+<li><p>正则：匹配(核心，基础(其他的功能都是在匹配基础上的)), 提取。</p>
+</li>
+<li><p>一般我们要处理的 输入 都是字符串形式的。</p>
+</li>
+<li><p>正则表达式也是以字符串形式，也叫模式串，规则串。<br>（输入串中只要有部分 匹配 模式串的，那么就属于匹配，true，如果连部分都没匹配，就是不匹配，false）</p>
+<ul>
+<li>原生的正则表达式： 字符串形式 ‘&#x2F;pattern&#x2F;flags’.<br>模式串包裹在&#x2F;&#x2F;中。<br>pattern的元字符： 普通字符，非打印字符(用转义表示)，特殊字符，限定符，定位符。  <a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">语法</a></li>
+</ul>
+</li>
+</ul>
+<p>元字符的完整列表以及它们在正则表达式上下文中的行为：<a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-metachar.html">语法2</a></p>
+<p>flag，是标志&#x2F;修饰符，正则表达式的标记用于指定额外的匹配策略。有g i m s。 <a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-flags.html">语法3</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>正则在不同环境下有不同的方言。 要注意区别。</p>
+<ul>
+<li>有的正则表达式是 放在&#x2F;&#x2F;里面的，如”&#x2F;^(abc)(bcd)&#x2F;g” g是修饰符&#x2F;标记符 表示全局匹配。 放在&#x2F;&#x2F;里的也是原生的正则表达式的语法。</li>
+<li>有的直接开始 “^(abc)(bcd)”，修饰符在其他地方设置。</li>
+</ul>
+</li>
+<li><p>输入的字符串形式有单行，多行(含\n)。</p>
+</li>
+<li><p>正则表达式的单行模式 和 多行模式， &#x2F;pattern&#x2F;g, &#x2F;pattern&#x2F;gm。<br>多行模式 只是影响到 ^ $ 定位符的作用。如果没有^  $ 那么单行模式和多行模式没什么区别。</p>
+<ul>
+<li>对于正则表达式为单行模式，将输入的字符串(不管单行还是多行) 都以整体去处理。 ^ $ 定位整体的开头和结尾。</li>
+<li>对于正则表达式为多行模式的，多行模式下会改变^和$的含义【^和$是匹配整个字符串的开头和结尾】，使它在任意一行的行首和行尾进行匹配，即每行每行处理。 如果没有^$那么会以所有行整体处理，不是以行为单位的一行一行处理。</li>
+<li>注意，正则中的. 无法匹配\r \n。如果要做多行&#x2F;跨行匹配，见下面讨论。多行&#x2F;跨行匹配和 单行模式 多行模式没有关系，不同的概念。<pre class="line-numbers language-js" data-language="js"><code class="language-js">  <span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> str<span class="token operator">=</span><span class="token string">"runoobgoogle\ntaobao\nrunoobweibo"</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> n1<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^runoob</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 匹配一个 </span>
+    <span class="token keyword">var</span> n2<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^runoob</span><span class="token regex-delimiter">/</span><span class="token regex-flags">gm</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 多行匹配</span>
+	document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"demo1"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>n1<span class="token punctuation">;</span> <span class="token comment">//runoob</span>
+	document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"demo2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>n2<span class="token punctuation">;</span> <span class="token comment">//runoob,runoob</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">  <span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> str<span class="token operator">=</span><span class="token string">"runoobgoogle\ntaobao\nrunoobweibo"</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> n1<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">runoob</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+    <span class="token keyword">var</span> n2<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">runoob</span><span class="token regex-delimiter">/</span><span class="token regex-flags">gm</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"demo1"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>n1<span class="token punctuation">;</span> <span class="token comment">//runoob,runoob</span>
+	document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"demo2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>n2<span class="token punctuation">;</span> <span class="token comment">//runoob,runoob</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>跨行&#x2F;多行匹配问题。<br>和正则表达式的单行模式 多行模式 没有必然关系。 <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/15973">参考</a><br>.不能匹配换行，\r和\n。（不匹配回车和换行）<br>解决跨行匹配问题：主要就是要解决\n或\r的匹配。</p>
+<ul>
+<li>使用s修饰符。 &#x2F;pattern&#x2F;s。</li>
+<li>把 . 改为  (?:.|\n)<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39241986/article/details/100036180">参考</a><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> str<span class="token operator">=</span><span class="token string">'123\n\rabcbcd'</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> n1<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">123.*</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	<span class="token function">alert</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ==> 123</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">var</span> str<span class="token operator">=</span><span class="token string">'123\nabcbcd'</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> n1<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">123.*</span><span class="token regex-delimiter">/</span><span class="token regex-flags">gs</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	<span class="token function">alert</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//==> 123\nabcbcd</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+正则&#x2F;123.+&#x2F;g 不能匹配 “123\nabc”。<br>正则&#x2F;123.+&#x2F;gs 可以匹配 “123\nabc”。</li>
+</ul>
+</li>
+<li><p>正则贪婪模式与非贪婪模式。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/admans/p/11955614.html">链接</a></p>
+<pre class="line-numbers language-none"><code class="language-none">当 ? 字符紧跟在任何一个其他限制符 (*, +, ?, &#123;n&#125;, &#123;n,&#125;, &#123;n,m&#125;) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 &quot;oooo&quot;，&#39;o+?&#39; 将匹配单个 &quot;o&quot;，而 &#39;o+&#39; 将匹配所有 &#39;o&#39;。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">可以看到，在“整个表达式匹配成功”的前提下，非贪婪模式才真正的影响着子表达式的匹配行为，如果整个表达式匹配失败，非贪婪模式无法影响子表达式的匹配行为。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+<p>^ 表示开始。 $ 表示结束。  &#x2F;^(abc)(bcd)$&#x2F; 表示 以abc开始 bcd结束。 &#x2F;^(abc)|(bcd)$&#x2F; 表示以abc开始 或者 bcd结束, abcagugh, asugbcd, bcdsaa 不行， safabc 不行。  &#x2F;^(abc)$|^(bcd)$&#x2F; 匹配 abc 或bcd。  </p>
+<ul>
+<li><p>()也用于捕获分组。例外，如果()中前面有如下会变成非捕获分组，变成先行 后行断言： ?:、?&#x3D;、?&lt;&#x3D;、?!、?&lt;!等。  ?:仅仅是非捕获。后面四种不仅非捕获，而且零宽(即不消耗字符)，而且还有特定作用。</p>
+</li>
+<li><p>反向引用。 <a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">链接</a></p>
+</li>
+<li><p>反向引用。 向后处理视为正向，引用到前面的规则，所以叫反向引用。<br>(?:[1-9])([a-z]+)\1<br>123456runoobrunoob623runoob456 &#x3D;&gt;6runoobrunoob</p>
+<p>([1-9])([a-z]+)\1<br>123456runoob623runoob456 &#x3D;&gt; 6runoob6<br>123456runoob123runoob456 &#x3D;&gt; 无</p>
+</li>
+<li><p>先行断言，后行断言。<br>?&#x3D;、?&lt;&#x3D;、?!、?&lt;! 的使用区别。<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/reg-lookahead-lookbehind.html">链接</a><br>(?&#x3D;pattern) 零宽正向先行断言(zero-width positive lookahead assertion)<br>(?!pattern) 零宽负向先行断言(zero-width negative lookahead assertion)<br>(?&lt;&#x3D;pattern) 零宽正向后行断言(zero-width positive lookbehind assertion)<br>(?&lt;!pattern) 零宽负向后行断言(zero-width negative lookbehind assertion)<br>我感觉这里不叫正向 负向，叫正 和 负更好， 正先行断言，负先行断言。正后行断言，负后行断言。记忆方法：这里正 负向是表示肯定 否定， 先行 后行是表示 位置在pattern的前 后。<br>还有其他的叫法， 正预测先行断言， 负预测先行断言。 正回顾后发断言， 负回顾后发断言。<br>正向肯定断言， 正向否定断言， 负向肯定断言， 负向否定断言。（从查找的方向看，这种叫法其实也合理）（最后的叫法最合理。）</p>
+</li>
+</ul>
+<h2 id="正则表达式在编程语言中运用"><a href="#正则表达式在编程语言中运用" class="headerlink" title="正则表达式在编程语言中运用"></a>正则表达式在编程语言中运用</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-intro.html">链接</a></p>
+<p>在 Java 中，<code>\\</code> 表示：我要插入一个正则表达式的反斜线，所以其后的字符具有特殊的意义。</p>
+<p>所以，在其他的语言中（如 Perl），一个反斜杠 <code>\</code> 就足以具有转义的作用，而在 Java 中正则表达式中则需要有两个反斜杠才能被解析为其他语言中的转义作用。也可以简单的理解在 Java 的正则表达式中，两个 <code>\\</code> 代表其他语言中的一个 <code>\</code>，这也就是为什么表示一位数字的正则表达式是 <code>\\d</code>，而表示一个普通的反斜杠是 <code>\\</code>。</p>
+<p>java 中的正则字符串(java字符串形式的正则表达式)是包裹在原生的正则表达式字符串上的(即实际上加了一个中间层做处理)。 所以要将java字符串形式的正则表达式 转为 原生的正则表达式字符串， 要<code>\\d</code>。   java自己先对自己的字符串做处理的，而不是直接处理正则，其他的语法是直接处理正则，因此只要<code>\d</code>.</p>
+<div style= "display:none;" >
+    ![找不到图片时显示的文字](imgs/20220413_1.jpeg)
+</div>
+
+
+<p>Java中正则表达式。</p>
+<ul>
+<li>String类的方法中直接使用正则表达式模式串。<br>String 的str.replace(regstr, repstr) , str.find(regstr)， str.match(regstr)</li>
+<li>专门的正则类。 Pattern类 (将模式串编译成pattern类)。 match类(由pattern类match方法得到match类实例)。</li>
+</ul>
+<p>python中的正则表达式。 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5295c5988b7f">https://www.jianshu.com/p/5295c5988b7f</a></p>
+<ul>
+<li>字符串类中的方法不支持正则规则。</li>
+<li>专门的正则模块 re 模块。 1. 模块中的函数，re.match，re.search等。 2.专门正则相关的类。Pattern类 (re.compile(patstr) 将模式串编译成pattern类)， match类(由pattern类match方法得到match类实例)。<br>  匹配 查看一个字符串是否符合正则表达式的语法，一般返回true或者false<br>  获取 正则表达式来提取字符串中符合要求的文本<br>  替换 查找字符串中符合正则表达式的文本，并用相应的字符串替换<br>  分割 使用正则表达式对字符串进行分割。</li>
+</ul>
+<h2 id="正则表达式引擎"><a href="#正则表达式引擎" class="headerlink" title="正则表达式引擎"></a>正则表达式引擎</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_55267022/article/details/118082886">https://blog.csdn.net/weixin_55267022/article/details/118082886</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Bubgit/p/10240790.html">https://www.cnblogs.com/Bubgit/p/10240790.html</a></p>
+<p>正则表达式&#x2F;模式串。<br>根据正则表达式 构造 NFA， DFA。 （正则表达式引擎）<br>遍历字符串&#x2F;待匹配字符串。 一个一个遍历， 跟随NFA DFA进行比较，<br>0.针对整个字符串而言，如果遍历到某个字符时不在NFA／ DFA的状态中，那么不匹配。 或者 如果遍历结束时不在终结状态，不匹配。 只有遍历结束时 在 NFA／DFA的 终结状态 才是匹配。<br>1.针对部分匹配而言，如果待匹配字符串部分 走到了终结状态，那么说明部分字符串符合正则表达式。(这个可用于提取)。如果整个过程都没走到终结状态，那么就是连部分都不匹配的。</p>
+<p>手动流程： 1. 正则表达式，如果可以直观转DFA，可以直接转DFA。 如果不能，先转NFA(转NFA比较直观)，再将NFA转DFA（手动）。 2.根据DFA处理待匹配字符串(手动) 。<br>正则表达式模式串-&gt;NFA-&gt;DFA—&gt;匹配。</p>
+<p>完整的正则表达式程序（两部分：表达式引擎+匹配），流程（代码形式）：<br>根据 正则表达式字符串 生成 状态机(实际上是图结构)(有NFA，DFA) (节点是状态，线是输入的值)。 这个生成状态机部分的程序称为正则表达式引擎，用于生成状态机。（重点，难点）<br>然后利用状态机 去遍历待匹配字符串，看是否匹配。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39969611/article/details/114613950">https://blog.csdn.net/weixin_39969611/article/details/114613950</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1736259056451963107&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1736259056451963107&amp;wfr=spider&amp;for=pc</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43655282/article/details/108963761">https://blog.csdn.net/weixin_43655282/article/details/108963761</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40294512/article/details/89004777">https://blog.csdn.net/qq_40294512/article/details/89004777</a> 好！ move操作的为所有出现的输入值。</p>
+<p>正则表达式 可以 直观的 转为 NFA。 NFA状态转换图和转换表 都是 直观的看出正则表达式的 含义。<br>但是对于程序而言，这个不好处理，因为对输入是不确定的。 对计算机而言更合适处理的的是DFA，因此将NFA转成DFA。 转换DFA时，可能会出现多个结束状态。<br>NFA 转 DFA， 要引入闭包的概念和操作。<br>对任何非确定的有穷自动机N ，存在定义同一语言的确定的有穷自动机D。对任何确定的有穷自动机D ，存在定义同一语言的非确定的有穷自动机N</p>
+<p>NFA&#x2F;DFA 都有状态转换图，状态转换表。 起始状态 终结状态。</p>
+<p>NFA 有 带有和不带有“ε-边”的NFA。 两者等价。 一般用带有”ε-边”的NFA。 一般 带有”ε-边” 可以变为只有一个终结状态，而不带有”ε-边”可能会有多个终结状态。<br>NFA的不确定性：多值映射(输入一个值有多个状态转换)，带空转移。</p>
+<p>NFA／DFA 可以用在正则表达式。 也可以用在编译原理 的词法分析阶段(将源程序&#x2F;字符串形式 生成token表)。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">https://ruozhiertong.github.io/2022/04/13/正则表达式/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"># 正则表达式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/" rel="prev" title="宽带_IPV6">
+                  <i class="fa fa-chevron-left"></i> 宽带_IPV6
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/13/r-n-r-n%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="next" title="\r,\n,\r\n那些事">
+                  \r,\n,\r\n那些事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"810a41b4233733682641d5eff9da5cfd"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

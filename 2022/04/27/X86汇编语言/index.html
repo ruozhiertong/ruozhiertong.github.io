@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="汇编 推荐两本书：《X86汇编 从实模式到保护模式》《汇编语言(第3版) 》王爽著 实模式：https:&#x2F;&#x2F;blog.csdn.net&#x2F;zzzzzec&#x2F;article&#x2F;details&#x2F;121311995 笔记：ROM 程序固化到ROM的。对于PC的主板而言，BIOS&#x2F;UEFI 就是固化到ROM里的，是固件。 以前是不可擦写的，现在也是可编程 可擦写的。 即可以刷机新的BIOS或升级BIO">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="X86汇编语言">
+<meta property="og:url" content="https://ruozhiertong.github.io/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="汇编 推荐两本书：《X86汇编 从实模式到保护模式》《汇编语言(第3版) 》王爽著 实模式：https:&#x2F;&#x2F;blog.csdn.net&#x2F;zzzzzec&#x2F;article&#x2F;details&#x2F;121311995 笔记：ROM 程序固化到ROM的。对于PC的主板而言，BIOS&#x2F;UEFI 就是固化到ROM里的，是固件。 以前是不可擦写的，现在也是可编程 可擦写的。 即可以刷机新的BIOS或升级BIO">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220429_1.png">
+<meta property="article:published_time" content="2022-04-27T08:23:00.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="汇编语言">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruozhiertong.github.io/imgs/20220429_1.png">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/","path":"2022/04/27/X86汇编语言/","title":"X86汇编语言"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>X86汇编语言 | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="X86汇编语言 | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          X86汇编语言
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-27 16:23:00" itemprop="dateCreated datePublished" datetime="2022-04-27T16:23:00+08:00">2022-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Language/" itemprop="url" rel="index"><span itemprop="name">Language</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Language/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>汇编 推荐两本书：<br>《X86汇编 从实模式到保护模式》<br>《汇编语言(第3版) 》王爽著</p>
+<p>实模式：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzzzzec/article/details/121311995">https://blog.csdn.net/zzzzzec/article/details/121311995</a></p>
+<p>笔记：<br>ROM 程序固化到ROM的。<br>对于PC的主板而言，BIOS&#x2F;UEFI 就是固化到ROM里的，是固件。 以前是不可擦写的，现在也是可编程 可擦写的。 即可以刷机新的BIOS或升级BIOS到ROM的。<br>计算机启动的时候，会先读取BIOS，完成硬件的自检和初始化。然后BIOS将权限交由启动的硬盘或光盘等。运行硬盘中的MBR&#x2F;GPT。 MBR再去启动OS。 （我们安装的OS是安装到硬盘上，并且设置MBR）<br>PC中的bootloader是MBR／GPT 中的grub／grub2。<br>嵌入式中的bootloader（固件）  作用相当于PC中的 BIOS+MBR。也有做硬件自检。</p>
+<p>MBR中记录 开机启动程序／开机管理程序。 有grub,grub2,LILO 等。 </p>
+<pre class="line-numbers language-none"><code class="language-none">1. 载入 BIOS 的硬件信息与进行自我测试，并依据设置取得第一个可开机的设备；
+2. 读取并执行第一个开机设备内 MBR 的 boot Loader （ 亦即是 grub2, spfdisk 等程序） ；
+3. 依据 boot loader 的设置载入 Kernel ，Kernel 会开始侦测硬件与载入驱动程序；
+4. 在硬件驱动成功后，Kernel 会主动调用 systemd 程序，并以 default.target 流程开机；
+systemd 执行 sysinit.target 初始化系统及 basic.target 准备操作系统；
+systemd 启动 multi-user.target 下的本机与服务器服务；
+systemd 执行 multi-user.target 下的 &#x2F;etc&#x2F;rc.d&#x2F;rc.local 文件；
+systemd 执行 multi-user.target 下的 getty.target 及登陆服务；
+systemd 执行 graphical 需要的服务
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>存储分类：<a target="_blank" rel="noopener" href="https://blog.csdn.net/vincent3678/article/details/122226578">https://blog.csdn.net/vincent3678/article/details/122226578</a><br>（内&#x2F;主存+外&#x2F;辅存） （pc：内存 + 硬盘）（手机：运存+内存&#x2F;闪存 (说法乱而已，其实还是 内+外)）</p>
+<p>CPU可用的内存空间，不仅仅是常规的内存(由内存条提供，RAM，掉电易失)，还有BIOS(ROM,不易失)，显卡等。</p>
+<p>从内存空间去理解计算机和操作系统。因为cpu所有的指令 数据都要放在内存空间中才能处理。 冯诺依曼体系结构中，cpu所有的数据 指令都要从内存空间中取得的。核心就是CPU和内存。<br>如果要想知道程序如何load到内存，如何被cpu执行， 学习汇编是很好的选择，因为汇编能更好体现这些底层。</p>
+<p>一段程序 逻辑上 分为 堆段，代码段，栈段，数据段，BSS段。<br>虚拟内存， 物理内存。 </p>
+<p>如何让计算机启动的时候执行我们的代码？<br>实模式。<br>我们知道， 8086 可以访问 1MB 内存。其中，0x00000～9FFFF 属于常规内存，由内存条提供；0xF0000～0xFFFFF<br>由主板上的一个芯片提供，即ROM-BIOS。中间还有一个320KB 的空洞，即0xA0000～0xEFFFF。<br>传统上，这段地址空间由特定的外围设备来提供，其中就包括显卡。</p>
+<p>我们知道，计算机启动的时候，将ROM中的BIOS的代码加载到内存中(0XF0000)，然后BIOS进行自检后，会将硬盘的MBR代码加载到内存地址0x7c00,并jmp到该地址，从而运行MBR代码，之后MBR再执行操作系统的代码。<br>MBR是硬盘上的硬盘的0面0道1扇区。512B。 别小看512B，它足够处理操作系统的boot。它可以选择启动哪个os。将os启动的代码载入内存某个地址，cpu并跳到该内存地址，开始运行os启动代码。<br>所以，如果我们要启动的执行我们的代码，我们应该将自己的代码编译后放入硬盘的第一个512B，代替MBR。</p>
+<p>地址 <code>[地址]</code> 表示取该地址中的值<br>立即数<br>8086 寄存器：8个通用寄存器(AX,BX,CX,DX,SI,DI,BP,SP)， 6个段寄存器(CS,DS,SS,ES,FS,GS)， 程序寄存器(IP),标志寄存器(FLAGS)<br>以上都是16位的，32位的寄存器在前面加E。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366550341">https://zhuanlan.zhihu.com/p/366550341</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44519342/article/details/123690618">https://blog.csdn.net/weixin_44519342/article/details/123690618</a></p>
+<p>指令：MOV JMP<br>（不同体系的CPU中的寄存器，指令等也是不一样的。）<br>MOV指令无法直接将立即数移动到段寄存器，只能经过通用寄存器来做。<br>也无法将段寄存器移动到段寄存器，只能通过通用寄存器来做。</p>
+<p>每个指令都会对应相应的机器指令。</p>
+<p>JMP指令会改变CS， IP <a target="_blank" rel="noopener" href="https://blog.csdn.net/woxueliuyun/article/details/2033359">https://blog.csdn.net/woxueliuyun/article/details/2033359</a></p>
+<p>div中溢出的问题，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010196648/article/details/25067179">https://blog.csdn.net/u010196648/article/details/25067179</a></p>
+<p>第一种类型是用16 位的二进制数除以8 位的二进制数。在这种情况<br>下，被除数必须在寄存器AX 中，必须事先传送到AX 寄存器里。除数可<br>以由8 位的通用寄存器或者内存单元提供。指令执行后，商在寄存器AL<br>中，余数在寄存器AH 中。</p>
+<p>第二种类型是用32 位的二进制数除以16 位的二进制数。在这种情况<br>下，因为16 位的处理器无法直接提供32 位的被除数，故要求被除数的<br>高16 位在DX 中，低16 位在AX 中 。同时，除数可以由16 位的通用寄存器或者内存单元提供，指令执行<br>后，商在AX 中，余数在DX 中。</p>
+<p>XOR 指令</p>
+<p>add 指令需要两个操作数，目的操作数可以是8 位或者16 位的通用<br>寄存器，或者指向8 位或者16 位实际操作数的内存地址；源操作数可以<br>是相同数据宽度的8 位或者16 位通用寄存器、指向8 位或者16 位实际操<br>作数的内存地址，或者立即数，但不允许两个操作数同时为内存单元。<br>相加后，结果保存在目的操作数中</p>
+<p>处理器取指令、执行指令是依赖于段寄存器CS 和指令指针寄存器IP<br>的，8086 处理器取指令时，把CS 的内容左移4 位，加上IP 的内容，形<br>成20 位的物理地址，取得指令，然后执行，同时把IP 的内容加上当前指<br>令的长度，以指向下一条指令的偏移地址。</p>
+<p>jmp 指令具有多种格式.<br>相对近转移。 JMP near inif<br>绝对地址. JMP 0x5000:0xf0c0</p>
+<p>伪指令times 可用于重复它后面的指令若干次</p>
+<p>times 20 mov ax,bx</p>
+<p>bochs:<br><a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/">https://bochs.sourceforge.io/</a><br><a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/faq.html">https://bochs.sourceforge.io/doc/docbook/user/faq.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47656385/article/details/120624117">https://blog.csdn.net/weixin_47656385/article/details/120624117</a><br>具体实用可参考书第五章。</p>
+<p>movsb 和movsw 指令执行时，原始数据串的段地址由DS 指定，偏<br>移地址由SI 指定，简写为DS:SI；要传送到的目的地址由ES:DI 指定；传<br>送的字节数（movsb）或者字数（movsw）由CX指定。除此之外，还要<br>指定是正向传送还是反向传送，正向传送是指传送操作的方向是从内存<br>区域的低地址端到高地址端；反向传送则正好相反。正向传送时，每传<br>送一个字节（movsb）或者一个字（movsw），SI 和DI 加1 或者加2；<br>反向传送时，每传送一个字节（movsb）或者一个字（movsw）时，SI<br>和DI 减去1 或者减去2。不管是正向传送还是反向传送，也不管每次传送<br>的是字节还是字，每传送一次，CX 的内容自动减。</p>
+<p>cld 指令将DF 标志清零，以指示传送是正<br>方向的。和cld 功能相反的是std 指令，它将DF标志置位（1）。此时，<br>传送的方向是从高地址到低地址</p>
+<p>需要加上指令前缀rep（repeat），意思是CX 不为零则重复。<br>rep movsw 的操作码是0xF3 0xA5，它将重复执行movsw 直到CX 的内<br>容为零。</p>
+<p>loop 指令的功能是重复执行一段相同的代码，处理器在执行它的时<br>候会顺序做两件事：cx减1。 判断cx是否为0，不为0 loop。</p>
+<p>加载位置的改变不会对处理器执行指令造成任何困扰，但会给数据访问<br>带来麻烦。要知道，当前<br>数据段寄存器DS 的内容是0x0000，因此，number 的偏移地址实际上是<br>0x012E+0x7C00&#x3D;0x7D2E。当正在执行的指令仍然用0x012E 来访问数<br>据，灾难就发生了。</p>
+<p>取指令，取数据。逻辑地址，物理地址。（逻辑地址到物理地址要靠基址。）<br>对于取指令基址在CS，对于取数据基址在DS。<br>CS:IP<br>DS:偏移地址</p>
+<p>地址，取地址(从该地址中取出数据)</p>
+<p>内存 物理地址 &#x3D;  SA *16 + EA。 SA段地址， EA偏移地址&#x2F;有效地址 Effective address。 Offset Address。</p>
+<p>SA和EA 称为逻辑地址。<br>物理地址。 逻辑地址。 段地址， 偏移地址&#x2F;有效地址。 </p>
+<p>在8086 处理器上，如果要用寄存器来提供偏移地址，只能使用BX、<br>SI、DI、BP，不能使用其他寄存器。<br>原因很简单，寄存器BX 最初的功能之一就是用来提供数据访问的基<br>地址，所以又叫基址寄存器（Base Address Register）。之所以不能用<br>SP、IP、AX、CX、DX，这是一种硬性规定，说不上有什么特别的理<br>由。而且，在设计8086 处理器时，每个寄存器都有自己的特殊用途，比<br>如AX是累加器（Accumulator），与它有关的指令还会做指令长度上的<br>优化（较短）；CX 是计数器（Counter）；DX 是数据（Data）寄存<br>器，除了作为通用寄存器使用外，还专门用于和外设之间进行数据传<br>送；SI 是源索引寄存器（ Source Index）；DI 是目标索引寄存器<br>（ Destination Index），用于数据传送操作，我们已经在 movsb 和<br>movsw 指令的用法中领略过了。</p>
+<p>inc 是加一指令，操作数可以是8<br>位或者16 位的寄存器，也可以是字节或者字内存单元。从功能上讲，它<br>和 add bx, 1<br>是一样的，但前者的机器码更短，速度更快.<br>和inc 指令相对的是dec 指令，用于将目标操作数的内容减一，它们<br>的指令格式相同，不再赘述.</p>
+<p>neg 指令带有一个操作数。它的功能很简单，用0 减去指令中指定的操作数。 （就是取相反数）。</p>
+<p>很显然，一个8 位的有符号数，要想用16 位的形式来表示，只需将<br>其最高位，也就是用来辨别符号的那一位（几乎所有的书上都称之为符<br>号位，实际上这并不严谨），扩展到高8 位即可。<br>为了方便，处理器专门<br>设 计 了 两 条 指 令 来 做 这 件 事 ： cbw （ Convert Byte to Word ） 和<br>cwd（Convert Word to Double-word）。<br>cbw 没有操作数，操作码为98。它的功能是，将寄存器AL 中的有符<br>号数扩展到整个AX。举个例子，如果AL 中的内容为01001111，那么执<br>行该指令后，AX 中的内容为0000000001001111；如果AL 中的内容为<br>10001101，执行该指令后，AX 中的内容为1111111110001101。<br>cwd 也没有操作数，操作码为99。它的功能是，将寄存器AX 中的有<br>符 号 数 扩 展 到 DX:AX 。 举 个 例 子 ， 如 果 AX 中 的 内 容 为<br>0100111101111001 ， 那 么 执 行 该 指 令 后 ， DX 中 的 内 容 为<br>0000000000000000 ， AX 中 的 内 容 不 变 ； 如 果 AX 中 的 内 容 为<br>1000110110001011 ， 那 么 执 行 该 指 令 后 ， DX 中 的 内 容 为<br>1111111111111111，AX 中的内容同样不变。<br>尽管有符号数的最高位通常称为符号位，但并不意味着它仅仅用来<br>表示正负号。事实上，通过上面的讲述和实例可以看出，它既是数的一<br>部分，和其他比特一起共同表示数的大小，同时又用来判断数的正负。</p>
+<p>主动权在你自己手上，在写程序的时候，你要做什么，什么目的，<br>你自己最清楚。如果是无符号数计算，必须使用div 指令；如果你是在做<br>有符号数计算，就应当使用idiv 指令</p>
+<p>bx 也叫基址寄存器。存放某个地址 做为基址，相当于数组0开始的位置。索引SI，bx+si。<br>SI 的作用相当于索引，因此它被称为索引寄存器（Index Register），或者叫变址寄存器。<br>另一个常用的变址寄存器是DI。<br>注意，INTEL8086 处理器只允许以下几种基址寄存器和变址寄存器<br>的组合：</p>
+<pre class="line-numbers language-none"><code class="language-none">[bx+si]
+[bx+di]
+[bp+si]
+[bp+di]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这些组合可以用于任何带有内存操作数的指令中。其他任何组合，<br>比如[bx+ax]、[cx+dx]、[ax+cx]等等，都是非法的</p>
+<p>指令jns show 的意思是，如果未设置符号位，则转<br>移到标号“show”所在的位置处执行。如图6-2 所示，Intel 处理器的标志<br>寄存器里有符号位SF（Sign Flag），很多算术逻辑运算都会影响到该<br>位，比如这里的dec 指令。如果计算结果的最高位是比特“0”，处理器把<br>SF 位置“0”，否则SF 位置“1”。</p>
+<p>jns 是条件转移指令，处理器在执行它的时候要参考标志寄存器的SF<br>位。除了只是在符合条件的时候才转移之外，它和jmp 指令很相似，它<br>也是相对转移指令，编译后的机器指令操作数也是一个相对偏移量，是<br>用标号处的汇编地址减去当前指令的汇编地址，再减去当前指令的长度<br>得到的。</p>
+<p>在处理器内进行的很多算术逻辑运算，都会影响到标志寄存器的某<br>些位。比如我们已经学过的加法指令add、逻辑运算指令xor 等.</p>
+<p>奇偶标志位PF<br>当运算结果出来后，如果最低8 位中，有偶数个为1 的比特，则<br>PF&#x3D;1；否则PF&#x3D;0.</p>
+<p>进位标志CF<br>当处理器进行算术操作时，如果最高位有向前进位或借位的情况发<br>生，则CF&#x3D;1；否则CF&#x3D;0.<br>CF 标志始终忠实地记录进位或者借位是否发生，但少数指令除外<br>（如inc 和dec）.<br>加1指令 INC指令功能:目标操作数+1INC指令只有1个操作数，它将指定的操作数的内容加1，再将结果送回到该操作数。INC指令将影响SF,AF,ZF,PF,OF标志位，但是不影响CF标志位。INC指令的操作数的类型可以是通用寄存器或存储单元，但不可以是段寄存器。字或字节操作均可。对于存储单元，需要用BYTE PTR或者WORD PTR说明是字节还是字操作。<br>为什么不影响CF：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43705457/article/details/106460924">链接</a></p>
+<p>OF，该标志的意思是，假定你进行的是有符号数运算，如果运算结果是<br>正确的，那么OF&#x3D;0，否则OF&#x3D;1。比如上面的例子，因为从有符号数的<br>角度来看，是-1 和2 相加，结果为1，未溢出，故OF&#x3D;0。简单地说，OF<br>标志用于指示两个有符号数的运算结果是否错误。</p>
+<p>指令对标志位的影响：<br><img src="/imgs/20220429_1.png"></p>
+<p>“jcc”不是一条指令，而是一个指令族（簇），功能是根据某些条件<br>进行转移，比如前面讲过的jns，意思是SF≠1（那就是SF&#x3D;0 了）则转<br>移.<br>转移指令必须出现在影响标志的指令之后.<br>在汇编语言源代码里，条件转移指令的操作数是标号。编译成机器<br>码后，操作数是一个立即数，是相对于目标指令的偏移量。在16 位处理<br>器上，偏移量可以是8 位（短转移）或者16 位（相对近转移）</p>
+<p>NASM 编译器提供了一个标记“$”，该标记等同于标号，你<br>可以把它看成是一个隐藏在当前行行首的标号。因此，jmp near $的意思<br>是，转移到当前指令继续执行。<br>$是当前行的汇编地址；$$是NASM 编译器提供的另一个标记，代<br>表当前汇编节（段）的起始汇编地址。</p>
+<p>中断：</p>
+<ul>
+<li>外部中断 ／ 硬件中断<ul>
+<li>可屏蔽中断</li>
+<li>不可屏蔽中断</li>
+</ul>
+</li>
+<li>内部中断 ／ 软件中断 （不可屏蔽）<ul>
+<li>主动去中断：指令中断</li>
+<li>被动去中断：硬件故障(除了硬件中断)、软件中断。</li>
+</ul>
+</li>
+</ul>
+<p>中断信号的来源，或者说，产生中断的设备，称为中断源.</p>
+<p>种类型的中断都被统一编号，这称为中断类型号、中断向量或者中断号.</p>
+<p>但是，由于不可屏蔽中断的特殊性——几乎所有触发NMI 的事<br>件对处理器来说都是致命的，甚至是不可纠正的。在这种情况下，努力<br>去搞清楚发生了什么，通常没有太大的意义，这样的事最好留到事后，<br>让专业维修人员来做。<br>也正是这个原因，在实模式下，NMI 被赋予了统一的中断号2，不再<br>进行细分。一旦发生2号中断，处理器和软件系统通常会放弃继续正常工<br>作的“念头”，也不会试图纠正已经发生的问题和错误，很可能只是由软件<br>系统给出一个提示信息。</p>
+<p>和代码段、数据段和附加段一样，栈<br>也被定义成一个内存段，叫栈段（Stack Segment），由段寄存器SS 指<br>向。<br>针对栈的操作有两种，分别是将数据推进栈（push）和从栈中弹出<br>数据（pop）。简单地说，就是压栈和出栈。压栈和出栈只能在一端进<br>行，所以需要用栈指针寄存器SP （Stack Pointer）来指示下一个数据应<br>当压入栈内的什么位置，或者数据从哪里出栈。<br>定义栈需要两个连续的步骤，即初始化段寄存器SS 和栈指针SP 的<br>内容。源程序第40～42 行用于将栈段的段地址设置为0x0000，栈指针的<br>内容设置为0x0000</p>
+<p>处理器内部，or 指令的目的操作数可以是8 位或者16 位的通用寄<br>存器，或者包含8&#x2F;16位实际操作数的内存单元，源操作数可以是与目的<br>操作数数据宽度相同的通用寄存器、内存单元或者立即数</p>
+<p>在16位的处理器上，push 指令的操作数可以是16 位的寄存器或者内存单元</p>
+<p>处理器在执行push 指令时，首先将栈指针寄存器SP 的内容减去操<br>作数的字长（以字节为单位的长度，在16 位处理器上是2），然后，把<br>要压入栈的数据存放到逻辑地址SS:SP 所指向的内存位置（和其他段的<br>读写一样，把栈段寄存器SS 的内容左移4 位，加上栈指针寄存器SP 提<br>供的偏移地址）</p>
+<p>pop 指令执行时，处理器将栈段寄存器SS 的内容左移4 位，再加上<br>栈指针寄存器SP 的内容，形成20 位的物理地址访问内存，取得所需的<br>数据。然后，将SP 的内容加操作数的字长，以指向下一个栈位置</p>
+<p>地址， 取地址 ([],从内存的该地址中取出数据)。</p>
+<p>在实模式的汇编中，<br>汇编编译器中的汇编地址。<br>逻辑地址的形式是： 段地址：偏移地址。<br>物理地址&#x3D;段地址×10H+偏移地址</p>
+<p>8086处理器的寻址方式<br>寄存器寻址<br>立即寻址<br>内存寻址：直接寻址，基址寻址，变址寻址，基址变址寻址。（根据偏移地址提供者的不同形式划分）<br>  内存寻址，默认都是DS做段地址，除非显示的表示段超越前缀。</p>
+<p>直接寻址。<br>mov [es:lable], 0x05<br>目的操作数使用了标号和段超越前缀，但它依然属于直接寻址方式。原因很简单，标号是数值的等价形式，在指令<br>编译阶段，会被转换成数值；而段超越前缀仅仅用来改变默认的数据段。</p>
+<p>mov [bx],dx<br>基址寻址。bx, bp. 在指令执行时，处理器将数据段寄存器DS 的内容左移4 位，加上基址寄存器BX 中的内容，形成20 位的物理地址。然后，把寄存器DX中的内容传送到该地址处的字单元里。</p>
+<p>mov [di],dx<br>di, si.<br>变址寻址类似于基址寻址，唯一不同之处在于这种寻址方式使用的是变址寄存器（或称索引寄存器）SI 和DI.和基址寻址一样，当带有这种操作数的指令执行时，除非使用了段超越前缀，处理器会访问由段寄存器DS 指向的数据段，偏移地址由寄存器SI 或者DI 提供。<br>同样地，变址寻址方式也允许带一个偏移量. mov [si+0x100],al.</p>
+<p>使用基址变址的操作数可以使用一个基址寄存器（BX 或者BP），外加一个变址寄存器（SI 或者DI）。它的基本形式是这样的, mov ax,[bx+si].<br>当处理器执行这条指令时，把数据段寄存器DS 的内容左移4 位，加上基址寄存器BX<br>的内容，再加上变址寄存器SI 的内容，共同形成20 位的物理地址</p>
+<p>超越前缀, 不同汇编编译器，不同的语法。<br>  nasm中 [cs:di]， 都放在[]中。<br>  masm中 cs:[di].<br>注意不同的编译器 会导致一些语法的不同，要区分。<a target="_blank" rel="noopener" href="https://blog.csdn.net/cainiaohhf/article/details/9916749">https://blog.csdn.net/cainiaohhf/article/details/9916749</a></p>
+<p>标号， 变量名。<br>实际上都是内存地址。 要取变量的值(变量指示地址中的值)要 <code>[变量]</code>,而<code>变量</code>表示的是内存地址的.</p>
+<p>操作系统通常肩负着处理器管理、内存分配、程序加载、进程（即<br>已经位于内存中的程序）调度、外围设备（显卡、硬盘、声卡等）的控<br>制和管理等任务</p>
+<p>处理器的工作模式是将内存分成逻辑上的段，指令的获取和数据的<br>访问一律按“段地址：偏移地址”的方式进行。相对应地，一个规范的程<br>序，应当包括代码段、数据段、附加段和栈段。这样一来，段的划分和<br>段与段之间的界限在程序加载到内存之前就已经准备好了。</p>
+<p>NASM 编译器不关心段的用途，可能也根本不知道段的用途，不知<br>道它是数据段，还是代码段，或是栈段。事实上，这都不重要，段只用<br>来分隔程序中的不同内容。<br>不过，话又说回来了，作为程序员，每个段的用途，你自己是清楚<br>的。所以，为每个段起一个直观好记的名字，那是应该的。如图8-1 所<br>示，第一个段的名字是“header”，表明它是整个程序的开头部分；第二个<br>段的名字是“code”，表明这是代码段；第三个段的名字是“data”，表明这<br>是数据段。<br>比较重要的是，一旦定义段，那么，后面的内容就都属于该段，除<br>非又出现了另一个段的定义。另外，如图8-2 所示，有时候，程序并不以<br>段定义语句开始。在这种情况下，这些内容默认地自成一个段。最为典<br>型的情况是，整个程序中都没有段定义语句。这时，整个程序自成一个<br>段。<br>NASM 对段的数量没有限制。一些大的程序，可能拥有不止一个代<br>码段和数据段。</p>
+<p>逻辑右移 shr， shl。<br>逻辑右移指令执行时，会将操作数连续地向右移动指定的次数，每移动一次，“挤”出来的比特被移到标志寄存器的CF 位，左边空出来的位置用比特“0”填充</p>
+<p>循环右移 ror， rol<br>循环右移指令执行时，每右移一次，移出的比特既送到标志寄存器的CF 位，也送进左边空出的位</p>
+<p>ret  retf<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/372398363">https://zhuanlan.zhihu.com/p/372398363</a></p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>正数，负数。<br>二进制。原码，反码，补码。<br>正数： 原码&#x3D;反码&#x3D;补码。<br>负数：原码，是正数的原码 最高位置1 。 反码，除符号位 按位取反。 补码，反码+1。<br>规定最高位为符号位，表示正负。</p>
+<p><a target="_blank" rel="noopener" href="https://www.23bei.com/tool/56.html">https://www.23bei.com/tool/56.html</a></p>
+<p>内存中的二进制，1.实际上是补码，用补码去理解。 2.用 负 &#x3D; 0-正 理解。<br>我们说的负数的二进制 实际上都是指 它的补码。 正数的二进制都可以(因为都一样)<br>1.实际上是补码，用补码去理解：<br>5<br>原    反    补<br>0101 0101 0101<br>-5<br>1101 1010 1011</p>
+<p>7<br>0111 0111 0111<br>-7<br>1111 1000 1001</p>
+<p>2.用 负 &#x3D; 0-正 理解。<br>-5<br>0-5<br>0000<br>0101<br>1011</p>
+<p>-7<br>0-7<br>0000<br>0111<br>1001</p>
+<p>得出的实际也是负数的补码。也能表明出最高位1时是负数，所以和我们规定的原反补都是自洽的。 也可以再反推出 反码， 原码。<br>利用方式2可以快速算出负数的二进制(补码)。比方式1快，方式1要先算出原码 反码，最后算出补码。</p>
+<ul>
+<li>如果系统本身是按照有符号系统处理，那么可以确定二进制的正负。 如果本身是无符号，那么就全是正。</li>
+<li>如果系统本身同时支持有符号和无符号，那么在处理的时候 要特别指定是有符号 还是无符号，这样才能确定正负。<br>一般系统都是同时支持的那种。因此 处理的时候是 需要去指定的。</li>
+</ul>
+<p>我们人也算是同时支持有符号和无符号的。因此 处理数字时也是要 指定的（指定有符号 还是无符号）。而我们默认是指定为按照有符号的。另外也有可视化符号表示。<br>对于十进制，5-&gt;+5， -5。<br>对于二进制，1001-&gt;+1001， -1001.<br>如果没有可视化符号表示，像在计算机中表示的那样，那么前提也是要主动申明是哪种 有符号，还是无符号。<br>我们人 默认是有符号。 或者处理时 有可视化，是有指定了正负（属于有符号）。<br>5 ／+5<br>-5<br>+1001<br>-1001</p>
+<p>一般计算机也是同时支持有符号和无符号的。<br>对于计算机中的表示，并没有可视化符号去表示，因此要主动去指定是有符号还是符号。<br>1001 指定有符号，是负数。指定为无符号，是正数。</p>
+<p>总结：数</p>
+<ul>
+<li>有符号。 （正数 负数 之分，规定最高位为符号位）</li>
+<li>无符号。 （全为正数）</li>
+</ul>
+<ol>
+<li>如果本身系统就是有符号，或者 无符号， 那么就按系统指定的去解读。</li>
+<li>如果本身系统同时支持 有符号 ，无符号。那么，就要有表明其是有符号 还是 无符号 的声明或指示。 如果没有明确指示，那么可以有两种不同的解读。对于同一个数，可以有两种解读。按照有符号解读 一种， 无符号的解读 一种<ol>
+<li>有可视化的指示。比如可视化的+ -, 这就表明是用有符号的。</li>
+<li>或者有其他的声明。声明是有符号或者无符号，比如 signed int， unsigned int。</li>
+</ol>
+</li>
+</ol>
+<p>人类系统 是同时支持有符号和无符号。 除非有声明 是无符号，否则都是有符号。<br>而且人类默认是可视化表示，所以显示的是有符号。5或+5， -5。 对于5，没有特别声明是无符号，那么就是有符号，而且是正的，即+5。 </p>
+<p>可参考印象笔记中《计算机组成原理》。</p>
+<p>字节序。<br>数据 在书写系统 和 内存 存放&#x2F;表示。 有大端，小端。</p>
+<ul>
+<li>书写表示的时候，实际上 大端字节序。 （我们默认左边到右边 位序增大，高位在低地址，所以是大端）。 基本都是大端。</li>
+<li>内存 默认也是 左边到右边 位序增大。 数据在内存中，数据的低位在低地址，小端。 数据的高位在高地址，大端。 不同cpu 有不同的字节序。<ul>
+<li>如果是大端，优点：和书写／表示 系统一致，人感官直觉上 比较自然，缺点：但是cpu处理起来麻烦，处理起来不自然。</li>
+<li>如果小端，优点：cpu处理起来自然，逻辑上舒服。 缺点：书写表示时给人感官直觉上 比较麻烦。</li>
+</ul>
+</li>
+</ul>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>以下 关于 操作系统启动流程。 文件系统。</p>
+<p>文件： 文件大小(文件的实际大小)， 文件占的磁盘空间大小。 </p>
+<p>磁盘： 见《x86汇编语言从实模式到保护模式》4.1.4章节。<br>磁盘，<br>从物理角度看， 最小存储单位是 扇区， 512B／4KB 。<br>0 面0 道1 扇区，或者说是0 头0 柱1 扇区。<br>从文件系统角度看： 最小存储单位是block，1KB，2KB，4KB。 （inode，superblock等都是存在block里）<br>inode 128B,256B.</p>
+<p>0 lrwxrwxrwx   1 root root  29 12月  6 16:00 resolv.conf -&gt; ..&#x2F;run&#x2F;resolvconf&#x2F;resolv.conf<br>链接的block大小是0，因为只占用inode，并不占用block。</p>
+<p>vbox 与宿主 设置共享文件夹。 linux中如果设置挂载点，那么会挂载到那个挂载点。 如果没有设置，那么挂载到 &#x2F;media&#x2F;sf_xxx下。<br>linux中无法直接用当前用户去访问挂载点。 可以在当前用户下 sudo mount –types vboxsf xxx mount_fs&#x2F;<br>xxx 是设置共享文件夹时取的名称。 mount_fs是虚拟机中某个目录。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/oddcat/articles/9685003.html">https://www.cnblogs.com/oddcat/articles/9685003.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/danshiming/article/details/117997558">https://blog.csdn.net/danshiming/article/details/117997558</a> </p>
+<p>grub 可以识别 文件系统。ext2 ext4等。</p>
+<p>linux内核启动的时候有一个 根文件系统， 然后才加在文件系统。</p>
+<p>linux 中的根文件系统：<br>Initramfs， 为了映射 路径名到具体文件。从路径名访问到文件。</p>
+<p>文件系统。 文件系统格式 ext2 ext4, fat ntfs, hfs。<br>文件系统：文件的树组织形式。 文件从路径名到物理磁盘文件的映射。</p>
+<p>根文件系统: 可以是虚拟文件系统（内存中的），也可以是实际文件系统。  根文件系统，是可以访问&#x2F;目录的。 不是涉及文件系统格式。 比如Initramfs 是根文件系统， 在加载磁盘文件上的文件系统后，将Initramfs替换后的文件系统，也是根文件系统。<br>根文件系统的文件系统格式是具体而定的。 而且 根文件系统 的下的目录结构、目录名都有相应的标准规定。</p>
+<p>linux内核加载的时候，先启动Initramfs，使得可以通过文件路径名直接在内存中访问必要的文件等，当加载了必要的磁盘驱动等，就可以加载磁盘设备上的文件系统了，就替换掉之前的Initramfs的文件系统。</p>
+<p>开机时候的文件系统：<br>开机的时候， grub启动 stage1 无法识别文件系统 ， stage1.5 stage2 可以识别文件系统，然后启动内核，将整个控制权交由内核，grub不再接管。而内核此时无法识别文件系统，因此会有一个虚拟的根文件系统，在加载了必要的磁盘驱动等，就可以加载磁盘设备上的文件系统了，就替换掉之前的Initramfs的文件系统。</p>
+<p>开机流程／系统启动流程：<br>加电启动<br>-&gt; cpu读取内存空间中地址0处(一般是固化到ROM里的BIOS)，执行BIOS里的代码，进行开机硬件检测等。 检测ok，cpu会将启动设备(硬盘) 里的0面0道1扇区的MBR代码载入到内存的0x7c00处，并且将执行地址跳转到0x7c00执行。这时，基本BIOS结束，将操作交由MBR。<br>-&gt; 执行MBR中的bootloader，Linux下的MBR中的bootloader一般为grub。grub stage1， （stage1.5，）stage2。 stage1 下是无法识别文件系统的，在1.5 2 才可以识别文件系统。 做了一些处理后，载入 &#x2F;boot下的内核文件(因为可以识别文件系统，因此可以找到&#x2F;boot下的内核映像文件)<br>-&gt;加载内核(内核文件&#x2F;boot&#x2F;vmlinuxxxxx)，启动内核。这时bootloader基本结束，操作交由内核了，即交给os了。内核加载时，为了能处理init服务,路径形式，那么需要加载文件系统(grub已经不在了，而此时内核又没有文件系统，无法访问路径形式的文件)，所以 此时内核会先加载的虚拟的根文件系统(&#x2F;boot&#x2F;initramfs,这个在grub阶段加载进内存了。然后这个文件会被解压缩并且在内存当中仿真成一个根目录。相应的目录下的文件因为在内存中有相应的加载，因此可以通过路径来访问相应的文件，相当于是一个文件系统。这个文件解压缩后和我们正常目录下的文件时一样的,这个只是在内核启动时加载虚拟文件系统时用到，解压，将里面的文件加载到内存中，从而执行.这个文件实际上就是那些必要文件的压缩)，这样就能找到必须的服务和模块，在加载了必要的磁盘驱动等，就可以加载磁盘设备上的文件系统了，就替换掉之前的Initramfs的文件系统，真正的文件系统就加载完成了。 这时基本内核加载差不多了。<br>-&gt;启动第一个进程，进城号为1 的 init 进程，后续必要进程启动，处理相应的配置文件等(如rc.local等)<br>-&gt; 系统的用户登陆界面。</p>
+<p>(grub2 stage1.5后 和 加载完的os 都能识别磁盘上的文件系统)</p>
+<p>UEFI读取GPT表，然后在相应的分区中读取.efi文件(bootloader)，控制权就交由分区中的bootloader了，bootloader再加载操作系统内核。<br>BIOS的是要先读取硬盘的MBR，根据MBR中的bootloader，要么加载相应分区中的内核文件，要么交由各自分区开头的bootloader处理。<br>菜单一：MBR（ grub2） –&gt; kernel file –&gt; booting<br>菜单二：MBR（ grub2） –&gt; boot sector（ Windows loader） –&gt; Windows kernel –&gt;<br>booting<br>菜单三：MBR（ grub2） –&gt; boot sector（ grub2） –&gt; kernel file –&gt; booting<br>而最终 boot loader 的功能就是“载入 kernel 文件”啦！</p>
+<p>内核&#x2F;OS 启动流程， 也是重要的一环。</p>
+<p><a target="_blank" rel="noopener" href="https://www.crybit.com/linux-boot-process/">https://www.crybit.com/linux-boot-process/</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392858237">https://zhuanlan.zhihu.com/p/392858237</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/billbonaparte1/article/details/82629176">https://blog.csdn.net/billbonaparte1/article/details/82629176</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zinnc/article/details/105026631">https://blog.csdn.net/zinnc/article/details/105026631</a></p>
+<p>磁盘物理结构。<br>磁盘的MBR，分区结构。<br>文件系统格式。 文件的逻辑结构 对应 到磁盘物理结构。 文件通过 路径名形式 映射到磁盘物理结构。<br>开机流程。BIOS／UEFI， MBR／GPT，bootloader。等等。</p>
+<p>开机流程简化版：<br>1.电源键启动，2.cpu读取内存地址0处代码(BIOS)，BIOS功能 硬件自检等以及启动顺序设置(u盘 硬盘 光驱 网络等)，3.从启动的硬盘&#x2F;u盘 0面0道1扇区 读取mbr或gpt （分区表），执行mbr里面的bootloader。 4.在bootloader中选择进入的操作统分区启动系统。 4.操作系统的启动。</p>
+<p>总结：<br>BIOS， UEFI ： 固化到ROM的固件。 硬件启动时 加载到内存空间地址0处，并运行的第一个程序。<br>MBR，GPT： 是用于分区的分区表。  只是MBR中有446bytes用于存储bootloader(如grub)(MBR中的bootloader也可能是只是部分的bootloader)。 GPT并没有存储bootloader，bootloader是在各自分区中的.efi文件。<br>每个分区的文件系统。NFTS，ext4，fat32，exfat等等。 </p>
+<p>每个硬盘 都有一个(0个或1个) 分区表 MBR&#x2F;GPT。 分区表是以硬盘为基础建立的，而不是以每个分区。<br>用U盘启动盘软件对其写入引导后把启动文件考进去就变成启动盘。 U盘此时也有建立了MBR或GPT的。<br>U盘启动方式，其中 安装的引导程序，算是bootloader吧。通过启动项选择U盘启动。启动时进入U盘，再通过U盘的引导程序(算是bootloader)进入其他系统。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" title="X86汇编语言">https://ruozhiertong.github.io/2022/04/27/X86汇编语言/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" rel="tag"># 汇编语言</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/19/%E6%8F%90%E5%8D%87%E5%B9%B8%E7%A6%8F%E5%BA%A6%E7%9A%84App/" rel="prev" title="提升幸福度的App">
+                  <i class="fa fa-chevron-left"></i> 提升幸福度的App
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B/" rel="next" title="多线程多进程">
+                  多线程多进程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2022/04/27/X86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"c23e464db74455ba4341bf4d4209a95f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

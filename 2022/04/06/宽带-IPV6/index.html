@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="背景 开搞 开搞过程中出现的问题： DW33D tp路由器 移动RAX3000Q   如何让自己家里的设备连接时也能有ipv6？ 我们来说说这三种获取ipv6地址的方法。    背景新拉了一条移动的宽带，300M。因为某些**原因，要用到ipv6。 因为那个vps，只提供ipv6的地址。所以，要折腾宽带的ipv6. 手上的设备：  广东深圳移动 300M 免费一年。  光猫型号：吉比特 GM23">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="宽带_IPV6">
+<meta property="og:url" content="https://ruozhiertong.github.io/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="背景 开搞 开搞过程中出现的问题： DW33D tp路由器 移动RAX3000Q   如何让自己家里的设备连接时也能有ipv6？ 我们来说说这三种获取ipv6地址的方法。    背景新拉了一条移动的宽带，300M。因为某些**原因，要用到ipv6。 因为那个vps，只提供ipv6的地址。所以，要折腾宽带的ipv6. 手上的设备：  广东深圳移动 300M 免费一年。  光猫型号：吉比特 GM23">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220407_1.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220407_2.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220407_3.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220407_4.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220407_5.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220407_6.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220418_1.png">
+<meta property="og:image" content="https://ruozhiertong.github.io/imgs/20220418_2.png">
+<meta property="article:published_time" content="2022-04-06T15:54:03.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="宽带">
+<meta property="article:tag" content="ipv6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ruozhiertong.github.io/imgs/20220407_1.png">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/","path":"2022/04/06/宽带-IPV6/","title":"宽带_IPV6"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>宽带_IPV6 | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%90%9E"><span class="nav-number">2.</span> <span class="nav-text">开搞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%90%9E%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">开搞过程中出现的问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DW33D"><span class="nav-number">2.1.1.</span> <span class="nav-text">DW33D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tp%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">tp路由器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8RAX3000Q"><span class="nav-number">2.1.3.</span> <span class="nav-text">移动RAX3000Q</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E8%87%AA%E5%B7%B1%E5%AE%B6%E9%87%8C%E7%9A%84%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5%E6%97%B6%E4%B9%9F%E8%83%BD%E6%9C%89ipv6%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">如何让自己家里的设备连接时也能有ipv6？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E6%9D%A5%E8%AF%B4%E8%AF%B4%E8%BF%99%E4%B8%89%E7%A7%8D%E8%8E%B7%E5%8F%96ipv6%E5%9C%B0%E5%9D%80%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%82"><span class="nav-number">2.3.</span> <span class="nav-text">我们来说说这三种获取ipv6地址的方法。</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="宽带_IPV6 | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          宽带_IPV6
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-06 23:54:03" itemprop="dateCreated datePublished" datetime="2022-04-06T23:54:03+08:00">2022-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#%E8%83%8C%E6%99%AF">背景</a></li>
+<li><a href="#%E5%BC%80%E6%90%9E">开搞</a><ul>
+<li><a href="#%E5%BC%80%E6%90%9E%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98">开搞过程中出现的问题：</a><ul>
+<li><a href="#dw33d">DW33D</a></li>
+<li><a href="#tp%E8%B7%AF%E7%94%B1%E5%99%A8">tp路由器</a></li>
+<li><a href="#%E7%A7%BB%E5%8A%A8rax3000q">移动RAX3000Q</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E8%87%AA%E5%B7%B1%E5%AE%B6%E9%87%8C%E7%9A%84%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5%E6%97%B6%E4%B9%9F%E8%83%BD%E6%9C%89ipv6">如何让自己家里的设备连接时也能有ipv6？</a></li>
+<li><a href="#%E6%88%91%E4%BB%AC%E6%9D%A5%E8%AF%B4%E8%AF%B4%E8%BF%99%E4%B8%89%E7%A7%8D%E8%8E%B7%E5%8F%96ipv6%E5%9C%B0%E5%9D%80%E7%9A%84%E6%96%B9%E6%B3%95">我们来说说这三种获取ipv6地址的方法。</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新拉了一条移动的宽带，300M。因为某些**原因，要用到ipv6。 因为那个vps，只提供ipv6的地址。所以，要折腾宽带的ipv6.</p>
+<p>手上的设备：</p>
+<ul>
+<li>广东深圳移动 300M 免费一年。 </li>
+<li>光猫型号：吉比特 GM232。</li>
+<li>路由器： 大麦DW33D。Mercury8012(不支持ipv6)。<a target="_blank" rel="noopener" href="https://blog.imlk.top/posts/rax3000q-get-shell/">移动的RAX3000Q</a>。</li>
+<li>宽带用户名和密码。 用户名是手机号，密码可以在移动app上重置。</li>
+<li>光猫后台管理。两种方式 user， admin。 user的在猫的背面。 admin的CMCCAdmin和aDm8H%MdA。</li>
+<li>光猫设备认证码。 这个用来重置光猫以及注册光猫设备。 可以在安装的时候让装维师傅告知下。一般用不上。</li>
+</ul>
+<p>登录光猫网页管理界面，将一些重要的信息先截图备份，避免在后续操作中不知道怎么改回来(注意vlanid别搞错了)。移动给的光猫默认有4个连接。</p>
+<p>移动猫一般有三种连接。 分别是宽带，网络电视，网络电话。 这三种都绑定了猫的一个LAN口。 所以有的lan口直连电脑不行，因为dhcp获取不到而且不是给上网用的，是特殊用途。</p>
+<p>移动光猫的网口有1个千兆lan口，3个百兆lan口。被绑定了三个口。绑定了那么该端口的dhcp就不能使用了。<br>internet 就是我们平时用来上网的连接。OTTV 用于IPTV业务的连接。VOIP 用于语音业务的连接。<br>移动光猫lan1是绑定了pppoe拨号。 lan2 lan4是绑定了网路电视和网络语音。 lan3空，可以直连电脑。<br>所以，能直连电脑的网口只有lan1 和lan3. 其他口连接的话，不会分配ip的。</p>
+<p><img src="/imgs/20220407_1.png" alt="找不到图片时显示" title="标题"><br><img src="/imgs/20220407_2.png"><br><img src="/imgs/20220407_3.png"><br><img src="/imgs/20220407_4.png"><br><img src="/imgs/20220407_5.png"><br><img src="/imgs/20220407_6.png"></p>
+<h2 id="开搞"><a href="#开搞" class="headerlink" title="开搞"></a>开搞</h2><p>现在移动 电信 宽带都是有ipv6地址的，提供的猫也支持公网ipv6.<br>4G 5G也是有公网ipv6地址的。 手机 电脑等都支持ipv6的。但是家用路由器不一定。<br>如何检测当前网络是否支持ipv6？</p>
+<ul>
+<li>使用ping。 ping6 ivp6地址</li>
+<li><a target="_blank" rel="noopener" href="https://ipv6-test.com/">ipv6_test</a></li>
+</ul>
+<p>注意： 手机 电脑上能获取ipv6地址 不代表就能上ipv6网络。 可以使用上述方法进行检测。  </p>
+<p>关于手机 电脑上有两个ipv6地址，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/316884179">解释</a>。<br>inet6 2409:8955:321c:41aa:c6f:5822:7f30:8e60 prefixlen 64 autoconf secured<br>inet6 2409:8955:321c:41aa:e527:782d:3c19:9124 prefixlen 64 autoconf temporary<br>关于ipv6的内网 还是外网地址：<br>fe80开头的是内网IPV6地址，其他开头的是公网IPV6地址，<br>电信为240e::&#x2F;20 移动为2409:8000::&#x2F;20 联通为2408:8000::&#x2F;20<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/361275417">讨论</a></p>
+<p>ipv6 地址：<br>fe08开头 本地地址。 类似 192.168<br>2001:db8 是经过NAT。 可以接收外来请求(但是要你先主动发起请求才行)。<br>2409 公网ipv6</p>
+<h3 id="开搞过程中出现的问题："><a href="#开搞过程中出现的问题：" class="headerlink" title="开搞过程中出现的问题："></a>开搞过程中出现的问题：</h3><ul>
+<li>光猫拨号，查看状态信息，发现光猫有ipv6地址。也可开启了dpcpv6。 有线直连电脑，电脑有ipv6，而且能稳定顺畅访问ipv6网络。这个光猫没有wifi功能。所以用wifi要配合一个路由器使用。但是设备无线连接路由器或有线连接路由器，可能会无法获取ipv6地址。</li>
+</ul>
+<h4 id="DW33D"><a href="#DW33D" class="headerlink" title="DW33D"></a>DW33D</h4><ul>
+<li>光猫拨号，DW33D wan口连接， DW33D没有分配到ipv6地址。手机 电脑连接路由器也获取不到ipv6.该问题是因为DW33D官方固件中不支持ipv6. 刷入新的固件能获取ipv6.</li>
+<li>新固件 获取的ipv6，无法连上ipv6网络。</li>
+<li>但是，后来这个路由器手贱升级了变成砖了。刷机救砖是另一个悲剧的过程。总之失败告终。不过理论上应该和移动RAX3000Q一样，都能完成ipv6的获取。</li>
+</ul>
+<h4 id="tp路由器"><a href="#tp路由器" class="headerlink" title="tp路由器"></a>tp路由器</h4><ul>
+<li>使用tp的路由器(Mercury8012)，不支持ipv6.</li>
+<li>曲线救国。将tp桥接到光猫，这样手机 电脑连接的路由器时 由光猫进行dhcp 分配ipv6. 但是问题是，这个ipv6地址时而能上时而不能上ipv6网络，不稳定，应该是和路由器有关系。</li>
+</ul>
+<h4 id="移动RAX3000Q"><a href="#移动RAX3000Q" class="headerlink" title="移动RAX3000Q"></a>移动RAX3000Q</h4><ul>
+<li>移动RAX3000Q路由器。支持ipv6，也支持nat6。 支持wifi6. 移动送的免费用一年，一年后要还的。</li>
+<li>RAX3000Q很好，下面的多个实验都支持了。</li>
+</ul>
+<h3 id="如何让自己家里的设备连接时也能有ipv6？"><a href="#如何让自己家里的设备连接时也能有ipv6？" class="headerlink" title="如何让自己家里的设备连接时也能有ipv6？"></a>如何让自己家里的设备连接时也能有ipv6？</h3><ul>
+<li>如果家里的路由器不支持ipv6。 方法：路由器桥接到猫。让路由器lan连接到猫的lan，关闭路由器DHCP，修改路由器br-lan不要和猫同一网段。连接到路由器的设备的ipv4 v6地址由猫DHCP来分配。 地址让支持ipv6的猫去分配ipv6，这样设备也能得到IPV6地址。</li>
+<li>如果家里的路由器支持ipv6。 方法；1.同上。让路由器桥接猫。 2.自己本身支持ipv6分配，开启nat6.(不过似乎是内网ipv6，那么可能还是无法访问ipv6网络)。3.开启猫的桥接模式，将网络功能桥接到某个网口。 拨号 dhcp等全由路由器来做，猫只做猫&#x2F;调制解调的功能。 这个要求路由器本身支持ipv6。<br>最好的方式是3。<br>光猫改桥接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/343762196">https://zhuanlan.zhihu.com/p/343762196</a> 。1.进入光猫配置页面。更改Internet的连接模式，改成brigde模式，选择ipv4&#x2F;ipv6, 绑定在某个lan口。(如果无法修改，可以删除后再新建一个连接) 2.路由器进行拨号。</li>
+</ul>
+<h3 id="我们来说说这三种获取ipv6地址的方法。"><a href="#我们来说说这三种获取ipv6地址的方法。" class="headerlink" title="我们来说说这三种获取ipv6地址的方法。"></a>我们来说说这三种获取ipv6地址的方法。</h3><ol>
+<li>路由器桥接到猫。 光猫拨号上网，支持ipv6，开始dhcp6，RA设置O M 模式。 路由器lan&#x2F;wan连接到光猫(一般用lan)，设置成桥接模式，关闭路由器的dhcp。 这样电脑、手机设备连接路由器时，会获取到猫分配的ipv6地址，而且是公网的ipv6地址。缺点和问题：获取的ipv6可能不稳定，手机端可能获取不到ipv6地址。 经测试，mercury8012做的桥接获取的ipv6不稳定，而且手机端获取不到ipv6. RAX3000Q 电脑端没问题，但是手机端无法获取ipv6.</li>
+<li>路由器本身支持ipv6，并且支持nat6。（前提是路由器支持ipv6，并且能够获取到猫分配的公网ipv6）。 光猫拨号上网，设置RA O M模式。 路由器wan口连接光猫，设置成自动获取ip模式(也即路由模式)(这样能从猫那里获取ipv4和公网ipv6的)(这里的dhcp模式，是说以DHCP客户端去获取IP地址。 还有DHCP服务器端，是进行分配ip地址的。)， 开启NAT6。手机 电脑等设备连接路由器，那么获取到的ipv6地址是NAT6内网的ipv6地址，并不是公网的ipv6。可以访问ipv6网络（前提要你先主动发请求出去）。<ul>
+<li>理论上 路由器本身支持ipv6的dhcp，那么手机等设备也可以获取公网的ipv6，压根不需要nat6. 但是 经测试后，直接使用路由器的dhcp6并不能获取到ipv6地址。这个可能是和猫 路由器设置有关的。而NAT6比较简单，使用开启nat6，获取内网的ipv6地址，可以访问ipv6网络。</li>
+</ul>
+</li>
+<li>光猫做桥接，路由器进行拨号并自动分配ipv6。光猫设置网络为桥接模式。路由器wan口连接光猫。 路由器使用pppoe拨号上网。并不需要其他什么而外设置，一般都是自动分配ipv4 ipv6。（这个要求路由器能支持ipv6）。 电脑 手机等设备连接路由器后获取到的是公网的ipv6地址的。<br><img src="/imgs/20220418_1.png"><br><img src="/imgs/20220418_2.png"></li>
+</ol>
+<p>我的选择：<br>实验了这么几种方式，都能获取ipv6地址。但是我的需求，很简单，只想要能访问ipv6地址，因此我采用的是第二种方式。第一种路由器桥接光猫，光猫的性能堪忧。 第三种 暴露公网ipv6可能会带来不友好的攻击。  </p>
+<p>其实在技术上，ipv6和ipv4是类似的。 但是历史原因，造成了两种网络的割裂，纯ipv4网络和纯ipv6网络无法联通（基础设备，协议的不支持）。 现在随着基础设备支持ipv6，纯ipv4网络和i纯pv6网络以后也会慢慢互相连通的，对用户来说会感知透明。</p>
+<div style="display:none;" id="温故知新">
+温故知新
+
+<ul>
+<li>RJ45接口 物理层设备。 并不是一个接口就有一个网卡的。 不是一个物理的RJ45接口就有一个物理的网卡的。(比如路由器的LAN口)</li>
+<li>网卡(网卡接口)是网卡工作在物理层和数据链路层的MAC子层。算是数据链路层。 有mac地址。</li>
+<li>物理网卡接口(物理设备)，逻辑网卡接口(eth0 eth1， 操作系统层面使用的)（物理网卡接口和逻辑网卡接口并不是完全一对一。有一对多的）。</li>
+<li>每个逻辑网卡接口都有mac地址，如果分配了ip，也会有ip地址的。 (mac地址 数据链路层，ip地址 网络层)</li>
+<li>RJ45接口， 网卡， 中继器&#x2F;放大器， 集线器， 网桥， 交换机， 路由器。</li>
+</ul>
+<p>单纯的 集线器 是没有mac地址的。因为都没有网卡的。<br>单纯的 交换机本身有一个网卡的，而至于交换机的每个端口是否有网卡，不同实现也不一样，有的是每个端口都分配一个网卡，有的没有。有mac地址的。 但是没有涉及ip地址的。二层交换机 每个端口不一定都分配网卡，三层的交换机每个端口都分配网卡，而且也可以ip地址。<br>路由器 电脑 手机本身是有网卡的。</p>
+<ul>
+<li>交换机是二层。</li>
+<li>VLAN是二层技术。交换机可以支持划分vlan的。只是无法让vlan之间路由。<br>要实现VLAN之间路由，需要三层路由功能。 方式有三层交换机，路由器等。 所以 要vlan之间路由 那么就是三层设备。<br>三层交换机让VLAN之间路由(有利用VLAN技术)。 路由器也能利用VLAN技术，也可以让VLAN之间路由。</li>
+<li>路由器是三层。现在三层也有三层交换机。</li>
+</ul>
+<p>路由器 一般两个物理网卡。 wan口一个网卡， LAN口共用一个网卡(做VLAN)。 如果有wifi的话，还有有无线网卡(一般也是桥接在br-lan下，都分配同一个VLAN。 所以有线无线都是同一个局域网)。<br>（每个路由器貌似这块不一样，有得是2个，有的3个）</p>
+<p>路由器本身的网卡 以及ip地址。<br>wan口：wan eth0.2 wan6 eht0.2  （其实是一个网卡的两种ip地址 ipv4 ipv6，有的路由器是放在一起eth0，有的给分开的）<br>LAN口：br-lan: 192.168.1.1 &#x3D;&#x3D;&gt; lan1 lan2 lan3 lan4 。 （lan对应的ip地址是分配到连接设备的ip地址）</p>
+<p>路由器：拨号，路由，交换。 lan口之间是交换功能，都放在br-lan网卡下。 br-lan和wan，wan和上层网关 之间是路由功能。 wan也有拨号功能。</p>
+<p>光猫的lan直连路由器的lan，并关闭路由器br-lan的dhcp，相当于将路由器的lan划归到了光猫的交换系统之中，vlan。</p>
+<p>调制解调器：数字信号(0,1等)和模拟信号(电信号&#x2F;电流电压 光信号等。模拟信号又叫做连续信号)。<br>光猫：数字信号转成电信号 再转乘光信号。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77906564">https://zhuanlan.zhihu.com/p/77906564</a><br>一般，家庭的光猫是功能不强大，我们一般只让做猫的功能，光信号&#x2F;模拟信号和数字信号转换。 不要让它做乱七八糟的功能。 而路由器功能更强一些， 所以一般是让路由器做拨号 路由，而光猫只负责猫的功能。</p>
+<p>路由器做桥接. 有线桥接 无线桥接。两者原理是一样的。路由器A 路由器B， 路由器B桥接到A。<br>其实都是相当于将路由器B做交换机使用，具体的dhcp 路由，都是由上游的设备路由器B做的。这里系统中实际上还是存在两套系统， A的路由 交换功能， B的路由 交换。 将B桥接到A，将B中的路由 交换交给A，但是B中还是有这个功能的，可以手动设置IP连接到B的系统上来。<br>有线桥接： B的lan口连接到A的lan口， 修改B的br-lan的ip与A路由器不要同一个网段， 关闭dhcp(让A来做)。<br>无线桥接：类似。 1.关闭dhcp，2.修改网段，3.wds功能 进行桥接连接到A的ssid。 </p>
+<p>路由器当交换机用。 用lan口去连接上游设备，而不是用wan口。<br><a target="_blank" rel="noopener" href="https://product.pconline.com.cn/itbk/wlbg/hiwifi/1702/8881901.html">https://product.pconline.com.cn/itbk/wlbg/hiwifi/1702/8881901.html</a></p>
+<ul>
+<li>光猫lan口连接路由器wan口。正常的连接方式。</li>
+<li>光猫lan口连接路由器lan口。让路由器桥接光猫，路由器做交换机使用。</li>
+</ul>
+<p>光猫的lan口连接路由器的lan口。关闭路由器的DHCP，这时路由器的lan其实只是桥接光猫，DHCP是由光猫来做。 这时路由器的本身的br-lan还是可以用的。就是说 我们电脑用dhcp获取，获取到的是光猫分配的，路由器是当交换机使用的，电脑和猫是同一网段。 如果用手动设置192.168.0.123 和路由器的br-lan ip 同网段，那么是由路由器管理的，电脑和路由器同一个网段。 其实这时 路由器连接光猫的lan口 实际是属于光猫的lan，相当于属于光猫的vlan的，即这时有两个网段(vlan)，光猫的vlan， 路由器的vlan，只是路由器连接光猫的lan口属于光猫的vlan。 在整个系统中， 光猫的拨号，路由，交换， 路由器的路有，交换。存在两个交换机系统，两个路由系统。 </p>
+<p>wifi4  wifi5 wifi6<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/151266390">https://zhuanlan.zhihu.com/p/151266390</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107885419">https://zhuanlan.zhihu.com/p/107885419</a></p>
+<p>wifi4 支持2.4G&#x2F;5G<br>wifi5 只支持5G<br>wifi6 支持2.4G&#x2F;5G  </p>
+<p>5G比2.4G网络更快，但是穿透能力弱。  </p>
+<p>wifi6 比 前几代 都更快。  </p>
+<p>有的老设备不支持wifi6，只能连接wifi6的2.4G信号。  </p>
+<p>大麦的WD33D是wifi4，有2.4G／5G，因此可以连2.4和5G。<br>移动的RAX3000Q是wifi6，mbp，redmi8 只能连2.4G的。  </p>
+<p>通过修改RAX3000Q的5Gwifi的工作模式.  不过，结果也不行。 因为电脑 手机设备不支持wifi5 wifi6，只能收到2.4G<br><a target="_blank" rel="noopener" href="https://www.jiayongluyou.com/shezhi/wifi6/what-if-the-4.html">https://www.jiayongluyou.com/shezhi/wifi6/what-if-the-4.html</a></p>
+<p>所以，<br>要想有ipv6公网地址，1.使用路由器桥接光猫 2.使用光猫的桥接模式。</p>
+<p>要想访问ipv6网络，除了上面两种外，还有3.路由器开启开启NAT6(路由器要支持该功能，并且路由器已经从猫那里获取了ipv6公网地址)。 路由器wan口连接光猫，dhcp模式，并开启nat6. 这样设备连接路由器后会有2001:db8的ipv6地址，对外的ipv6地址是路由器的ipv6地址。</p>
+<p>如果只是想访问ipv6网络，建议使用2和3，不要使用路由器桥接猫，毕竟猫的性能还是弱，带动好几台设备都吃力，让猫做路由功能还是吃力了点。</p>
+<p>如果想访问ipv6网络并且公网ipv6 用2.<br>如果只想访问ipv6网络 没有公网ipv6，可以用3.</p>
+<p>如果对公网ip没有大需求，建议使用3，能够一定程度上保护内网的主机。</p>
+<p>如果知道你的网络能访问ipv6网络？</p>
+<p>1.ping6 ipv6地址。<br>2.iptest网站。<br>3.ifconfig 看是否有公网ipv6地址。<br>(没有ipv6公网地址，有nat6分配的ipv6 可能也能访问ipv6网络)。</p>
+</div>
+
+<div style="display:none;">
+
+<p>电脑直连可以获取到ipv6，说明ipv6没问题。 光猫上没有显示分配的ipv6 有点奇怪的。 算了，不影响不管它。<br>路由器直连为什么没有分配到ipv6？ 难道因路由器连接的是lan1，电脑直连lan3？  和这个没关系。 电脑直连lan1照样有ipv6. 所以问题出在路由器身上。</p>
+<p>光猫上为什么不显示ipv6的分配情况。<br>为什么路由器上没有分配ipv6，而直连的电脑可以？ 那应该就是路由器的问题， 怎么解决？</p>
+<p>直连光猫有ipv6，路由器wan lan都有ipv6， 但是手机连接路由器 ipv6 是内网的ipv6.<br>可能原因：dhcp，将路由器的dhcp关闭 让猫去dhcp。<br>应该是路由器的问题，可以像RAX3000Q那样NAT6。</p>
+<p>问题：<br>在让路由器做交换机之后，可以获取到ipv6，但是有时候能上ipv6，有时候不能。 这就很奇怪了。可能是路由器的问题。也有可能猫的问题。<br>现在不知道如果让路由器拨号 会不会有问题？</p>
+<p>如果路由器拨号 不会有问题，那说明你是猫的问题了。<br>设置ipv6的RA，开启 O M模式。  LAN测DNS获取方式 HGWProxy （和DNS关系不大）。 不过这个设置之后，会导致有时候ipv6连不上</p>
+<p>问题：<br>光猫会分配ipv6， 有线直连，有ipv6地址，可以连ipv6网络，比较稳定。</p>
+<ul>
+<li>将大麦升级后，分配了ipv6但是无法联ipv6网络。 可能是猫的设置问题。</li>
+<li>将路由器桥接光猫后，分配了ipv6，有时可以连ipv6网络，有时不可以。 这个可能是路由器的问题。也有可能猫的设置问题。 可以用大麦路由器去测试测试。</li>
+</ul>
+<p>将新账号 放在以前旧的移动光猫上，无法注册成功。 可能是账号和设备绑定的。</p>
+<p>大麦DW33D 硬件是支持ipv6的。 </p>
+<ul>
+<li>原先的固件不支持，所以导致连接的设备没有分配ipv6.</li>
+<li>更新了固件。 支持了。 但是分配的是内网的ipv6，还是无法访问ipv6网络的。(待解决，很奇怪，计算是内网，只是外部无法访问到内部，但也应该能访问到ipv6网络)</li>
+<li>使用路由器桥接猫。 这个能行，但是受限于猫的性能。</li>
+<li>使用猫的桥接模式(不是猫桥接到路由器)。其实就是不用光猫拨号，用路由器拨号。猫这里只做猫的功能，然后将网络功能桥接到某个网口，该网口连接路由器wan口，路由器进行拨号。</li>
+</ul>
+</div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/" title="宽带_IPV6">https://ruozhiertong.github.io/2022/04/06/宽带-IPV6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%BD%E5%B8%A6/" rel="tag"># 宽带</a>
+              <a href="/tags/ipv6/" rel="tag"># ipv6</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/06/python-module/" rel="prev" title="python_module">
+                  <i class="fa fa-chevron-left"></i> python_module
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="正则表达式">
+                  正则表达式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2022/04/06/%E5%AE%BD%E5%B8%A6-IPV6/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"4d36f7b50ed12f41723ed5d8c9fc2392"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

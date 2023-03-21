@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关于打印 印刷 冲印。 门 邮件  android 四大组件 获取系统设置  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   关于打印 印刷 冲印。打印复印、印刷、冲印。https:&#x2F;&#x2F;zhidao.baidu.com&#x2F;question&#x2F;25154682.html打印不需要模版。 印刷需要一个模版。 打印、印刷用的是CMYK模式。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="乱七八糟知识">
+<meta property="og:url" content="https://ruozhiertong.github.io/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="关于打印 印刷 冲印。 门 邮件  android 四大组件 获取系统设置  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   关于打印 印刷 冲印。打印复印、印刷、冲印。https:&#x2F;&#x2F;zhidao.baidu.com&#x2F;question&#x2F;25154682.html打印不需要模版。 印刷需要一个模版。 打印、印刷用的是CMYK模式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-05T04:15:14.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="未分类">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/","path":"2022/05/05/乱七八糟知识/","title":"乱七八糟知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>乱七八糟知识 | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%89%93%E5%8D%B0-%E5%8D%B0%E5%88%B7-%E5%86%B2%E5%8D%B0%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">关于打印 印刷 冲印。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%AE%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">邮件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">android 四大组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">获取系统设置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="乱七八糟知识 | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          乱七八糟知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-05 12:15:14" itemprop="dateCreated datePublished" datetime="2022-05-05T12:15:14+08:00">2022-05-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#%E5%85%B3%E4%BA%8E%E6%89%93%E5%8D%B0-%E5%8D%B0%E5%88%B7-%E5%86%B2%E5%8D%B0">关于打印 印刷 冲印。</a></li>
+<li><a href="#%E9%97%A8">门</a></li>
+<li><a href="#%E9%82%AE%E4%BB%B6">邮件</a></li>
+<li><a href="#"></a></li>
+<li><a href="#android-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6">android 四大组件</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE">获取系统设置</a></li>
+</ul>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  </p>
+<h3 id="关于打印-印刷-冲印。"><a href="#关于打印-印刷-冲印。" class="headerlink" title="关于打印 印刷 冲印。"></a>关于打印 印刷 冲印。</h3><p>打印复印、印刷、冲印。<br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/25154682.html">https://zhidao.baidu.com/question/25154682.html</a><br>打印不需要模版。 印刷需要一个模版。</p>
+<p>打印、印刷用的是CMYK模式。显示器等 设备用RGB模式。<br>RGB是加色模式，CMYK是减色模式 。RGB模式是一种发光的色彩模式 ， CMYK是一种依靠反光的色彩模式 。<br>RGB的原理是光源发出光到⼈眼（即加⾊原理），在RGB显示屏上是适⽤的（然⽽不是所有的显示屏都是<br>RGB的）。但凡是涉及到印刷，将图案放置在纸张、布料等物体上，它适⽤的原理就会变成物体反射光到<br>⼈眼（即减⾊原理）。<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20476536">https://www.zhihu.com/question/20476536</a></p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  </p>
+<h3 id="门"><a href="#门" class="headerlink" title="门"></a>门</h3><p>与 或 非。在数字电路中的表示，门电路。与门，或门，非门。<br>门电路是数字电路中最基本的逻辑单元。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/395540201">https://zhuanlan.zhihu.com/p/395540201</a></p>
+<p>电路(电子电路)：模拟电路 和 数字电路。<br><a target="_blank" rel="noopener" href="https://www.eefocus.com/analog-power/465165">https://www.eefocus.com/analog-power/465165</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/166110092">https://zhuanlan.zhihu.com/p/166110092</a></p>
+<p>常见的电子元器件。 工作原理，功能以及作用，具体应用。  </p>
+<p>电阻，电容，电感器，二极管，三极管，变压器，继电器，开关 等等。<br>二极管：PN结，单向导电性。 P positive，N negative。 这里是指正 负电荷。N型，因为多了自由电子，对外显负电。P型，多了空穴，对外显正电。<br>单质硅是不导电的，要让其导电，加入了P，或 N。<br>N型： Si+P。 多了一个电子，自由移动的载流子， 形成电流。电子流出，负极N极。 电子是多数载流子，空穴 是少数载流子。<br>P型： Si+B。 少一个电子，空穴，(相当于正电粒子),吸引电子流动，形成电流。电子流入，正极P极。空穴是多数载流子，电子是少数载流子。<br>要导电，就要电子和空穴复合。<br>三极管： 发射极，基极，集电极。  发射区，基区，集电区。 电流从基极流向发射极。从集电极流向发射极。<br>NPN型。 两个PN结。 </p>
+<p>电子负电荷。 电子移动方向 与 电流方向相反。<br>正负极 指电流的正负极。<br>正负电荷 指粒子是正&#x2F;负电荷。<br>粒子的正负 是电荷的正负。正电荷 负电荷。</p>
+<p>物理上规定电流的方向，是正电荷定向运动的方向（即正电荷定向运动的速度的正方向或负电荷定向运动的速度的反方向）。电流运动方向与电子运动方向相反。<br>电荷指的是自由电荷，在金属导体中的自由电荷是自由电子，在酸，碱，盐的水溶液中是正离子和负离子。</p>
+<p>我们一般所说的电流，指的是正电荷的流向，但实际上正电荷是不会动的，真正会动的是“自由移动的电子”，但电子是带负电的，从“电源的负极”流出，和我们平常所言的“电流从正极流出”正好相反。</p>
+<p>物体传导电流的能力叫做导电性，非电解质物体导电的能力是由其原子外层自由电子数以及其晶体结构决定的，比如同样是碳单质，石墨导电，金刚石不导电。<br>硅单质被称为半导体，是因为硅的导电性是变化的。<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/303408616">https://www.zhihu.com/question/303408616</a></p>
+<p>半导体是指导电能力介于金属和绝缘体之间的固体材料。</p>
+<p>正极 负极，根据电势高低。电势高 正极， 电势低 负极。</p>
+<p>电池的正极 负极。</p>
+<p>电流方向。</p>
+<p>电子运动方向。</p>
+<p>粒子带电(正负电荷) ,不带电(中性)。<br>电子 带负电荷。<br>原子核</p>
+<p>物质，分子，原子(原子核，电子）。<br>原子核：质子(正电荷)，中子(不带电)。<br>质子、中子、电子是构成原子的三种基本粒子。<br>电荷是粒子的基本性质。带正电荷 带负电荷 不带电。</p>
+<p>电池的原理是 原电池， 充电的时候是电解池。</p>
+<p>升失氧(氧化反应，被氧化，还原剂)，降得还(还原反应，被还原，氧化剂)。</p>
+<p>升价 失去电子 氧化反应。</p>
+<p>降价 得到电子 还原反应。</p>
+<p>正极负极。（电池。电流方向／电势高低，电子方向）<br>阴极阳极。（电解池，原电池。阳极 氧化反应 吸引负离子， 阴极 还原反应 吸引阳离子。）</p>
+<p>氧化还原反应（氧化反应，还原反应）：（从最底层电子层面的得失来一步步推导 记忆）<br>失升氧(失去电子 升价 氧化反应)。充当还原剂，具有还原性，发生氧化反应，得到氧化产物。<br>得降还(得到电子 降价 还原反应)。充当氧化剂，具有氧化性，发生还原反应，得到还原反应。<br>利用氧气助记(氧气是氧化剂)： 比如，氧气和铁 反应。 氧气和铁 反应。<br>(h2+o2&#x3D;h2o。 其中氧气 得到电子，降价，发生还原反应。 是充当氧化剂，具有氧化性。 氧气发生还原反应，得到还原产物 h2o。  氢气 失去电子，升价，发生氧化反应。 是充当还原剂，具有还原性。 氢气发生氧化反应，得到氧化产物h2o。)</p>
+<p>百科：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B0%A7%E5%8C%96%E5%89%82/2520415">https://baike.baidu.com/item/%E6%B0%A7%E5%8C%96%E5%89%82/2520415</a><br>在氧化还原反应中，获得电子的物质称作氧化剂 [1]  ，与此对应，失去电子的物质称作还原剂。狭义地说，氧化剂又可以指可以使另一物质得到氧的物质，以此类推，氟化剂是可以使物质得到氟的物质，氯化剂、溴化剂等亦然。<br>（注：这两种定义有不同，前者强调电子的得失，后者则强调氧元素的得失。根据前者定义，一些物质，如二氟化氙是强氧化剂，而根据后者定义，则为氟化剂。本词条主要描述前者。）<br>含有容易得到电子元素的物质，即氧化性强的物质常用氧化剂。</p>
+<p>氧化剂是在氧化还原反应中，获得电子的物质。氧化剂具有氧化性，得到电子化合价降低，发生还原反应，得到还原产物。</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    </p>
+<h3 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h3><p>收取邮件一般是客户端主动行为，而不是服务端行为。(其实很多时候都是客户端主动，服务端被动。除非是一直保持连接，才能服务端主动。) 客户端不断去服务端取邮件，这样看过去像服务端主动发过来的，这样看过去也像实时收到。其实后面都是客户端在不断向服务端发送请求的，一直在循环loop。<br>亦或客户端和服务端一直保持连接，通过类似心跳包一直保持连接，那么这时服务端就可以主动发送邮件给服务端的。 另外，邮件并不是像IM那样实时的，所以也不必维持时刻的连接。一般服务端和客户端 要一直维持连接，那么也是需要类似 客户端那样不断发送心跳包 来维持连接的（一直保持也很耗资源）。 并没有啥都不发送就能一直维持连接的，因为一个连接最多只能维持一段时间，无法一直维持的。 在邮件这里，也是同样的道理。 另外，一般都是客户端主动行为，很少服务端一开始就主动行为的。</p>
+<p>代码中发送邮件，那么肯定需要一个邮箱地址，而这个邮箱地址要给服务器鉴权用的。那么就需要某个stmp服务器才能发送（鉴权以及发送其他smtp服务器）。这个服务器可以用三方的如qq 163，也可以用自己写的stmp服务器或linux的mail(不过很大程度上会被拒收) 。<br>所以代码中并不是只要有收件人的邮箱地址就行的，要有我们收件人的邮箱地址以及该邮箱地址的stmp服务器 才行。 我们客户端是要通过服务端发送邮件，而不是单单客户端就能发送邮件的。</p>
+<p>代码中实际上 1.用发送方用自己的stmp服务器发邮件，2.也可以用市场上第三方stmp服务器的。 (直接食用stmp服务器进行发送，不需要发送方的邮件地址和鉴权，直接用stmp服务端发送的)<br>但基本用的还是第三方，而不是用自己的stmp服务器。<br>为什么用第三方的stmp服务器。因为如果用自己的stmp服务器发送邮件，可能会被对方的stmp服务器拒绝(虽然stmp服务器之间不需要什么鉴权，不过有的商用的stmp服务器会拒绝一些奇怪domain的stmp服务器发件，因为有垃圾邮件等)，因为市场常用的stmp服务器(如QQ 网易等)，都会对不信任的domain的stmp服务器拒绝的。所以我们一般用的是市场上第三方stmp服务器进行发送。<br>如果用第三方的stmp服务器那么可能需要第三方stmp服务器的用户名，密码或者鉴权码。<br>具体可以见 ~&#x2F;lxr_Code&#x2F;gitHub&#x2F;pythonDemo&#x2F;email</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  </p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>python函数参数，将类 ，类的实例作为参数传入。 python中的函数的参数可以是任何类型，函数，类， 实例， 一般类型的数据。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27403925/article/details/105418916">https://blog.csdn.net/qq_27403925/article/details/105418916</a></p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;  </p>
+<h3 id="android-四大组件"><a href="#android-四大组件" class="headerlink" title="android 四大组件"></a>android 四大组件</h3><p>android 四大组件 Activity， Service，ContentProvider，Broadcast。<br>Intent</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; </p>
+<h3 id="获取系统设置"><a href="#获取系统设置" class="headerlink" title="获取系统设置"></a>获取系统设置</h3><p>在linux／android中，获取系统设置，1.读取文件&#x2F;配置文件 2.使用api获取。 （很多时候读取文件都能获取。如果获取不到或者api更方便，才会用api。 其实很多软件的设置等也是从配置文件／数据等去处理的）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/" title="乱七八糟知识">https://ruozhiertong.github.io/2022/05/05/乱七八糟知识/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/" rel="tag"># 未分类</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B/" rel="prev" title="多线程多进程">
+                  <i class="fa fa-chevron-left"></i> 多线程多进程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/05/2021%E5%8F%8C%E5%8D%81%E4%B8%80/" rel="next" title="2021双十一">
+                  2021双十一 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2022/05/05/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9F%A5%E8%AF%86/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"c6af10a6b35ba95c0a297c8d51280b18"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

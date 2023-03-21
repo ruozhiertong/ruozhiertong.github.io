@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ruozhiertong.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#37c6c0","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":false,"lazyload":false,"nav":{"valine":{"order":-2,"text":"valine(匿名)"},"gitalk":{"order":-1,"text":"gitalk(Github账号登录)"}},"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="常见的无线投屏  常见的无线投屏隔空&#x2F;无线投屏原理： wifi。 方式1.设备在同一局域网下。 这种是 CS 模型。一个服务端，一个客户端。 优点简单，可以使用多种已有协议如http等。比如很多的投屏app。电脑上安装app，手机上安装app.再比如苹果的airplay两个设备也是要同一局域网下的，但并不是p2p原理，还是CS。两个设备的数据要经过第三方的路由器中转，不是直接p2p。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="wifi_and_p2p">
+<meta property="og:url" content="https://ruozhiertong.github.io/2023/03/10/wifi-and-p2p/index.html">
+<meta property="og:site_name" content="Boluo&#39;s Uncle">
+<meta property="og:description" content="常见的无线投屏  常见的无线投屏隔空&#x2F;无线投屏原理： wifi。 方式1.设备在同一局域网下。 这种是 CS 模型。一个服务端，一个客户端。 优点简单，可以使用多种已有协议如http等。比如很多的投屏app。电脑上安装app，手机上安装app.再比如苹果的airplay两个设备也是要同一局域网下的，但并不是p2p原理，还是CS。两个设备的数据要经过第三方的路由器中转，不是直接p2p。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-10T06:51:59.000Z">
+<meta property="article:modified_time" content="2023-03-21T08:25:46.216Z">
+<meta property="article:author" content="Boluo&#39;s Uncle">
+<meta property="article:tag" content="搞机">
+<meta property="article:tag" content="wifi">
+<meta property="article:tag" content="p2p">
+<meta property="article:tag" content="无线投屏">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ruozhiertong.github.io/2023/03/10/wifi-and-p2p/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ruozhiertong.github.io/2023/03/10/wifi-and-p2p/","path":"2023/03/10/wifi-and-p2p/","title":"wifi_and_p2p"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>wifi_and_p2p | Boluo's Uncle</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Boluo's Uncle" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Boluo's Uncle</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-chalkboard" fa-fw"></i>留言板</a></li>
+        <li class="menu-item menu-item-personal"><a href="/personal/" rel="section"><i class="fa fa-image" fa-fw"></i>personal</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+      
+      
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- 
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+              src="/mp3/loneyseason.mp3">
+      </iframe>
+      -->
+      <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js server="netease" type="song" id="569735134" mini="true" autoplay="true"></meting-js>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%97%A0%E7%BA%BF%E6%8A%95%E5%B1%8F"><span class="nav-number">1.</span> <span class="nav-text">常见的无线投屏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A9%BA-x2F-%E6%97%A0%E7%BA%BF%E6%8A%95%E5%B1%8F%E5%8E%9F%E7%90%86%EF%BC%9A-wifi%E3%80%82"><span class="nav-number">1.1.</span> <span class="nav-text">隔空&#x2F;无线投屏原理： wifi。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%B1%8F%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86%EF%BC%88GoogleCast%EF%BC%8Cchrome-cast%EF%BC%8CAirPlay%EF%BC%8CMiracast%EF%BC%8CDLNA%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">投屏协议标准（GoogleCast，chrome cast，AirPlay，Miracast，DLNA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%B1%8F%EF%BC%9A%E6%9C%89%E7%BA%BF%E6%8A%95%E5%B1%8F-%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F-x2F-%E9%95%9C%E5%83%8F-%E5%92%8C-%E6%89%A9%E5%B1%95%E6%A8%A1%E5%BC%8F-%E6%97%A0%E7%BA%BF%E6%8A%95%E5%B1%8F-%E6%B5%81%E6%A8%A1%E5%BC%8F-x2F-%E6%8E%A8%E9%80%81%E6%A8%A1%E5%BC%8F%EF%BC%8C%E9%95%9C%E5%83%8F%E6%A8%A1%E5%BC%8F%EF%BC%8C%E6%89%A9%E5%B1%95%E6%A8%A1%E5%BC%8F-%E3%80%82"><span class="nav-number">1.3.</span> <span class="nav-text">投屏：有线投屏(复制模式&#x2F;镜像 和 扩展模式)+无线投屏(流模式&#x2F;推送模式，镜像模式，扩展模式)。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wifi-%E5%92%8C-wifi-p2p"><span class="nav-number">2.</span> <span class="nav-text">Wifi 和 wifi p2p</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Boluo's Uncle</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ruozhiertong.github.io/2023/03/10/wifi-and-p2p/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Boluo's Uncle">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="wifi_and_p2p | Boluo's Uncle">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          wifi_and_p2p
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-10 14:51:59" itemprop="dateCreated datePublished" datetime="2023-03-10T14:51:59+08:00">2023-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-21 16:25:46" itemprop="dateModified" datetime="2023-03-21T16:25:46+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论：</span>
+  
+    <a title="valine" href="/2023/03/10/wifi-and-p2p/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/10/wifi-and-p2p/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>34k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>31 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%97%A0%E7%BA%BF%E6%8A%95%E5%B1%8F">常见的无线投屏</a></li>
+</ul>
+<h2 id="常见的无线投屏"><a href="#常见的无线投屏" class="headerlink" title="常见的无线投屏"></a>常见的无线投屏</h2><h3 id="隔空-x2F-无线投屏原理：-wifi。"><a href="#隔空-x2F-无线投屏原理：-wifi。" class="headerlink" title="隔空&#x2F;无线投屏原理： wifi。"></a>隔空&#x2F;无线投屏原理： wifi。</h3><ul>
+<li>方式1.设备在同一局域网下。 这种是 CS 模型。一个服务端，一个客户端。 优点简单，可以使用多种已有协议如http等。比如很多的投屏app。电脑上安装app，手机上安装app.<br>再比如苹果的airplay两个设备也是要同一局域网下的，但并不是p2p原理，还是CS。两个设备的数据要经过第三方的路由器中转，不是直接p2p。</li>
+<li>方式2.两设备直接wifi direct，p2p传输，不需要路由器的参与。 （wifi direct 技术）。 真正的p2p，点对点，不需要第三方参与。实际上是两个wifi自己之间形成的局域网。两个设备的数据直接p2p。比如Miracast，airdrop。</li>
+</ul>
+<h3 id="投屏协议标准（GoogleCast，chrome-cast，AirPlay，Miracast，DLNA）"><a href="#投屏协议标准（GoogleCast，chrome-cast，AirPlay，Miracast，DLNA）" class="headerlink" title="投屏协议标准（GoogleCast，chrome cast，AirPlay，Miracast，DLNA）"></a>投屏协议标准（GoogleCast，chrome cast，AirPlay，Miracast，DLNA）</h3><ul>
+<li>苹果：airplay协议。</li>
+<li>android： google cast， Miracast， DLNA。<br>主流的是Airplay， Miracast， DLNA。</li>
+</ul>
+<p>Miracast是完全支持WifiDirect。设备可以直接p2p，不用经过第三方如路由器形成的局域网。 如果在同一个局域网也可以，连接更稳定。<br>android系统自带的投屏是Miracast。 </p>
+<h3 id="投屏：有线投屏-复制模式-x2F-镜像-和-扩展模式-无线投屏-流模式-x2F-推送模式，镜像模式，扩展模式-。"><a href="#投屏：有线投屏-复制模式-x2F-镜像-和-扩展模式-无线投屏-流模式-x2F-推送模式，镜像模式，扩展模式-。" class="headerlink" title="投屏：有线投屏(复制模式&#x2F;镜像 和 扩展模式)+无线投屏(流模式&#x2F;推送模式，镜像模式，扩展模式)。"></a>投屏：有线投屏(复制模式&#x2F;镜像 和 扩展模式)+无线投屏(流模式&#x2F;推送模式，镜像模式，扩展模式)。</h3><p>无线投屏原理：<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/287361675">https://www.zhihu.com/question/287361675</a><br><a target="_blank" rel="noopener" href="https://www.voycn.com/article/toupingjishuyuanli">https://www.voycn.com/article/toupingjishuyuanli</a><br><a target="_blank" rel="noopener" href="https://github.com/xfangfang/Macast/wiki/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B">https://github.com/xfangfang/Macast/wiki/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B</a></p>
+<p>无线投屏：<br>投屏设备， 接收器设备。</p>
+<p>两种模式：</p>
+<ul>
+<li>推送模式&#x2F;流模式&#x2F;投屏模式&#x2F;媒体文件投屏 。  视频，音乐，图像等媒体文件的投屏。<br>  DLNA，airplay。（主要用于投屏视频和音乐，投屏之后手机可以关闭或聊微信，电视不会停止播放。玩手机看电视两不误。最常见是视频软件里的tv按钮。）</li>
+<li>同屏模式&#x2F;镜像模式&#x2F;录屏模式&#x2F;屏幕镜像投屏。<br>  Miracast， airplay。</li>
+</ul>
+<p>DLNA<br>全平台<br>条件：<br>1.投屏设备和接收设备要开启wifi，并且连接到同一个局域网。数据发送的要经过路由器中转的。<br>2.wifi网络能连接互联网。（否则接收端接收投屏 后无法从服务器获取视频流播放）<br>很多视频app中的投屏用的就是DLNA。<br>（在接收端接收发送端的视频信息之后，两个设备就没有什么关系了，各自独立了）</p>
+<p>Miracast<br>pc linux 和 android<br>条件：<br>1.接收端和发送端都支持miracast。投屏设备和接收设备要开启wifi。<br>是的，只要设备wifi就行了，没有必须要求蓝牙，或者 连接第三方的路由器，也不要求能连上互联网。<br>直接进行wifi direct进行p2p连接。<br>android手机系统的的投屏 基本都是Miracast。 视频app中的投屏基本是 DLNA。</p>
+<p>Miracast 只要有wifi就可以，不需要三方的路由器，也不需要蓝牙， 两个设备直接p2p连接。<br>走的是wifi p2p自己形成的局域网。 就算设备连接在同一个wifi网络下，走的还是设备间的wifip2p形成的局域网（也有自己的IP地址）。 数据不需要经过路由器中转。<br>走的是wifi网卡的p2p0接口。 Miracast并不走wlan0，即并不是走wifi的局域网，是走p2p的局域网。</p>
+<p>airplay：<br>macos和iOS。<br>条件：<br>1.接收端和发送端连接同一个wifi，在同一个局域网。 不要求一定要连接互联网。<br>接收端 客户端组成cs模式。<br>maos、iOS不支持Miracast。</p>
+<p>测试下 在同一个局域网下，miracast 走的是那个网络，是局域网，还是自己的p2p网络。 不管在什么网络下，miracast走的都是p2p0的接口的p2p网络。而airplay dlan走的是wlan0接口的局域网。<br>p2p网络可以直接通过两个设备wifi的p2p0接口直接发起连接，不需要经过第三方(比如路由器)，可以点对点的发起连接。<br>这个特点决定了miracast不需要两个设备在同一个wifi局域网中，并不是CS模式，是p2p模式。 而airplay dlan需要在同一个wifi局域网中，是一种典型的CS模式。  投屏之前的关键是要找到设备，miracast是p2p直接找设备，不需要经过第三方的路由方式来查找设备，数据之间两者之间传输，不经过路由器。AirPlay dlan是局域网中发现查找设备(CS模式)，是要经过路由器来查找局域网中的设备，查找、发送数据等数据啥的要经过路由器的路由、转发。</p>
+<p>&#x3D;&#x3D; </p>
+<p>苹果的 隔空投送&#x2F;airdrop 原理:<br>前提：要蓝牙和wifi。<br>苹果的“隔空投送”是通过蓝牙+Wi-Fi Direct实现的（直接两个wifi之间p2p，并不需要两个设备都在同一个局域网。两个wifi之间p2p自己形成局域网）。通过蓝牙识别，确定接收之后之后两台设备之间建立点对点的Wi-Fi（WLAN）链接。 利用蓝牙建立了wifi的p2p连接，然后使用wifi传送数据。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/566055452">https://zhuanlan.zhihu.com/p/566055452</a><br>隔空投送的原理简单的概括起来就是：“蓝牙握手、WiFi传输”。首先，Apple设备间的蓝牙通过搜索相互配对，然后利用WiFi进行传输。整个过程当中并不需要网络参与，即使是设备处于网络离线状态，依旧可以通过隔空投送进行文件传输。</p>
+<p>条件：打开蓝牙和wifi。</p>
+<p>弱智儿童<br>苹果airdrop的工作原理<br>AirDrop 是苹果公司推出的一种文件传输技术，可以在苹果设备（如 iPhone、iPad 和 Mac）之间快速方便地进行文件传输。</p>
+<p>AirDrop 使用 Wi-Fi 和 Bluetooth 技术进行文件传输。在使用 AirDrop 时，发送设备会向周围的设备广播该文件，而接收设备可以接收并保存该文件。AirDrop 在传输过程中使用加密技术保证数据的安全性。</p>
+<p>总的来说，AirDrop 的工作原理是通过在两个苹果设备之间使用 Wi-Fi 和 Bluetooth 进行文件传输，提供了一种简便快捷的文件传输方式。在使用 AirDrop 时，发送和接收设备必须处于同一个本地网络中，以便进行通信。</p>
+<p>弱智儿童<br>airdrop传输是靠蓝牙还是Wi-Fi<br>AirDrop 使用 Wi-Fi 和 Bluetooth 技术进行文件传输。在使用 AirDrop 时，发送设备会向周围的设备广播该文件，而接收设备可以通过搜索周围的设备并找到该文件进行接收。</p>
+<p>实际上，AirDrop 会先使用 Bluetooth 发现周围的设备，然后使用 Wi-Fi 进行文件传输。在发送设备和接收设备靠近时，AirDrop 会使用 Bluetooth 技术识别设备；在设备之间的距离较远时，AirDrop 会使用 Wi-Fi 技术进行文件传输。</p>
+<p>因此，AirDrop 使用两种技术：Wi-Fi 和 Bluetooth，实现了苹果设备之间的文件传输。</p>
+<p>弱智儿童<br>airdrop wifi之间是如何传送数据的<br>AirDrop 使用 Wi-Fi Direct 技术来在两个苹果设备之间进行文件传输。Wi-Fi Direct 是一种无线技术，允许两个设备直接连接而不需要通过网络设备或路由器。</p>
+<p>在使用 AirDrop 时，发送设备会创建一个 Wi-Fi Direct 会话，并向周围的设备广播该文件。接收设备可以搜索周围的设备，并通过 Wi-Fi Direct 连接到发送设备。一旦连接成功，接收设备就可以开始接收文件。</p>
+<p>与传统的 Wi-Fi 连接不同，Wi-Fi Direct 连接不需要通过网络设备或路由器进行转发，因此它可以提供更快的传输速度和更好的文件传输体验。同时，Wi-Fi Direct 连接还具有更强的安全性，因为它使用了加密技术保护文件在传输过程中的安全。</p>
+<p>弱智儿童<br>airdrop之间是使用蓝牙传输数据吗<br>AirDrop 在两个设备之间传输数据是通过 Wi-Fi 而不是蓝牙。AirDrop 利用 Wi-Fi Direct 技术，这是一种直接在两个设备之间进行通信的无线技术。使用 AirDrop 时，发送设备会创建一个 Wi-Fi Direct 会话，并向周围的设备广播该文件。接收设备可以搜索周围的设备，并通过 Wi-Fi Direct 连接到发送设备。一旦连接成功，接收设备就可以开始接收文件。</p>
+<p>蓝牙在 AirDrop 中的作用是在设备发现阶段提供快速的预配置，并确保在发送设备和接收设备之间简单的配对。但是，真正的数据传输是通过 Wi-Fi 进行的。</p>
+<p>&#x3D;&#x3D;</p>
+<p>苹果的 隔空投屏&#x2F;隔空播放&#x2F;airplay 原理：<br>前提：要wifi。 （不用蓝牙参与）。<br>苹果airplay还是要求要在同一个局域网下的才能连接.two devices cannot use AirPlay if they are not on the same local network. AirPlay requires a direct connection between the source device and the AirPlay receiver, typically over Wi-Fi. The devices must be connected to the same Wi-Fi network in order to use AirPlay.<br>（苹果这么做，实际上减弱了使用的场景，多了路由器的存在）<br>airdrop使用到了wifi-direct 技术， 而airplay没有。 有点奇怪，为什么不用呢。</p>
+<p>do u know how the iOS Airplay works</p>
+<p>Yes, I am familiar with how AirPlay works on iOS.</p>
+<p>AirPlay is a technology developed by Apple that allows you to wirelessly stream audio, video, and photos from one Apple device to another. With AirPlay, you can stream content from an iPhone, iPad, or Mac to an Apple TV, AirPlay-enabled speakers, or other compatible devices. The streaming is done over Wi-Fi, which means that you can enjoy high-quality audio and video with no cords or cables.</p>
+<p>To use AirPlay, you simply tap the AirPlay icon on your device and choose the destination device. The content is then instantly streamed to the chosen device, allowing you to enjoy it on a larger screen or better speakers. The technology is designed to be simple and seamless, allowing you to enjoy your content without any hassle.</p>
+<p>弱智儿童<br>If two devices are not in the local network, can they use airplay<br>No, two devices cannot use AirPlay if they are not on the same local network. AirPlay requires a direct connection between the source device and the AirPlay receiver, typically over Wi-Fi. The devices must be connected to the same Wi-Fi network in order to use AirPlay.</p>
+<p>If the devices are not on the same local network, it may be possible to use a third-party service or technology to extend the network and allow for AirPlay streaming, but this would require additional setup and configuration.</p>
+<p>弱智儿童<br>and airdrop?<br>Like AirPlay, AirDrop also requires a direct connection between the source device and the receiving device. AirDrop uses Bluetooth to create a peer-to-peer Wi-Fi connection between the devices, which allows for the transfer of files, photos, videos, and other content.</p>
+<p>For AirDrop to work, both the source and receiving devices must be within close proximity to each other and have Bluetooth and Wi-Fi turned on. Additionally, both devices must be running a compatible version of iOS or MacOS. If the devices are not in close proximity, or if they are not running compatible software, AirDrop will not work.</p>
+<p>In summary, AirDrop requires a direct connection between the source and receiving devices, and both devices must be on the same local network (i.e., within close proximity) with Bluetooth and Wi-Fi turned on.</p>
+<p>弱智儿童<br>if two devices are not in the same local network, can the airdrop work<br>No, AirDrop does not work between devices that are not on the same local network. AirDrop uses Bluetooth to create a peer-to-peer Wi-Fi connection between the devices, and both devices must be within close proximity to each other in order for the connection to be established.</p>
+<p>If the devices are not on the same local network, they cannot use AirDrop to transfer files or other content. The devices must be close enough to each other that their Bluetooth signals can connect and establish a direct, peer-to-peer Wi-Fi connection.</p>
+<p>In other words, AirDrop requires both devices to be in close physical proximity to each other in order to work properly.</p>
+<p>&#x3D;&#x3D; </p>
+<h2 id="Wifi-和-wifi-p2p"><a href="#Wifi-和-wifi-p2p" class="headerlink" title="Wifi 和 wifi p2p"></a>Wifi 和 wifi p2p</h2><p>wifi p2p 有使用ip吗？ 当然，用的是p2p0接口下的局域网，也有ip地址的。 经过的网卡接口是p2p0.原理也是TCP&#x2F;IP协议的。<br>sta是wlan0接口的局域网。 ap是wlan1&#x2F;ap0 接口的局域网。 p2p是p2p0接口的局域网。<br>理论上，一个物理网卡，可以有多个网卡接口，每个网卡接口都可以有mac地址，每个接口可以有ip地址，每个接口都可以有对应的局域网。</p>
+<p>（<br>wifi和基站。wifi和基站之间是广播。 发现接收端只有自己时才能接收，如果不是自己不接收，而且不是自己的接收了，没有破解也无法查看内容。<br>）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/honour2sword/article/details/40214171">https://blog.csdn.net/honour2sword/article/details/40214171</a><br>wifi模式： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/killiancheung/p/4757047.html">https://www.cnblogs.com/killiancheung/p/4757047.html</a><br>有三种模式 station, ap, p2p.<br>每路wifi可以：其中sta+p2p, ap+p2p 可以共存。 sta+ap不能共存，需要双路wifi支持才行。<br>一般可以支持到两种。 （好像不能三种同时共同组合）。<br>sta + ap.<br>sta + p2p.<br>ap + p2p.(暂未看到)<br>目前设备基本都支持两种的共存。不过有的设备&#x2F;系统还是只支持一种模式。理论上虽然可行，但还是要看具体系统是否支持。具体机器测试。<br>wifi支持三种模式，理论傻姑娘每路wifi应该可以同时使用三种，两种，一种，不过实际具体也是看系统是否支持。目前系统一般同时支持上面列出的两种。</p>
+<p>这些都是只有一个物理wifi网卡。但是在驱动中会有三个网络接口虚拟出来。 （wlan0是网络接口名）。同时虚拟出三个mac地址的。 使用各自组成的局域网。<br>sta模式： wlan0.<br>ap模式：wlan1&#x2F;ap0.<br>p2p模式:p2p0. </p>
+<p>只使用wifi时是station用的是wlan0.。<br>使用热点时是ap 用的是wlan1&#x2F;ap0。<br>使用wifidirect时是p2p 用的是p2p0<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/dxpqxb/article/details/102547411">https://blog.csdn.net/dxpqxb/article/details/102547411</a></p>
+<p>比如我的小米note3.<br>三个网络接口： （ip link）<br>wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DORMANT group default qlen 3000<br>    link&#x2F;ether 18:f0:e4:17:91:9e brd ff:ff:ff:ff:ff:ff<br>wlan1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 3000<br>    link&#x2F;ether 18:f0:e4:98:91:9e brd ff:ff:ff:ff:ff:ff<br>p2p0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 3000<br>    link&#x2F;ether 1a:f0:e4:99:91:9e brd ff:ff:ff:ff:ff:ff</p>
+<p>当我使用Wi-Fi和热点时：<br>ip route show:<br>192.168.1.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.1.101<br>192.168.43.0&#x2F;24 dev wlan1 proto kernel scope link src 192.168.43.1 </p>
+<p>cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.43.210   0x1         0x2         64:09:80:d2:12:39     *        wlan1<br>192.168.1.105    0x1         0x2         6c:b7:49:91:fa:8a     *        wlan0<br>192.168.1.1      0x1         0x2         5c:de:34:27:14:09     *        wlan0</p>
+<p>当我使用wifip2p和wifi时：<br>ip route show：<br>192.168.1.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.1.101<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1 </p>
+<p>cat &#x2F;proc&#x2F;net&#x2F;arp：<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.1.105    0x1         0x2         6c:b7:49:91:fa:8a     *        wlan0<br>192.168.1.1      0x1         0x2         5c:de:34:27:14:09     *        wlan0<br>192.168.49.95    0x1         0x2         4e:ef:bf:c3:e2:a8     *        p2p0</p>
+<p>查看android所有的网络接口：<br>ip link</p>
+<p>虽然物理网卡只有那么一两个，但是网络接口是可以虚拟出很多的，每个网络接口都有自己的mac地址和ip地址。而且每个都能在各自的局域网中使用。</p>
+<p>关于wifi的一些东西：<br>SSID<br>BSSID<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42445727/article/details/94737103">https://blog.csdn.net/weixin_42445727/article/details/94737103</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38880380/article/details/79899852">https://blog.csdn.net/qq_38880380/article/details/79899852</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/337819729">https://zhuanlan.zhihu.com/p/337819729</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/112123189">https://zhuanlan.zhihu.com/p/112123189</a></p>
+<p>同时使用wifi和热点，是使用了双路wifi技术（相当于全双工）。 虽然可以同时wifi和热点，但用的仍然是一个wifi网卡，即只有一个mac地址的，只是有两个天线，可以同时使用sta和ap模式。 （可通过代码验证的。 见项目  &#x2F;Users&#x2F;rzet&#x2F;AndroidStudioProjects&#x2F;HelloWorld&#x2F;wifiipdemo）。<br><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1835690503744911340.html">https://zhidao.baidu.com/question/1835690503744911340.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/iningwei/article/details/100134783">https://blog.csdn.net/iningwei/article/details/100134783</a><br>有的手机不支持同时开启，可能是wifi网卡不支持双路(也就无法全双工)，也有可能是系统限制了。</p>
+<p>同时使用wifi(sta)和热点(ap)的方式，1.软件层面支持(不管是simo，还是mimo，都可以做到。但是这个方式比较少)。 2.硬件层面支持，网卡需要有两根天线，支持双路wifi(就能全双工)。<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/361051612">https://www.zhihu.com/question/361051612</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/367187013">https://www.zhihu.com/question/367187013</a></p>
+<p>比如小米3就不支持同时开启wifi和热点。 小米note3支持。</p>
+<p>双路wifi和双频wifi。<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/61083142">https://www.zhihu.com/question/61083142</a><br>双频wifi是指支持2.4G和5G。 双路wifi能组合成全双工功能的。</p>
+<p>一般的wifi是都是半双工的。 一般的wifi都是一根天线，单通道，因此是某个时刻只能收或发，因此是半双工。  对于只有一根天线，只能是一种模式(要么station 要么ap 要么p2p)或两种模式(p2p+ap, p2p+sta, 不能ap+sta)。 而对于双路wifi，实际上两根天线，组合成类似全双工的功能(对于单根天线还是半双工)，因此可以同时开启任意两种模式，一根用station模式，一根ap模式。</p>
+<p>单工，双工(半双工，全双工)。</p>
+<p>（单根wifi天线是半双工的。）</p>
+<p>双频wifi，双路wifi(2x2MIMO)-&gt;(物理硬件上需要两根天线的)。 </p>
+<p>wifi的模式。</p>
+<p>wifi如果要同时开启sta+ap两种模式，物理上需要两根天线及以上，同时系统要有MIMO技术。当然如果有两张物理网卡&#x2F;wifi网卡，自然也能sta+ap，每张网卡各自用一种模式。<br>如果只有一根天线，只能同时开启三种模式中的一种或有两种共存。</p>
+<p>物理网卡&#x2F;wifi网卡。<br>一个wifi，就一张无线网卡。<br>一般一个手机就一张物理wifi网卡。 是否双路要看天线数量，并不是看网卡数量。<br>一张网卡可以有多个接口，即一张网卡（可以有一个或多个mac地址）。 </p>
+<p>小米note3的wifi就是2x2MIMO。 以前的都是单天线，SISO的， 现在的都是很多都是两天线，MIMO (也就是说可以同时开启多种wifi模式的).<br>小米3:<br>ip link:<br>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN mode DEFAULT<br>    link&#x2F;loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>2: dummy0: &lt;BROADCAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT<br>    link&#x2F;ether ce:6c:ec:f8:0e:e4 brd ff:ff:ff:ff:ff:ff<br>3: rmnet0: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>4: rmnet1: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>5: rmnet2: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>6: rmnet3: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>7: rmnet4: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>8: rmnet5: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>9: rmnet6: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>10: rmnet7: &lt;&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;[530]<br>11: rmnet_usb0: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 86:e4:e7:3b:94:57 brd ff:ff:ff:ff:ff:ff<br>12: rev_rmnet0: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 52:7e:81:13:f1:12 brd ff:ff:ff:ff:ff:ff<br>13: rev_rmnet1: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 26:be:92:e0:ec:07 brd ff:ff:ff:ff:ff:ff<br>14: rev_rmnet2: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 56:da:6c:73:74:7c brd ff:ff:ff:ff:ff:ff<br>15: rev_rmnet3: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 2e:45:10:fc:3e:2e brd ff:ff:ff:ff:ff:ff<br>16: rev_rmnet4: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 22:21:9b:47:19:a4 brd ff:ff:ff:ff:ff:ff<br>17: rev_rmnet5: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 52:af:43:66:e7:eb brd ff:ff:ff:ff:ff:ff<br>18: rev_rmnet6: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 72:c6:86:21:1a:cb brd ff:ff:ff:ff:ff:ff<br>19: rev_rmnet7: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether fa:ee:ba:0d:92:c5 brd ff:ff:ff:ff:ff:ff<br>20: rev_rmnet8: &lt;BROADCAST,MULTICAST&gt; mtu 2000 qdisc noop state DOWN mode DEFAULT qlen 1000<br>    link&#x2F;ether 66:12:7d:0a:00:ff brd ff:ff:ff:ff:ff:ff<br>21: sit0: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT<br>    link&#x2F;sit 0.0.0.0 brd 0.0.0.0<br>26: wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DORMANT qlen 1000<br>    link&#x2F;ether 64:09:80:d2:12:39 brd ff:ff:ff:ff:ff:ff<br>27: p2p0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN mode DORMANT qlen 1000<br>    link&#x2F;ether 66:09:80:d2:12:39 brd ff:ff:ff:ff:ff:ff<br>(小米3这里ap模式(开热点)和sta模式 用的都是wlan0网卡，用的是同一个mac地址的。)<br>(小米note3用的就是单独的wlan0 wlan1 p2p0)。<br> 小米note3:<br> ip link:<br> 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1<br>    link&#x2F;loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>2: bond0: &lt;BROADCAST,MULTICAST,MASTER&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether ea:97:a3:01:da:dc brd ff:ff:ff:ff:ff:ff<br>3: dummy0: &lt;BROADCAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 76:32:a4:54:22:03 brd ff:ff:ff:ff:ff:ff<br>4: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1<br>    link&#x2F;sit 0.0.0.0 brd 0.0.0.0<br>5: rmnet_ipa0: &lt;UP,LOWER_UP&gt; mtu 2000 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>6: rmnet_data0: &lt;UP,LOWER_UP&gt; mtu 2000 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>7: rmnet_data1: &lt;UP,LOWER_UP&gt; mtu 1410 qdisc htb state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>8: rmnet_data2: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>9: rmnet_data3: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>10: rmnet_data4: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>11: rmnet_data5: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>12: rmnet_data6: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>13: rmnet_data7: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>14: r_rmnet_data0: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>15: r_rmnet_data1: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>16: r_rmnet_data2: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>17: r_rmnet_data3: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>18: r_rmnet_data4: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>19: r_rmnet_data5: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>20: r_rmnet_data6: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>21: r_rmnet_data7: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>22: r_rmnet_data8: &lt;&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;[530]<br>23: wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DORMANT group default qlen 3000<br>    link&#x2F;ether 18:f0:e4:17:91:9e brd ff:ff:ff:ff:ff:ff<br>24: wlan1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 3000<br>    link&#x2F;ether 18:f0:e4:98:91:9e brd ff:ff:ff:ff:ff:ff<br>25: p2p0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN mode DORMANT group default qlen 3000<br>    link&#x2F;ether 1a:f0:e4:99:91:9e brd ff:ff:ff:ff:ff:ff</p>
+<p>一个wifi网卡就只有一个物理硬件的。但是由于有三种模式，因此可以虚拟出三个网络接口，也即可以虚拟出三个mac地址的。 如果可以同时开启两个模式，那么就能同时使用两个mac地址的。如果只能一个模式，那么同一时刻，只能是用某一个mac地址的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.gkzhan.com/news/detail/129229.html">https://www.gkzhan.com/news/detail/129229.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/33861607">https://www.zhihu.com/question/33861607</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/61083142">https://www.zhihu.com/question/61083142</a></p>
+<p><a target="_blank" rel="noopener" href="https://info.support.huawei.com/info-finder/encyclopedia/zh/MIMO.html">https://info.support.huawei.com/info-finder/encyclopedia/zh/MIMO.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/41520064">https://zhuanlan.zhihu.com/p/41520064</a></p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;<br>红米note11Tpro的实验：</p>
+<ul>
+<li>0.连接手机, .&#x2F;adb devices , .&#x2F;adb shell 进入shell。</li>
+<li>1.ip link &#x2F;&#x2F;查看所有的网络接口</li>
+</ul>
+<p>&#x3D;&#x3D;<br>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>2: dummy0: &lt;BROADCAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 8e:e1:61:ad:fa:3e brd ff:ff:ff:ff:ff:ff<br>3: ifb0: &lt;BROADCAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32<br>    link&#x2F;ether 0a:9b:a6:88:4a:f4 brd ff:ff:ff:ff:ff:ff<br>4: ifb1: &lt;BROADCAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32<br>    link&#x2F;ether 72:f1:f0:27:78:35 brd ff:ff:ff:ff:ff:ff<br>5: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ipip 0.0.0.0 brd 0.0.0.0<br>6: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;gre 0.0.0.0 brd 0.0.0.0<br>7: gretap0@NONE: &lt;BROADCAST,MULTICAST&gt; mtu 1462 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff<br>8: erspan0@NONE: &lt;BROADCAST,MULTICAST&gt; mtu 1450 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff<br>9: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ipip 0.0.0.0 brd 0.0.0.0<br>10: ip6_vti0@NONE: <NOARP> mtu 1364 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;tunnel6 :: brd ::<br>11: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;sit 0.0.0.0 brd 0.0.0.0<br>12: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;tunnel6 :: brd ::<br>13: ip6gre0@NONE: <NOARP> mtu 1448 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;gre6 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00 brd 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00<br>14: ccmni0: &lt;NOARP,UP,LOWER_UP&gt; mtu 1400 qdisc mq state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>15: ccmni1: &lt;NOARP,UP,LOWER_UP&gt; mtu 1400 qdisc mq state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>16: ccmni2: <NOARP> mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>17: ccmni3: <NOARP> mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>18: ccmni4: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>19: ccmni5: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>20: ccmni6: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>21: ccmni7: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>22: ccmni8: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>23: ccmni9: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>24: ccmni10: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>25: ccmni11: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>26: ccmni12: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>27: ccmni13: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>28: ccmni14: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>29: ccmni15: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>30: ccmni16: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>31: ccmni17: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>32: ccmni18: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>33: ccmni19: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>34: ccmni20: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>35: ccmni-lan: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether<br>36: miw_oem0: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether d2:23:9e:dc:5d:02 brd ff:ff:ff:ff:ff:ff<br>38: wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DORMANT group default qlen 3000<br>    link&#x2F;ether 82:09:54:a8:a4:40 brd ff:ff:ff:ff:ff:ff<br>39: wlan1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 3000<br>    link&#x2F;ether bc:61:93:b1:6a:de brd ff:ff:ff:ff:ff:ff<br>62: p2p0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether be:61:93:b3:6a:de brd ff:ff:ff:ff:ff:ff<br>63: ap0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether ba:61:93:b3:6a:de brd ff:ff:ff:ff:ff:ff</p>
+<p>&#x3D;&#x3D;</p>
+<ul>
+<li>仅连接wifi时：<br>ip route show:</li>
+</ul>
+<p>192.168.0.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.0.115 </p>
+<p>cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.0.194    0x1         0x2         58:20:59:63:12:13     *        wlan0<br>192.168.0.1      0x1         0x2         d0:76:e7:5e:26:71     *        wlan0</p>
+<ul>
+<li>仅使用热点时：（电脑连接着热点）<br>ip route show:</li>
+</ul>
+<p>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123 </p>
+<p>cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.234.93   0x1         0x2         20:c9:d0:cb:f2:e7     *        ap0</p>
+<ul>
+<li>使用数据流量时：<br>开着热点，电脑连接着热点。<br>ip route show</li>
+</ul>
+<p>10.0.0.0&#x2F;8 dev ccmni3 proto kernel scope link src 10.75.159.228<br>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123 </p>
+<p>cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.234.93   0x1         0x2         20:c9:d0:cb:f2:e7     *        ap0</p>
+<p>测试<br>开着p2p，</p>
+<ul>
+<li>开启p2p连接：<br>ip route show</li>
+</ul>
+<p>192.168.0.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.0.114<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1</p>
+<p>ip route show<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.49.107   0x1         0x2         d2:c0:bf:92:b7:d1     *        p2p0<br>192.168.10.185   0x1         0x2         7c:d6:61:c6:d2:21     *        wlan0<br>192.168.10.1     0x1         0x2         7c:6a:60:43:a6:85     *        wlan0</p>
+<p>两个mac设备接口(wlan0, p2p0)对应 着两个局域网。 </p>
+<p>ip route show 显示该主机下所有的mac设备，ip地址，以及所有该设备网段所经过的接口。<br>解释下：<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>本机中所有经过192.168.10.0&#x2F;24的网段 是要经过wlan0这个接口，这个接口的ip是192.168.10.4<br>cat &#x2F;proc&#x2F;net&#x2F;arp  显示所有mac设备在该设备所在局域网 可能找到的ip和mac对应的记录，以及数据所经过的接口。<br>解释下：<br>192.168.49.107   0x1         0x2         d2:c0:bf:92:b7:d1     *        p2p0<br>局域网中的IP 192.168.49.107 对于的mac地址是d2:c0:bf:92:b7:d1， 数据流经本机的p2p0接口。</p>
+<p>rzet@MacBook-Pro-3 platform-tools$ .&#x2F;adb devices<br>List of devices attached<br>8X8975NB4PZLEERS    device</p>
+<p>rzet@MacBook-Pro-3 platform-tools$ .&#x2F;adb shell<br>xaga:&#x2F; $ ip link<br>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00<br>2: dummy0: &lt;BROADCAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 8e:e1:61:ad:fa:3e brd ff:ff:ff:ff:ff:ff<br>3: ifb0: &lt;BROADCAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32<br>    link&#x2F;ether 0a:9b:a6:88:4a:f4 brd ff:ff:ff:ff:ff:ff<br>4: ifb1: &lt;BROADCAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 32<br>    link&#x2F;ether 72:f1:f0:27:78:35 brd ff:ff:ff:ff:ff:ff<br>5: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ipip 0.0.0.0 brd 0.0.0.0<br>6: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;gre 0.0.0.0 brd 0.0.0.0<br>7: gretap0@NONE: &lt;BROADCAST,MULTICAST&gt; mtu 1462 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff<br>8: erspan0@NONE: &lt;BROADCAST,MULTICAST&gt; mtu 1450 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff<br>9: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ipip 0.0.0.0 brd 0.0.0.0<br>10: ip6_vti0@NONE: <NOARP> mtu 1364 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;tunnel6 :: brd ::<br>11: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;sit 0.0.0.0 brd 0.0.0.0<br>12: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;tunnel6 :: brd ::<br>13: ip6gre0@NONE: <NOARP> mtu 1448 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;gre6 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00 brd 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00<br>14: ccmni0: &lt;NOARP,UP,LOWER_UP&gt; mtu 1400 qdisc mq state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>15: ccmni1: &lt;NOARP,UP,LOWER_UP&gt; mtu 1400 qdisc mq state UNKNOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>16: ccmni2: <NOARP> mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>17: ccmni3: <NOARP> mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>18: ccmni4: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>19: ccmni5: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>20: ccmni6: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>21: ccmni7: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>22: ccmni8: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>23: ccmni9: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>24: ccmni10: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>25: ccmni11: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>26: ccmni12: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>27: ccmni13: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>28: ccmni14: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>29: ccmni15: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>30: ccmni16: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>31: ccmni17: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>32: ccmni18: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>33: ccmni19: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>34: ccmni20: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;none<br>35: ccmni-lan: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether<br>36: miw_oem0: <NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether d2:23:9e:dc:5d:02 brd ff:ff:ff:ff:ff:ff<br>38: wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DORMANT group default qlen 3000<br>    link&#x2F;ether 82:09:54:a8:a4:40 brd ff:ff:ff:ff:ff:ff<br>39: wlan1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 3000<br>    link&#x2F;ether bc:61:93:b1:6a:de brd ff:ff:ff:ff:ff:ff<br>62: p2p0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc mq state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether be:61:93:b3:6a:de brd ff:ff:ff:ff:ff:ff<br>63: ap0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000<br>    link&#x2F;ether ba:61:93:b3:6a:de brd ff:ff:ff:ff:ff:ff<br>xaga:&#x2F; $ ip route show<br>192.168.0.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.0.115<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.0.194    0x1         0x2         58:20:59:63:12:13     *        wlan0<br>192.168.0.1      0x1         0x2         d0:76:e7:5e:26:71     *        wlan0<br>xaga:&#x2F; $ ping 192.168.0.194<br>PING 192.168.0.194 (192.168.0.194) 56(84) bytes of data.<br>64 bytes from 192.168.0.194: icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;4.19 ms<br>64 bytes from 192.168.0.194: icmp_seq&#x3D;2 ttl&#x3D;64 time&#x3D;150 ms<br>^C<br>— 192.168.0.194 ping statistics —<br>2 packets transmitted, 2 received, 0% packet loss, time 1001ms<br>rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 4.192&#x2F;77.106&#x2F;150.021&#x2F;72.915 ms<br>xaga:&#x2F; $ ifconfig<br>lo        Link encap:UNSPEC<br>          inet addr:127.0.0.1  Mask:255.0.0.0<br>          inet6 addr: ::1&#x2F;128 Scope: Host<br>          UP LOOPBACK RUNNING  MTU:65536  Metric:1<br>          RX packets:28985 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:28985 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:1000<br>          RX bytes:396983856 TX bytes:396983856 </p>
+<p>dummy0    Link encap:UNSPEC<br>          inet6 addr: fe80::8ce1:61ff:fead:fa3e&#x2F;64 Scope: Link<br>          UP BROADCAST RUNNING NOARP  MTU:1500  Metric:1<br>          RX packets:0 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:7217 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:1000<br>          RX bytes:0 TX bytes:1680653 </p>
+<p>ccmni0    Link encap:UNSPEC<br>          inet6 addr: 240e:57c:3290:956c:1748:ca54:2733:5ff7&#x2F;64 Scope: Global<br>          inet6 addr: fe80::1748:ca54:2733:5ff7&#x2F;64 Scope: Link<br>          UP RUNNING NOARP  MTU:1400  Metric:1<br>          RX packets:9 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:5 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:1000<br>          RX bytes:780 TX bytes:608 </p>
+<p>ccmni1    Link encap:UNSPEC<br>          inet6 addr: 2409:815a:3298:c120:1748:ca54:7b01:3ea0&#x2F;64 Scope: Global<br>          inet6 addr: fe80::1748:ca54:7b01:3ea0&#x2F;64 Scope: Link<br>          UP RUNNING NOARP  MTU:1400  Metric:1<br>          RX packets:4 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:1 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:1000<br>          RX bytes:324 TX bytes:48 </p>
+<p>wlan0     Link encap:UNSPEC    Driver wlan<br>          inet addr:192.168.0.115  Bcast:192.168.0.255  Mask:255.255.255.0<br>          inet6 addr: fe80::8009:54ff:fea8:a440&#x2F;64 Scope: Link<br>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1<br>          RX packets:29434 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:30808 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:3000<br>          RX bytes:23114949 TX bytes:10115118 </p>
+<p>xaga:&#x2F; $ ifconfig | grep 194<br>1|xaga:&#x2F; $ ip route show<br>192.168.0.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.0.115<br>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.0.194    0x1         0x2         58:20:59:63:12:13     *        wlan0<br>192.168.0.132    0x1         0x2         f2:4b:7d:27:0d:d2     *        wlan0<br>192.168.0.1      0x1         0x2         d0:76:e7:5e:26:71     *        wlan0<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.0.194    0x1         0x2         58:20:59:63:12:13     *        wlan0<br>192.168.0.132    0x1         0x2         f2:4b:7d:27:0d:d2     *        wlan0<br>192.168.0.1      0x1         0x2         d0:76:e7:5e:26:71     *        wlan0<br>xaga:&#x2F; $ ip route show<br>192.168.0.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.0.115<br>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123<br>xaga:&#x2F; $ ip route show<br>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>xaga:&#x2F; $ ip route show<br>10.0.0.0&#x2F;8 dev ccmni3 proto kernel scope link src 10.75.159.228<br>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>xaga:&#x2F; $ ip route show<br>10.0.0.0&#x2F;8 dev ccmni3 proto kernel scope link src 10.75.159.228<br>192.168.234.0&#x2F;24 dev ap0 proto kernel scope link src 192.168.234.123<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.234.93   0x1         0x2         20:c9:d0:cb:f2:e7     *        ap0<br>xaga:&#x2F; $ ip route show<br>192.168.0.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.0.114<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ ip route show<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>xaga:&#x2F; $ rzet@MacBook-Pro-3 platform-tools$ .&#x2F;adb shell<br>xaga:&#x2F; $ ip router show<br>Object “router” is unknown, try “ip help”.<br>1|xaga:&#x2F; $ ip route show<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.49.107   0x1         0x2         d2:c0:bf:92:b7:d1     *        p2p0<br>192.168.10.185   0x1         0x2         7c:d6:61:c6:d2:21     *        wlan0<br>192.168.10.1     0x1         0x2         7c:6a:60:43:a6:85     *        wlan0<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.10.185   0x1         0x2         7c:d6:61:c6:d2:21     *        wlan0<br>192.168.10.1     0x1         0x2         7c:6a:60:43:a6:85     *        wlan0<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.10.185   0x1         0x2         7c:d6:61:c6:d2:21     *        wlan0<br>192.168.10.1     0x1         0x2         7c:6a:60:43:a6:85     *        wlan0<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.10.185   0x1         0x2         7c:d6:61:c6:d2:21     *        wlan0<br>192.168.10.213   0x1         0x2         d0:c0:bf:92:b7:d1     *        wlan0<br>192.168.10.1     0x1         0x2         7c:6a:60:43:a6:85     *        wlan0<br>xaga:&#x2F; $ ip route show<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>xaga:&#x2F; $ ip route show<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ ip route show<br>192.168.203.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.203.20<br>xaga:&#x2F; $ ip route show<br>192.168.203.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.203.20<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.203.1    0x1         0x2         d2:c0:bf:92:b7:d1     *        wlan0<br>xaga:&#x2F; $ cat &#x2F;proc&#x2F;net&#x2F;arp<br>IP address       HW type     Flags       HW address            Mask     Device<br>192.168.49.105   0x1         0x2         d0:c0:bf:92:b7:d1     *        p2p0<br>192.168.10.1     0x1         0x2         7c:6a:60:43:a6:85     *        wlan0<br>xaga:&#x2F; $ ip route show<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ ip route show<br>192.168.10.0&#x2F;24 dev wlan0 proto kernel scope link src 192.168.10.4<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ ip route show<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ ip route show<br>192.168.49.0&#x2F;24 dev p2p0 proto kernel scope link src 192.168.49.1<br>xaga:&#x2F; $ rzet@MacBook-Pro-3 platform-tools$ </p>
+<p>&#x3D;&#x3D;&#x3D;</p>
+<p>手机的IMEI类似与mac地址。  他们都是二层设备。</p>
+<p>网络层：IP地址。 </p>
+<p>数据链路层： 以太网 802.3 mac地址。  wifi 802.11 mac地址。 蜂窝网络 3GPP协议 IMEI(类似于mac地址)。 蓝牙 蓝牙协议 mac地址。</p>
+<p>wifi 网线 数据流量 都走 TCP／IP协议栈。 只不过在数据链层有不一样的实现罢了。</p>
+<p>imei跟着设备走的，设备唯一标识。跟着卡走的叫imsi吧。 一般一卡一个imsi， 而一卡也对应着一个IMEI。 双卡手机也是有两个imei的。<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d6c57dcefb06">https://www.jianshu.com/p/d6c57dcefb06</a></p>
+<p>IMEI 对应移动／联通制式。 MEID对应电信制式(CDMA).<br>手机上一个卡槽对应一个IMEI或MEID。 由于现在手机双卡，所以都有两个IMEI，而且由于双卡都支持移动或联通，所以两个卡槽可以对应两个IMEI，而双卡只能用一个电信的，因此虽然两个卡槽，但是只有一个MEID。 所以，比如电信手机，有两个IMEI，一个MEID。<br>卡槽1 卡槽2 对应的IMEI是固定的，而卡槽1 2对应的IMSI会随着卡放置的位置不同而不同。<br>如果支持移动&#x2F;联通的手机，是没有MEID的。</p>
+<p>手机： SN码， IMEI， MEID， IMSI(电话卡)。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aeolian/p/10234447.html">https://www.cnblogs.com/aeolian/p/10234447.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lfcoolhappy/article/details/19608381">https://blog.csdn.net/lfcoolhappy/article/details/19608381</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/whbk101/article/details/103089390">https://blog.csdn.net/whbk101/article/details/103089390</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/MirkoWug/article/details/106860832">https://blog.csdn.net/MirkoWug/article/details/106860832</a></p>
+<p>android 系统版本 和 android sdk版本&#x2F;API等级 对应关系：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dc7e5399be32">https://www.jianshu.com/p/dc7e5399be32</a><br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Android%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC/1578450">https://baike.baidu.com/item/Android%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC/1578450</a></p>
+<p>android 动态权限步骤：<br>1.在manifest中写入相应权限。<br>2.代码中动态申请权限。 a.检查是否有权限。 2.如果有 完成后续操作。 b如果没有，那么提示为什么需要权限，然后申请权限。<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a51593817825">https://www.jianshu.com/p/a51593817825</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ccea3c2f9cfa">https://www.jianshu.com/p/ccea3c2f9cfa</a></p>
+<p>android 获取本地 IP mac， 路由器的mac地址等， <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/de7cbcb4fd3e">https://www.jianshu.com/p/de7cbcb4fd3e</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23025319/article/details/119214937">https://blog.csdn.net/qq_23025319/article/details/119214937</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/ddxxii/article/details/76468349">https://blog.csdn.net/ddxxii/article/details/76468349</a></p>
+<p>android 在wifi下 获取本地ip mac， 获取网关&#x2F;路由器 ip  mac.<br>在蜂窝网络下 获取本地ip imei&#x2F;meid, 获取网关／基站 ip mac (可以使用命令行进行获取然后解析)(好像读取网关mac有点坑，因为走的是蜂窝网络，arp表中没有信息，不像wifi下，arp表中有信息的。好像基站也不一定是mac地址啥，也可能是其他形式的).<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/h784707460/article/details/87779494">https://blog.csdn.net/h784707460/article/details/87779494</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/github_30662571/article/details/75088644">https://blog.csdn.net/github_30662571/article/details/75088644</a></p>
+<p>.&#x2F;adb devices -l</p>
+<p>.&#x2F;adb -s deviceName shell  &#x2F;&#x2F;进入某个设备的shell。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Boluo's Uncle
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ruozhiertong.github.io/2023/03/10/wifi-and-p2p/" title="wifi_and_p2p">https://ruozhiertong.github.io/2023/03/10/wifi-and-p2p/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%90%9E%E6%9C%BA/" rel="tag"># 搞机</a>
+              <a href="/tags/wifi/" rel="tag"># wifi</a>
+              <a href="/tags/p2p/" rel="tag"># p2p</a>
+              <a href="/tags/%E6%97%A0%E7%BA%BF%E6%8A%95%E5%B1%8F/" rel="tag"># 无线投屏</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/22/async/" rel="prev" title="async">
+                  <i class="fa fa-chevron-left"></i> async
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/03/10/%E9%9A%8F%E8%BA%ABwifi%E6%8A%98%E8%85%BE/" rel="next" title="随身wifi折腾">
+                  随身wifi折腾 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine(匿名)</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk(Github账号登录)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Boluo's Uncle</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">111k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:41</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"ISP0q4TOvuyzX5dzqXotogpR-MdYXbMMI","appKey":"GT0z9SqCrSUDD7NtpdWwCNrk","serverURLs":"https://isp0q4to.api.lncldglobal.com","placeholder":"留下你的评论吧 (填写邮箱可收到回复通知)","avatar":"robohash","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"enableQQ":false,"requiredFields":[],"notify":false,"el":"#valine-comments","path":"/2023/03/10/wifi-and-p2p/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ruozhiertong","repo":"ruozhiertong.github.io","client_id":"75bd5850feed280eb0ec","client_secret":"91e7e00d90dc4b871623b99fe369fb583355e77b","admin_user":"ruozhiertong","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"e981d7968e308543b22897cf11dd2fbe"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
